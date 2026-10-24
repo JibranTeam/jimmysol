@@ -375,18 +375,11 @@ const LearnArt = ({ active: _a = false }: { active?: boolean }) => (
 /* ================= MODES ================= */
 const ModesSection = () => {
   const modes = [
-    { n: '01', title: 'DESIGN', subtitle: 'Interface & Brand Systems', desc: 'Wireframes, design systems and pixel-perfect interfaces crafted around real user behaviour.', color: '#ff6b35', Art: DesignArt },
-    { n: '02', title: 'BUILD', subtitle: 'Engineering & Development', desc: 'Production-grade React, Next.js and TypeScript builds engineered to scale from day one.', color: '#ff6b35', Art: BuildArt },
-    { n: '03', title: '1 ON 1', subtitle: 'Technology & Project Consultancy', desc: 'Get focused 1-on-1 guidance to solve technical challenges, evaluate ideas, plan projects, or make smarter technology decisions.', color: '#ff6b35', Art: ConsultArt },
-    { n: '04', title: 'LEARN', subtitle: 'Web Development & Tech Training', desc: 'Learn modern web development through practical projects, expert guidance and real-world workflows.', color: '#ff6b35', Art: LearnArt },
+    { n: '01', title: 'DESIGN', subtitle: 'Interface & Brand Systems', desc: 'Wireframes, design systems and pixel-perfect interfaces crafted around real user behaviour.', color: '#ff6b35', Art: DesignArt, link: '#/services/ui-ux-design', cta: 'Explore Design' },
+    { n: '02', title: 'BUILD', subtitle: 'Engineering & Development', desc: 'Production-grade React, Next.js and TypeScript builds engineered to scale from day one.', color: '#ff6b35', Art: BuildArt, link: '#/services/web-development', cta: 'Explore Build' },
+    { n: '03', title: '1 ON 1', subtitle: 'Technology & Project Consultancy', desc: 'Get focused 1-on-1 guidance to solve technical challenges, evaluate ideas, plan projects, or make smarter technology decisions.', color: '#ff6b35', Art: ConsultArt, link: '#/services/consultation-training', cta: 'Explore Consultancy' },
+    { n: '04', title: 'LEARN', subtitle: 'Web Development & Tech Training', desc: 'Learn modern web development through practical projects, expert guidance and real-world workflows.', color: '#ff6b35', Art: LearnArt, link: '#/services/consultation-training', cta: 'Explore Training' },
   ];
-  const [active, setActive] = useState(1);
-  const dragX = useRef<number | null>(null);
-  const total = modes.length;
-  const go = (dir: number) => setActive((p) => (p + dir + total) % total);
-  const offsetOf = (i: number) => { let o = i - active; if (o > total / 2) o -= total; if (o < -total / 2) o += total; return o; };
-  const onDown = (x: number) => { dragX.current = x; };
-  const onUp = (x: number) => { if (dragX.current === null) return; const d = x - dragX.current; if (Math.abs(d) > 45) go(d < 0 ? 1 : -1); dragX.current = null; };
   return (
     <section id="modes" className="relative w-full overflow-hidden bg-[#070f1a] py-24 md:py-32 px-5">
       <div className="absolute inset-0 pointer-events-none z-[1]" style={{ background: 'radial-gradient(circle, rgba(255,107,53,0.10) 0%, transparent 65%)' }} />
@@ -404,49 +397,22 @@ const ModesSection = () => {
           className="mx-auto mt-7 max-w-[58ch] font-mono text-[12px] sm:text-[13px] font-light leading-[1.9] tracking-[0.08em] uppercase text-white/50"
         />
       </div>
-      <div className="modes-layout-container">
-        <div className="modes-col-left"><h2 className="modes-vertical-heading">MODES</h2></div>
-        <div className="modes-col-right">
-          <div tabIndex={0} role="group" aria-label="Modes carousel" onMouseDown={(e) => onDown(e.clientX)} onMouseUp={(e) => onUp(e.clientX)} onTouchStart={(e) => onDown(e.touches[0].clientX)} onTouchEnd={(e) => onUp(e.changedTouches[0].clientX)} onKeyDown={(e) => { if (e.key === 'ArrowLeft') go(-1); if (e.key === 'ArrowRight') go(1); }} className="w-full h-[440px] flex items-center justify-center relative z-10 cursor-grab active:cursor-grabbing select-none outline-none" style={{ perspective: '1250px', transformStyle: 'preserve-3d', touchAction: 'pan-y' }}>
-            {modes.map((m, i) => {
-              const o = offsetOf(i); const isActive = o === 0; const abs = Math.abs(o);
-              return (
-                <div key={m.n} onClick={() => !isActive && setActive(i)} className={'modes-card modes-card-glass absolute flex flex-col justify-between overflow-hidden rounded-3xl p-6' + (isActive ? ' modes-card-glass-active' : '')} style={{
-                  width: 300, maxWidth: '90vw', height: 380,
-                  cursor: isActive ? 'default' : 'pointer', opacity: abs > 1 ? 0 : isActive ? 1 : 0.85,
-                  filter: isActive ? 'blur(0px)' : 'blur(0.8px) brightness(1)',
-                  transform: isActive ? 'translateZ(200px) scale(1.06)' : 'translateX(' + o * 320 + 'px) translateZ(-100px) scale(0.82) rotateY(' + o * -24 + 'deg)',
-                  zIndex: isActive ? 20 : 10 - abs, pointerEvents: abs > 1 ? 'none' : 'auto', transformStyle: 'preserve-3d',
-                }}>
-                  <div className="absolute inset-0 pointer-events-none z-0 transition-opacity duration-500" style={{ opacity: isActive ? 0.16 : 0.06, maskImage: 'radial-gradient(rgba(0,0,0,0.05) 30%, rgba(0,0,0,0.8) 95%)', WebkitMaskImage: 'radial-gradient(rgba(0,0,0,0.05) 30%, rgba(0,0,0,0.8) 95%)' }}>
-                    <HoneycombPattern id={'honeycomb-' + m.title.toLowerCase()} color={m.color} />
-                  </div>
-                  <div className="relative z-10 flex flex-col items-center gap-1.5 mt-0.5 mb-2">
-                    <h3 className="font-['Syne'] text-[21px] font-extrabold tracking-tight leading-none mt-1 text-center transition-all duration-500" style={isActive ? { color: 'transparent', WebkitTextStroke: '1.5px ' + m.color, textShadow: '2px -2px 0 ' + m.color + '26' } : { color: '#ffffff' }}>{m.title}</h3>
-                    <div className="text-[8.5px] font-bold tracking-tight rounded-full border px-2.5 py-0.5 transition-all duration-500" style={{ color: m.color, background: m.color + '14', borderColor: m.color + '44', opacity: isActive ? 1 : 0 }}>{m.subtitle}</div>
-                  </div>
-                  <div className="relative z-10 flex-1 flex items-center justify-center my-1">
-                    <div className="transition-transform duration-700" style={{ transform: isActive ? 'scale(1.04)' : 'scale(0.94)' }}>
-                      <m.Art active={isActive} />
-                    </div>
-                  </div>
-                  <div className="relative z-10 flex flex-col items-center text-center mb-0.5 transition-all duration-500" style={{ opacity: isActive ? 1 : 0, transform: isActive ? 'none' : 'translateY(20px) scale(0.92)' }}>
-                    <p className="text-[13px] font-medium leading-[1.5] text-white/75 px-1">{m.desc}</p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-          <div className="flex items-center gap-2 mt-8 z-20">
-            {modes.map((m, i) => (
-              <button key={'dot-' + m.n} onClick={() => setActive(i)} aria-label={'Go to ' + m.title} className="h-2 rounded-full transition-all duration-300" style={{ width: i === active ? 26 : 8, background: i === active ? m.color : 'rgba(255,255,255,0.18)' }} />
-            ))}
-          </div>
-          <div className="flex gap-6 mt-6 z-20 justify-center items-center">
-            <button title="Previous Mode" aria-label="Previous mode" className="modes-nav-btn" onClick={() => go(-1)}>←</button>
-            <button title="Next Mode" aria-label="Next mode" className="modes-nav-btn" onClick={() => go(1)}>→</button>
-          </div>
-        </div>
+      <div className="relative z-[2] mx-auto w-full max-w-[1200px] px-4 grid gap-6 sm:grid-cols-2 lg:grid-cols-4 items-stretch">
+        {modes.map((m) => (
+          <article key={m.n} className="modes-card modes-card-glass modes-card-glass-active relative flex flex-col overflow-hidden rounded-3xl p-6 transition-transform duration-300 hover:-translate-y-1.5">
+            <div className="absolute inset-0 pointer-events-none z-0 opacity-[0.12]">
+              <HoneycombPattern id={'honeycomb-grid-' + m.title.toLowerCase()} color={m.color} />
+            </div>
+            <div className="relative z-10 flex items-center justify-between gap-2">
+              <span className="font-mono text-[12px] font-bold tracking-[0.2em] text-white/40">{m.n}</span>
+              <span className="text-[10px] font-bold tracking-wide rounded-full border px-2.5 py-1 text-center" style={{ color: m.color, background: m.color + '14', borderColor: m.color + '44' }}>{m.subtitle}</span>
+            </div>
+            <div className="relative z-10 flex justify-center my-5"><m.Art active /></div>
+            <h3 className="relative z-10 font-['Syne'] text-[22px] font-extrabold tracking-tight text-white text-center">{m.title}</h3>
+            <p className="relative z-10 mt-3 text-[14px] leading-[1.6] text-white/75 text-center flex-1">{m.desc}</p>
+            <a href={m.link} className="relative z-10 mt-6 inline-flex items-center justify-center gap-2 text-[14px] font-semibold text-[#ff6b35] hover:text-white transition-colors">{m.cta} →</a>
+          </article>
+        ))}
       </div>
     </section>
   );
