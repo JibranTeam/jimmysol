@@ -411,32 +411,28 @@ const ModesSection = () => {
             {modes.map((m, i) => {
               const o = offsetOf(i); const isActive = o === 0; const abs = Math.abs(o);
               return (
-                <article key={m.n} onClick={() => !isActive && setActive(i)} className="modes-card absolute overflow-hidden rounded-3xl" style={{
-                  width: 340, maxWidth: '90vw', height: 500,
+                <article key={m.n} onClick={() => !isActive && setActive(i)} className="modes-card absolute flex flex-col overflow-hidden rounded-3xl p-8" style={{
+                  width: 340, maxWidth: '90vw', height: 520,
+                  background: 'linear-gradient(180deg,#10233a 0%,#0b1828 55%,#070f1a 100%)',
+                  border: '1.5px solid ' + (isActive ? 'rgba(255,107,53,0.55)' : 'rgba(255,255,255,0.12)'),
+                  boxShadow: isActive ? '0 28px 56px -16px rgba(0,0,0,0.85), 0 0 0 1px rgba(255,107,53,0.08), 0 16px 44px -12px rgba(255,107,53,0.28), inset 0 1px 0 rgba(255,255,255,0.14)' : '0 16px 32px -12px rgba(0,0,0,0.7)',
                   cursor: isActive ? 'default' : 'pointer', opacity: abs > 1 ? 0 : isActive ? 1 : 0.85,
                   filter: isActive ? 'blur(0px)' : 'blur(0.8px) brightness(0.9)',
                   transform: isActive ? 'translateZ(200px) scale(1.02)' : 'translateX(' + o * 360 + 'px) translateZ(-100px) scale(0.82) rotateY(' + o * -24 + 'deg)',
                   zIndex: isActive ? 20 : 10 - abs, pointerEvents: abs > 1 ? 'none' : 'auto', transformStyle: 'preserve-3d',
                 }}>
-                  <div className="relative h-[240px] rounded-3xl overflow-hidden" style={{ background: 'linear-gradient(160deg,#22332f 0%,#101d1a 60%,#0a1210 100%)', border: '1px solid rgba(255,255,255,0.18)' }}>
-                    <div className="absolute inset-0 pointer-events-none opacity-[0.14]">
-                      <HoneycombPattern id={'honeycomb-art-' + m.title.toLowerCase()} color={m.color} />
-                    </div>
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div style={{ transform: isActive ? 'scale(1.15)' : 'scale(1)' }} className="transition-transform duration-700">
-                        <m.Art active={isActive} />
-                      </div>
+                  <div className="flex flex-col items-center text-center">
+                    <h3 className="font-['Syne'] text-[34px] font-extrabold leading-none tracking-tight transition-all duration-500" style={isActive ? { color: 'transparent', WebkitTextStroke: '1.8px #ff6b35', textShadow: '0 0 24px rgba(255,107,53,0.25)' } : { color: '#ffffff' }}>{m.title}</h3>
+                    <span className="mt-4 text-[11px] font-semibold tracking-[0.06em] rounded-full px-4 py-1.5" style={{ color: '#ffb08a', background: 'rgba(255,107,53,0.12)', border: '1px solid rgba(255,107,53,0.4)' }}>{m.subtitle}</span>
+                  </div>
+                  <div className="relative flex-1 flex items-center justify-center my-4">
+                    <div className="absolute w-[180px] h-[180px] rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(255,107,53,0.16) 0%, transparent 68%)' }} />
+                    <div className="relative transition-transform duration-700" style={{ transform: isActive ? 'scale(1.18)' : 'scale(1)' }}>
+                      <m.Art active={isActive} />
                     </div>
                   </div>
-                  <div className="relative z-10 -mt-8 mx-3 rounded-3xl p-6 pt-5" style={{ background: 'linear-gradient(180deg,#1d2623 0%,#0c1210 100%)', border: '1px solid rgba(255,255,255,0.16)', boxShadow: '0 24px 48px -16px rgba(0,0,0,0.85), inset 0 1px 0 rgba(255,255,255,0.16)' }}>
-                    <span className="inline-block text-[10px] font-bold tracking-[0.18em] rounded-full px-3 py-1" style={{ color: '#ffb08a', background: 'rgba(255,107,53,0.14)', border: '1px solid rgba(255,107,53,0.35)' }}>MODE {m.n}</span>
-                    <h3 className="font-['Syne'] text-[38px] font-extrabold leading-none text-white mt-3">{m.title}</h3>
-                    <div className="mt-4 space-y-1.5">
-                      <div className="h-px bg-white/15" />
-                      <div className="h-px bg-white/10" />
-                    </div>
-                    <p className="mt-4 text-[17px] font-semibold leading-snug" style={{ color: '#ffa07a' }}>{m.subtitle}</p>
-                    <p className="mt-3 text-[14px] leading-[1.6] text-white/75">{m.desc}</p>
+                  <div className="flex flex-col items-center text-center">
+                    <p className="text-[15px] leading-[1.75] text-white/80 max-w-[280px]">{m.desc}</p>
                     <a href={m.link} className="mt-5 inline-flex items-center gap-2 text-[14px] font-semibold text-[#ff6b35] hover:text-white transition-colors">{m.cta} →</a>
                   </div>
                 </article>
