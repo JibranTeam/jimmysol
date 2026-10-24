@@ -34,7 +34,7 @@ export function RouteCurtain() {
           <Code2 className="w-9 h-9 text-white" />
         </motion.div>
         <span className="font-['Syne'] text-3xl md:text-4xl font-black text-white tracking-tight">
-          JIMMY SOL<span className="text-[#ff3c2f]">.</span>
+          THE JIMMY LAB<span className="text-[#ff3c2f]">.</span>
         </span>
       </div>
     </motion.div>
