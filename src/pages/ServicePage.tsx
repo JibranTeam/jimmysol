@@ -20,7 +20,7 @@ export default function ServicePage({ service }: { service: Service }) {
               <Code2 className="w-6 h-6 text-white" />
             </div>
             <span className="font-['Syne'] font-black text-lg tracking-tight text-white">
-              JIMMY SOL<span className="text-[#ff3c2f]">.</span>
+              THE JIMMY LAB<span className="text-[#ff3c2f]">.</span>
             </span>
           </a>
           <a
@@ -309,10 +309,10 @@ export default function ServicePage({ service }: { service: Service }) {
               <Code2 className="w-4 h-4 text-white" />
             </div>
             <span className="font-['Syne'] font-black text-sm text-white">
-              JIMMY SOL<span className="text-[#ff3c2f]">.</span>
+              THE JIMMY LAB<span className="text-[#ff3c2f]">.</span>
             </span>
           </div>
-          <p className="text-white/40 text-sm">© 2024 JIMMY SOL. All rights reserved.</p>
+          <p className="text-white/40 text-sm">© 2024 THE JIMMY LAB. All rights reserved.</p>
         </div>
       </footer>
     </div>
