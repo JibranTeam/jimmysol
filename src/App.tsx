@@ -380,8 +380,13 @@ const ModesSection = () => {
     { n: '03', title: '1 ON 1', subtitle: 'Technology & Project Consultancy', desc: 'Get focused 1-on-1 guidance to solve technical challenges, evaluate ideas, plan projects, or make smarter technology decisions.', color: '#ff6b35', Art: ConsultArt, link: '#/services/consultation-training', cta: 'Explore Consultancy' },
     { n: '04', title: 'LEARN', subtitle: 'Web Development & Tech Training', desc: 'Learn modern web development through practical projects, expert guidance and real-world workflows.', color: '#ff6b35', Art: LearnArt, link: '#/services/consultation-training', cta: 'Explore Training' },
   ];
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const scrollModes = (dir: number) => { scrollRef.current?.scrollBy({ left: dir * 344, behavior: 'smooth' }); };
+  const [active, setActive] = useState(0);
+  const dragX = useRef<number | null>(null);
+  const total = modes.length;
+  const go = (dir: number) => setActive((prev) => (prev + dir + total) % total);
+  const offsetOf = (i: number) => { let o = i - active; if (o > total / 2) o -= total; if (o < -total / 2) o += total; return o; };
+  const onDown = (x: number) => { dragX.current = x; };
+  const onUp = (x: number) => { if (dragX.current === null) return; const d = x - dragX.current; if (Math.abs(d) > 45) go(d < 0 ? 1 : -1); dragX.current = null; };
   return (
     <section id="modes" className="relative w-full overflow-hidden bg-[#070f1a] py-24 md:py-32 px-5">
       <div className="absolute inset-0 pointer-events-none z-[1]" style={{ background: 'radial-gradient(circle, rgba(255,107,53,0.10) 0%, transparent 65%)' }} />
@@ -399,27 +404,54 @@ const ModesSection = () => {
           className="mx-auto mt-7 max-w-[58ch] font-mono text-[12px] sm:text-[13px] font-light leading-[1.9] tracking-[0.08em] uppercase text-white/50"
         />
       </div>
-      <div className="relative z-[2] mx-auto w-full max-w-[1200px] px-4">
-        <div ref={scrollRef} className="modes-scroll-row flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory">
-        {modes.map((m) => (
-          <article key={m.n} className="modes-card modes-card-glass modes-card-glass-active relative flex flex-col overflow-hidden rounded-3xl p-6 transition-transform duration-300 hover:-translate-y-1.5 snap-start shrink-0 w-[320px] max-w-[90vw]">
-            <div className="absolute inset-0 pointer-events-none z-0 opacity-[0.12]">
-              <HoneycombPattern id={'honeycomb-grid-' + m.title.toLowerCase()} color={m.color} />
-            </div>
-            <div className="relative z-10 flex items-center justify-between gap-2">
-              <span className="font-mono text-[12px] font-bold tracking-[0.2em] text-white/40">{m.n}</span>
-              <span className="text-[10px] font-bold tracking-wide rounded-full border px-2.5 py-1 text-center" style={{ color: m.color, background: m.color + '14', borderColor: m.color + '44' }}>{m.subtitle}</span>
-            </div>
-            <div className="relative z-10 flex justify-center my-5"><m.Art active /></div>
-            <h3 className="relative z-10 font-['Syne'] text-[22px] font-extrabold tracking-tight text-white text-center">{m.title}</h3>
-            <p className="relative z-10 mt-3 text-[14px] leading-[1.6] text-white/75 text-center flex-1">{m.desc}</p>
-            <a href={m.link} className="relative z-10 mt-6 inline-flex items-center justify-center gap-2 text-[14px] font-semibold text-[#ff6b35] hover:text-white transition-colors">{m.cta} →</a>
-          </article>
-        ))}
-        </div>
-        <div className="flex gap-6 mt-6 z-20 justify-center items-center">
-          <button title="Previous Mode" aria-label="Scroll modes left" className="modes-nav-btn" onClick={() => scrollModes(-1)}>←</button>
-          <button title="Next Mode" aria-label="Scroll modes right" className="modes-nav-btn" onClick={() => scrollModes(1)}>→</button>
+      <div className="modes-layout-container">
+        <div className="modes-col-left"><h2 className="modes-vertical-heading">MODES</h2></div>
+        <div className="modes-col-right">
+          <div tabIndex={0} role="group" aria-label="Modes carousel" onMouseDown={(e) => onDown(e.clientX)} onMouseUp={(e) => onUp(e.clientX)} onTouchStart={(e) => onDown(e.touches[0].clientX)} onTouchEnd={(e) => onUp(e.changedTouches[0].clientX)} onKeyDown={(e) => { if (e.key === 'ArrowLeft') go(-1); if (e.key === 'ArrowRight') go(1); }} className="w-full h-[560px] flex items-center justify-center relative z-10 cursor-grab active:cursor-grabbing select-none outline-none" style={{ perspective: '1250px', transformStyle: 'preserve-3d', touchAction: 'pan-y' }}>
+            {modes.map((m, i) => {
+              const o = offsetOf(i); const isActive = o === 0; const abs = Math.abs(o);
+              return (
+                <article key={m.n} onClick={() => !isActive && setActive(i)} className="modes-card absolute overflow-hidden rounded-3xl" style={{
+                  width: 340, maxWidth: '90vw', height: 500,
+                  cursor: isActive ? 'default' : 'pointer', opacity: abs > 1 ? 0 : isActive ? 1 : 0.85,
+                  filter: isActive ? 'blur(0px)' : 'blur(0.8px) brightness(0.9)',
+                  transform: isActive ? 'translateZ(200px) scale(1.02)' : 'translateX(' + o * 360 + 'px) translateZ(-100px) scale(0.82) rotateY(' + o * -24 + 'deg)',
+                  zIndex: isActive ? 20 : 10 - abs, pointerEvents: abs > 1 ? 'none' : 'auto', transformStyle: 'preserve-3d',
+                }}>
+                  <div className="relative h-[240px] rounded-3xl overflow-hidden" style={{ background: 'linear-gradient(160deg,#22332f 0%,#101d1a 60%,#0a1210 100%)', border: '1px solid rgba(255,255,255,0.18)' }}>
+                    <div className="absolute inset-0 pointer-events-none opacity-[0.14]">
+                      <HoneycombPattern id={'honeycomb-art-' + m.title.toLowerCase()} color={m.color} />
+                    </div>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div style={{ transform: isActive ? 'scale(1.15)' : 'scale(1)' }} className="transition-transform duration-700">
+                        <m.Art active={isActive} />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="relative z-10 -mt-8 mx-3 rounded-3xl p-6 pt-5" style={{ background: 'linear-gradient(180deg,#1d2623 0%,#0c1210 100%)', border: '1px solid rgba(255,255,255,0.16)', boxShadow: '0 24px 48px -16px rgba(0,0,0,0.85), inset 0 1px 0 rgba(255,255,255,0.16)' }}>
+                    <span className="inline-block text-[10px] font-bold tracking-[0.18em] rounded-full px-3 py-1" style={{ color: '#ffb08a', background: 'rgba(255,107,53,0.14)', border: '1px solid rgba(255,107,53,0.35)' }}>MODE {m.n}</span>
+                    <h3 className="font-['Syne'] text-[38px] font-extrabold leading-none text-white mt-3">{m.title}</h3>
+                    <div className="mt-4 space-y-1.5">
+                      <div className="h-px bg-white/15" />
+                      <div className="h-px bg-white/10" />
+                    </div>
+                    <p className="mt-4 text-[17px] font-semibold leading-snug" style={{ color: '#ffa07a' }}>{m.subtitle}</p>
+                    <p className="mt-3 text-[14px] leading-[1.6] text-white/75">{m.desc}</p>
+                    <a href={m.link} className="mt-5 inline-flex items-center gap-2 text-[14px] font-semibold text-[#ff6b35] hover:text-white transition-colors">{m.cta} →</a>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+          <div className="flex items-center gap-2 mt-4 z-20">
+            {modes.map((m, i) => (
+              <button key={'dot-' + m.n} onClick={() => setActive(i)} aria-label={'Go to ' + m.title} className="h-2 rounded-full transition-all duration-300" style={{ width: i === active ? 26 : 8, background: i === active ? m.color : 'rgba(255,255,255,0.18)' }} />
+            ))}
+          </div>
+          <div className="flex gap-6 mt-6 z-20 justify-center items-center">
+            <button title="Previous Mode" aria-label="Previous mode" className="modes-nav-btn" onClick={() => go(-1)}>←</button>
+            <button title="Next Mode" aria-label="Next mode" className="modes-nav-btn" onClick={() => go(1)}>→</button>
+          </div>
         </div>
       </div>
     </section>
