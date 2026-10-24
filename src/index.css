@@ -41,6 +41,19 @@ body {
   color: #ffffff;
 }
 
+/* Contact form dropdowns: keep the opened options list dark, so white
+   option text is never rendered on a light native dropdown background. */
+select {
+  color-scheme: dark;
+}
+select option {
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+select option:disabled {
+  color: rgba(255, 255, 255, 0.55);
+}
+
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
