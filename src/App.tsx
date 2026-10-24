@@ -966,7 +966,7 @@ const ConnectSection = () => {
   const [sent, setSent] = useState(false);
   const [inquiryCopied, setInquiryCopied] = useState(false);
   const briefRef = useRef<HTMLTextAreaElement>(null);
-  const email = 'info@jimmystudio.io';
+  const email = 'thejimmylab@gmail.com';
   const copyEmail = () => { navigator.clipboard?.writeText(email); setCopied(true); window.setTimeout(() => setCopied(false), 2000); };
 
   // Build the inquiry text once, so submit + copy-to-clipboard stay identical.
