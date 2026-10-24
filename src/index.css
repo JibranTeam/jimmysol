@@ -414,6 +414,13 @@ select option:disabled {
     font-size: 1.1rem;
     cursor: pointer;
   }
+  .modes-scroll-row {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .modes-scroll-row::-webkit-scrollbar {
+    display: none;
+  }
   .modes-nav-btn:hover {
     background: #ff6b35;
     border-color: #ff6b35;

@@ -380,6 +380,8 @@ const ModesSection = () => {
     { n: '03', title: '1 ON 1', subtitle: 'Technology & Project Consultancy', desc: 'Get focused 1-on-1 guidance to solve technical challenges, evaluate ideas, plan projects, or make smarter technology decisions.', color: '#ff6b35', Art: ConsultArt, link: '#/services/consultation-training', cta: 'Explore Consultancy' },
     { n: '04', title: 'LEARN', subtitle: 'Web Development & Tech Training', desc: 'Learn modern web development through practical projects, expert guidance and real-world workflows.', color: '#ff6b35', Art: LearnArt, link: '#/services/consultation-training', cta: 'Explore Training' },
   ];
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const scrollModes = (dir: number) => { scrollRef.current?.scrollBy({ left: dir * 344, behavior: 'smooth' }); };
   return (
     <section id="modes" className="relative w-full overflow-hidden bg-[#070f1a] py-24 md:py-32 px-5">
       <div className="absolute inset-0 pointer-events-none z-[1]" style={{ background: 'radial-gradient(circle, rgba(255,107,53,0.10) 0%, transparent 65%)' }} />
@@ -397,9 +399,10 @@ const ModesSection = () => {
           className="mx-auto mt-7 max-w-[58ch] font-mono text-[12px] sm:text-[13px] font-light leading-[1.9] tracking-[0.08em] uppercase text-white/50"
         />
       </div>
-      <div className="relative z-[2] mx-auto w-full max-w-[1200px] px-4 grid gap-6 sm:grid-cols-2 lg:grid-cols-4 items-stretch">
+      <div className="relative z-[2] mx-auto w-full max-w-[1200px] px-4">
+        <div ref={scrollRef} className="modes-scroll-row flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory">
         {modes.map((m) => (
-          <article key={m.n} className="modes-card modes-card-glass modes-card-glass-active relative flex flex-col overflow-hidden rounded-3xl p-6 transition-transform duration-300 hover:-translate-y-1.5">
+          <article key={m.n} className="modes-card modes-card-glass modes-card-glass-active relative flex flex-col overflow-hidden rounded-3xl p-6 transition-transform duration-300 hover:-translate-y-1.5 snap-start shrink-0 w-[320px] max-w-[90vw]">
             <div className="absolute inset-0 pointer-events-none z-0 opacity-[0.12]">
               <HoneycombPattern id={'honeycomb-grid-' + m.title.toLowerCase()} color={m.color} />
             </div>
@@ -413,6 +416,11 @@ const ModesSection = () => {
             <a href={m.link} className="relative z-10 mt-6 inline-flex items-center justify-center gap-2 text-[14px] font-semibold text-[#ff6b35] hover:text-white transition-colors">{m.cta} →</a>
           </article>
         ))}
+        </div>
+        <div className="flex gap-6 mt-6 z-20 justify-center items-center">
+          <button title="Previous Mode" aria-label="Scroll modes left" className="modes-nav-btn" onClick={() => scrollModes(-1)}>←</button>
+          <button title="Next Mode" aria-label="Scroll modes right" className="modes-nav-btn" onClick={() => scrollModes(1)}>→</button>
+        </div>
       </div>
     </section>
   );
