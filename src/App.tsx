@@ -411,11 +411,8 @@ const ModesSection = () => {
             {modes.map((m, i) => {
               const o = offsetOf(i); const isActive = o === 0; const abs = Math.abs(o);
               return (
-                <div key={m.n} onClick={() => !isActive && setActive(i)} className="modes-card absolute flex flex-col justify-between overflow-hidden rounded-3xl p-6" style={{
+                <div key={m.n} onClick={() => !isActive && setActive(i)} className={'modes-card modes-card-glass absolute flex flex-col justify-between overflow-hidden rounded-3xl p-6' + (isActive ? ' modes-card-glass-active' : '')} style={{
                   width: 300, maxWidth: '90vw', height: 380,
-                  background: isActive ? 'linear-gradient(155deg,#132234 0%,#0e1a29 55%,#0b1522 100%)' : 'linear-gradient(155deg,#101c2c 0%,#0c1622 100%)',
-                  border: '1.5px solid ' + (isActive ? m.color : 'rgba(255,255,255,0.09)'),
-                  boxShadow: isActive ? '0 20px 44px -12px ' + m.color + '44, 0 8px 18px -8px rgba(0,0,0,0.6), inset 0 1px 3px rgba(255,255,255,0.06)' : '0 8px 20px -8px rgba(0,0,0,0.5)',
                   cursor: isActive ? 'default' : 'pointer', opacity: abs > 1 ? 0 : isActive ? 1 : 0.85,
                   filter: isActive ? 'blur(0px)' : 'blur(0.8px) brightness(1)',
                   transform: isActive ? 'translateZ(200px) scale(1.06)' : 'translateX(' + o * 320 + 'px) translateZ(-100px) scale(0.82) rotateY(' + o * -24 + 'deg)',

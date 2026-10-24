@@ -356,6 +356,50 @@ select option:disabled {
       border-color 0.65s ease, opacity 0.5s ease, filter 0.5s ease;
     will-change: transform;
   }
+  /* Modes-only card design, from the reference: glossy black glass,
+     thin silver rim, diagonal sheen and small corner glints. */
+  .modes-card-glass {
+    background: linear-gradient(135deg, #333338 0%, #1a1a1f 42%, #070708 100%);
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: 24px;
+    box-shadow:
+      inset 0 1px 1px rgba(255, 255, 255, 0.38),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.05),
+      inset 0 -12px 24px rgba(0, 0, 0, 0.45),
+      0 24px 48px -16px rgba(0, 0, 0, 0.85);
+  }
+  .modes-card-glass-active {
+    border-color: rgba(255, 255, 255, 0.55);
+    box-shadow:
+      inset 0 1px 1px rgba(255, 255, 255, 0.5),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.08),
+      inset 0 -12px 24px rgba(0, 0, 0, 0.45),
+      0 24px 48px -12px rgba(0, 0, 0, 0.85),
+      0 0 0 1px rgba(255, 107, 53, 0.12),
+      0 18px 44px -12px rgba(255, 107, 53, 0.35);
+  }
+  .modes-card-glass::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    z-index: 1;
+    background: linear-gradient(115deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.04) 28%, transparent 45%, transparent 62%, rgba(255, 255, 255, 0.06) 100%);
+  }
+  .modes-card-glass::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    z-index: 1;
+    background:
+      radial-gradient(circle at 88% 3%, rgba(255, 255, 255, 0.95) 0 2px, rgba(255, 255, 255, 0.35) 0 4px, transparent 7px),
+      radial-gradient(circle at 3% 52%, rgba(255, 255, 255, 0.8) 0 2px, transparent 6px),
+      radial-gradient(circle at 16% 97%, rgba(255, 255, 255, 0.95) 0 2px, transparent 5px),
+      radial-gradient(circle at 88% 97%, rgba(255, 255, 255, 0.95) 0 2px, transparent 5px);
+  }
   .modes-nav-btn {
     width: 46px;
     height: 46px;
