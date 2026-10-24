@@ -41,7 +41,7 @@ const Navigation = () => {
             <path d="M20 3 L37 33 H3 Z" stroke="#ffffff" strokeWidth="1.6" strokeLinejoin="round" />
             <path d="M20 12 L29 28 H11 Z" stroke="#ffffff" strokeWidth="1.3" strokeLinejoin="round" opacity="0.65" />
           </svg>
-          <span className="text-[14px] font-medium tracking-[0.22em] text-white whitespace-nowrap">THE&nbsp;JIMMY&nbsp;LAB</span>
+          <span className="text-[15px] font-medium tracking-[0.38em] text-white">JIMMY&nbsp;SOL</span>
         </a>
         <div className="hidden md:flex items-center gap-9">
           {navItems.map((item) => (
@@ -67,7 +67,7 @@ const Navigation = () => {
 };
 
 /* ================= Hero brief prompt ================= */
-const BRIEF_KEY = 'thejimmylab:brief';
+const BRIEF_KEY = 'jimmysol:brief';
 const PROMPTS = [
   'every new tool turns into a headache',
   'our site looks dated and loads slowly',
@@ -304,7 +304,7 @@ const DesignArt = ({ active: _a = false }: { active?: boolean }) => (
     <ellipse cx="100" cy="140" rx="55" ry="9" fill="#ff6b35" opacity="0.14" />
     <rect x="34" y="24" width="132" height="92" rx="10" fill="#101c2e" stroke="#ff6b35" strokeWidth="2.5" />
     <rect x="34" y="24" width="132" height="20" rx="10" fill="#ff6b35" opacity="0.18" />
-    <circle cx="48" cy="34" r="3.2" fill="#ff6b35" /><circle cx="59" cy="34" r="3.2" fill="#ffd166" opacity="0.8" /><circle cx="70" cy="34" r="3.2" fill="#06d6a0" opacity="0.8" />
+    <circle cx="48" cy="34" r="3.2" fill="#ff6b35" /><circle cx="59" cy="34" r="3.2" fill="#ff6b35" opacity="0.8" /><circle cx="70" cy="34" r="3.2" fill="#ff6b35" opacity="0.8" />
     <rect x="46" y="56" width="42" height="46" rx="6" fill="#ff6b35" opacity="0.25" />
     <rect x="96" y="56" width="58" height="8" rx="4" fill="#ffffff" opacity="0.35" />
     <rect x="96" y="70" width="44" height="8" rx="4" fill="#ffffff" opacity="0.2" />
@@ -315,19 +315,19 @@ const DesignArt = ({ active: _a = false }: { active?: boolean }) => (
 );
 const BuildArt = ({ active: _b = false }: { active?: boolean }) => (
   <svg viewBox="0 0 200 160" width="130" height="115" fill="none">
-    <ellipse cx="100" cy="140" rx="55" ry="9" fill="#38bdf8" opacity="0.14" />
-    <rect x="26" y="30" width="148" height="84" rx="10" fill="#0d1a2b" stroke="#38bdf8" strokeWidth="2.5" />
-    <path d="M62 58l-16 14 16 14" stroke="#38bdf8" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-    <path d="M138 58l16 14-16 14" stroke="#38bdf8" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+    <ellipse cx="100" cy="140" rx="55" ry="9" fill="#ff6b35" opacity="0.14" />
+    <rect x="26" y="30" width="148" height="84" rx="10" fill="#0d1a2b" stroke="#ff6b35" strokeWidth="2.5" />
+    <path d="M62 58l-16 14 16 14" stroke="#ff6b35" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+    <path d="M138 58l16 14-16 14" stroke="#ff6b35" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" fill="none" />
     <path d="M110 52l-20 40" stroke="#ff6b35" strokeWidth="4" strokeLinecap="round" />
-    <rect x="26" y="30" width="148" height="16" rx="8" fill="#38bdf8" opacity="0.15" />
-    <circle cx="40" cy="38" r="2.6" fill="#38bdf8" /><circle cx="50" cy="38" r="2.6" fill="#38bdf8" opacity="0.5" />
+    <rect x="26" y="30" width="148" height="16" rx="8" fill="#ff6b35" opacity="0.15" />
+    <circle cx="40" cy="38" r="2.6" fill="#ff6b35" /><circle cx="50" cy="38" r="2.6" fill="#ff6b35" opacity="0.5" />
   </svg>
 );
 const ConsultArt = ({ active = false }: { active?: boolean }) => (
   <svg viewBox="0 0 200 170" width="130" height="118" fill="none">
-    <ellipse cx="100" cy="152" rx="46" ry="8" fill="#06d6a0" opacity="0.14" />
-    <g stroke="#06d6a0" strokeWidth="2.5" strokeLinecap="round" fill="none">
+    <ellipse cx="100" cy="152" rx="46" ry="8" fill="#ff6b35" opacity="0.14" />
+    <g stroke="#ff6b35" strokeWidth="2.5" strokeLinecap="round" fill="none">
       <path d="M90 24a14 14 0 0 1 20 0">
         <animate attributeName="opacity" values={active ? '0;0.9;0' : '0;0.45;0'} keyTimes="0;0.3;1" calcMode="spline" keySplines="0.3 0 0.4 1;0.4 0 0.7 1" dur="1.8s" repeatCount="indefinite" begin="0s" />
       </path>
@@ -338,37 +338,37 @@ const ConsultArt = ({ active = false }: { active?: boolean }) => (
         <animate attributeName="opacity" values={active ? '0;0.35;0' : '0;0.18;0'} keyTimes="0;0.3;1" calcMode="spline" keySplines="0.3 0 0.4 1;0.4 0 0.7 1" dur="1.8s" repeatCount="indefinite" begin="0.6s" />
       </path>
     </g>
-    <line x1="100" y1="40" x2="100" y2="62" stroke="#06d6a0" strokeWidth="7" strokeLinecap="round" />
-    <circle cx="100" cy="36" r="11" fill="#06d6a0">
+    <line x1="100" y1="40" x2="100" y2="62" stroke="#ff6b35" strokeWidth="7" strokeLinecap="round" />
+    <circle cx="100" cy="36" r="11" fill="#ff6b35">
       <animate attributeName="r" values="11;12.5;11" dur="1.8s" repeatCount="indefinite" />
     </circle>
-    <circle cx="42" cy="108" r="12" fill="#06d6a0" />
-    <circle cx="158" cy="108" r="12" fill="#06d6a0" />
-    <rect x="50" y="66" width="100" height="78" rx="22" fill="#0f1a29" stroke="#06d6a0" strokeWidth="7" />
-    <circle cx="82" cy="106" r="10" fill="#06d6a0" />
-    <circle cx="118" cy="106" r="10" fill="#06d6a0" />
+    <circle cx="42" cy="108" r="12" fill="#ff6b35" />
+    <circle cx="158" cy="108" r="12" fill="#ff6b35" />
+    <rect x="50" y="66" width="100" height="78" rx="22" fill="#0f1a29" stroke="#ff6b35" strokeWidth="7" />
+    <circle cx="82" cy="106" r="10" fill="#ff6b35" />
+    <circle cx="118" cy="106" r="10" fill="#ff6b35" />
   </svg>
 );
 const LearnArt = ({ active: _a = false }: { active?: boolean }) => (
   <svg viewBox="0 0 200 212" width="132" height="140" fill="none">
-    <ellipse cx="100" cy="202" rx="62" ry="7" fill="#ffd166" opacity="0.1" />
-    <g stroke="#ffd166" strokeWidth="5" strokeLinecap="round" opacity="0.9">
+    <ellipse cx="100" cy="202" rx="62" ry="7" fill="#ff6b35" opacity="0.1" />
+    <g stroke="#ff6b35" strokeWidth="5" strokeLinecap="round" opacity="0.9">
       <line x1="100" y1="6" x2="100" y2="22" />
       <line x1="66" y1="18" x2="76" y2="29" />
       <line x1="134" y1="18" x2="124" y2="29" />
       <line x1="52" y1="48" x2="68" y2="48" />
       <line x1="148" y1="48" x2="132" y2="48" />
     </g>
-    <path d="M100 30c-17 0-28 13-28 28 0 10 5 17 12 22v8h32v-8c7-5 12-12 12-22 0-15-11-28-28-28z" fill="#0f1a29" stroke="#ffd166" strokeWidth="5" strokeLinejoin="round" />
-    <path d="M100 82V68m0 0l-8-12m8 12l8-12" stroke="#ffd166" strokeWidth="3.5" strokeLinecap="round" fill="none" opacity="0.85" />
-    <rect x="86" y="88" width="28" height="12" rx="4" fill="#ffd166" />
-    <rect x="86" y="88" width="28" height="4" rx="2" fill="#d9a94a" opacity="0.55" />
-    <circle cx="50" cy="140" r="15" fill="#0f1a29" stroke="#ffd166" strokeWidth="4" />
-    <path d="M22 188c0-17 12-28 28-28s28 11 28 28" fill="#0f1a29" stroke="#ffd166" strokeWidth="4" strokeLinecap="round" />
-    <circle cx="150" cy="140" r="15" fill="#0f1a29" stroke="#ffd166" strokeWidth="4" />
-    <path d="M122 188c0-17 12-28 28-28s28 11 28 28" fill="#0f1a29" stroke="#ffd166" strokeWidth="4" strokeLinecap="round" />
-    <circle cx="100" cy="150" r="16.5" fill="#0f1a29" stroke="#ffd166" strokeWidth="4.5" />
-    <path d="M70 198c0-18 13-30 30-30s30 12 30 30" fill="#0f1a29" stroke="#ffd166" strokeWidth="4.5" strokeLinecap="round" />
+    <path d="M100 30c-17 0-28 13-28 28 0 10 5 17 12 22v8h32v-8c7-5 12-12 12-22 0-15-11-28-28-28z" fill="#0f1a29" stroke="#ff6b35" strokeWidth="5" strokeLinejoin="round" />
+    <path d="M100 82V68m0 0l-8-12m8 12l8-12" stroke="#ff6b35" strokeWidth="3.5" strokeLinecap="round" fill="none" opacity="0.85" />
+    <rect x="86" y="88" width="28" height="12" rx="4" fill="#ff6b35" />
+    <rect x="86" y="88" width="28" height="4" rx="2" fill="#ff6b35" opacity="0.55" />
+    <circle cx="50" cy="140" r="15" fill="#0f1a29" stroke="#ff6b35" strokeWidth="4" />
+    <path d="M22 188c0-17 12-28 28-28s28 11 28 28" fill="#0f1a29" stroke="#ff6b35" strokeWidth="4" strokeLinecap="round" />
+    <circle cx="150" cy="140" r="15" fill="#0f1a29" stroke="#ff6b35" strokeWidth="4" />
+    <path d="M122 188c0-17 12-28 28-28s28 11 28 28" fill="#0f1a29" stroke="#ff6b35" strokeWidth="4" strokeLinecap="round" />
+    <circle cx="100" cy="150" r="16.5" fill="#0f1a29" stroke="#ff6b35" strokeWidth="4.5" />
+    <path d="M70 198c0-18 13-30 30-30s30 12 30 30" fill="#0f1a29" stroke="#ff6b35" strokeWidth="4.5" strokeLinecap="round" />
   </svg>
 );
 
@@ -376,9 +376,9 @@ const LearnArt = ({ active: _a = false }: { active?: boolean }) => (
 const ModesSection = () => {
   const modes = [
     { n: '01', title: 'DESIGN', subtitle: 'Interface & Brand Systems', desc: 'Wireframes, design systems and pixel-perfect interfaces crafted around real user behaviour.', color: '#ff6b35', Art: DesignArt },
-    { n: '02', title: 'BUILD', subtitle: 'Engineering & Development', desc: 'Production-grade React, Next.js and TypeScript builds engineered to scale from day one.', color: '#38bdf8', Art: BuildArt },
-    { n: '03', title: '1 ON 1', subtitle: 'Technology & Project Consultancy', desc: 'Get focused 1-on-1 guidance to solve technical challenges, evaluate ideas, plan projects, or make smarter technology decisions.', color: '#06d6a0', Art: ConsultArt },
-    { n: '04', title: 'LEARN', subtitle: 'Web Development & Tech Training', desc: 'Learn modern web development through practical projects, expert guidance and real-world workflows.', color: '#ffd166', Art: LearnArt },
+    { n: '02', title: 'BUILD', subtitle: 'Engineering & Development', desc: 'Production-grade React, Next.js and TypeScript builds engineered to scale from day one.', color: '#ff6b35', Art: BuildArt },
+    { n: '03', title: '1 ON 1', subtitle: 'Technology & Project Consultancy', desc: 'Get focused 1-on-1 guidance to solve technical challenges, evaluate ideas, plan projects, or make smarter technology decisions.', color: '#ff6b35', Art: ConsultArt },
+    { n: '04', title: 'LEARN', subtitle: 'Web Development & Tech Training', desc: 'Learn modern web development through practical projects, expert guidance and real-world workflows.', color: '#ff6b35', Art: LearnArt },
   ];
   const [active, setActive] = useState(1);
   const dragX = useRef<number | null>(null);
@@ -529,7 +529,7 @@ const AboutSection = () => {
           <div className="about-content">
             <div className="inline-block px-4 sm:px-6 py-1.5 rounded-full border border-white/30 text-xs sm:text-sm font-semibold text-white mb-4 sm:mb-6 tracking-widest uppercase backdrop-blur-sm bg-white/5">About Us</div>
             <h2 className="font-['Syne'] text-4xl md:text-5xl font-bold tracking-tight leading-[1.05] text-white mb-6">We're a Team of <span className="gradient-text">Digital Craftsmen</span></h2>
-            <p className="text-white/70 text-base leading-relaxed mb-4">Founded in 2016, THE JIMMY LAB is a digital agency specializing in web development, web design, interactive experiences, animation, and custom digital solutions.</p>
+            <p className="text-white/70 text-base leading-relaxed mb-4">Founded in 2016, JIMMY SOL is a digital agency specializing in web development, web design, interactive experiences, animation, and custom digital solutions.</p>
             <p className="text-white/70 text-base leading-relaxed mb-4">We help businesses, startups, entrepreneurs, and brands worldwide turn ideas into modern digital experiences that combine creative design, advanced technology, performance, and usability.</p>
             <p className="text-white/70 text-base leading-relaxed mb-4">Our expertise spans custom website development, full-stack web applications, interactive websites, 2D and 3D animation, product configurators, SaaS platforms, and AI-powered web solutions. Every project is designed around the client's goals, audience, and business requirements.</p>
             <p className="text-white/70 text-base leading-relaxed mb-8">With a focus on creative innovation and technical excellence, we create digital products that look exceptional, work seamlessly, and provide a strong foundation for business growth.</p>
@@ -586,7 +586,7 @@ const CollaborationBandsSection = () => {
       ))}
     </div>
   );
-  const bandText = 'THE JIMMY LAB • PUSHING THE LIMITS OF INTERACTION • DIRECT 1-ON-1 COLLABORATION • ';
+  const bandText = 'JIMMY SOL • PUSHING THE LIMITS OF INTERACTION • DIRECT 1-ON-1 COLLABORATION • ';
   return (
     <>
       <section className="bg-[#070f1a] border-y border-white/[0.04] py-12 overflow-hidden relative z-10 select-none">
@@ -810,11 +810,11 @@ const OurProcessSection = () => {
 const TestimonialsSection = () => {
   const [active, setActive] = useState(0);
   const testimonials = [
-    { name: 'Sarah Chen', role: 'CTO at TechVenture Inc.', initials: 'SC', gradient: 'from-blue-500 to-indigo-500', quote: 'THE JIMMY LAB transformed our entire digital infrastructure. Their team delivered a platform that handles 10x our previous traffic with half the latency. Absolutely exceptional work — they think like partners, not vendors.' },
-    { name: 'Marcus Rivera', role: 'Founder & CEO, GrowthStack', initials: 'MR', gradient: 'from-emerald-500 to-teal-500', quote: 'Working with THE JIMMY LAB was a game-changer for our e-commerce business. They rebuilt our entire storefront and we saw a 60% increase in conversions within the first month. The attention to detail is unmatched.' },
+    { name: 'Sarah Chen', role: 'CTO at TechVenture Inc.', initials: 'SC', gradient: 'from-blue-500 to-indigo-500', quote: 'JIMMY SOL transformed our entire digital infrastructure. Their team delivered a platform that handles 10x our previous traffic with half the latency. Absolutely exceptional work — they think like partners, not vendors.' },
+    { name: 'Marcus Rivera', role: 'Founder & CEO, GrowthStack', initials: 'MR', gradient: 'from-emerald-500 to-teal-500', quote: 'Working with JIMMY SOL was a game-changer for our e-commerce business. They rebuilt our entire storefront and we saw a 60% increase in conversions within the first month. The attention to detail is unmatched.' },
     { name: 'Emily Watson', role: 'Product Director, HealthSync', initials: 'EW', gradient: 'from-rose-500 to-pink-500', quote: 'From the initial wireframes to the final deployment, every step was handled with incredible professionalism. The telemedicine platform they built serves over 100K patients daily without a single hiccup.' },
-    { name: 'David Kim', role: 'CTO, FinanceHub', initials: 'DK', gradient: 'from-orange-500 to-amber-500', quote: 'The fintech dashboard THE JIMMY LAB built for us is blazing fast and beautiful. They understood complex trading workflows better than our own team. A true extension of our product org.' },
-    { name: 'Priya Patel', role: 'Head of Engineering, EduTech', initials: 'PP', gradient: 'from-violet-500 to-purple-500', quote: 'We needed to scale our learning platform to millions of students overnight. THE JIMMY LAB delivered a resilient architecture that has not gone down once in 18 months. Incredible reliability.' },
+    { name: 'David Kim', role: 'CTO, FinanceHub', initials: 'DK', gradient: 'from-orange-500 to-amber-500', quote: 'The fintech dashboard JIMMY SOL built for us is blazing fast and beautiful. They understood complex trading workflows better than our own team. A true extension of our product org.' },
+    { name: 'Priya Patel', role: 'Head of Engineering, EduTech', initials: 'PP', gradient: 'from-violet-500 to-purple-500', quote: 'We needed to scale our learning platform to millions of students overnight. JIMMY SOL delivered a resilient architecture that has not gone down once in 18 months. Incredible reliability.' },
     { name: 'James Wilson', role: 'CEO, RetailFlow', initials: 'JW', gradient: 'from-cyan-500 to-blue-500', quote: 'Our retail analytics suite is now the envy of the industry. The 2.5D cardboard interactions they designed made complex data feel tactile and joyful. Customers love it.' },
   ];
   const next = () => setActive((p) => (p + 1) % testimonials.length);
@@ -1078,7 +1078,7 @@ const ConnectSection = () => {
                 <div className="flex flex-col"><label className="font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-white/70 mb-2.5">Estimated Budget</label><div className="relative"><select value={budget} onChange={(e) => setBudget(e.target.value)} aria-label="Estimated Budget" style={{ colorScheme: 'dark' }} className="w-full h-[48px] rounded-md bg-[#1a1a1a] border border-white/25 pl-4 pr-10 text-[14px] text-white focus:border-[#ff6b35] focus:outline-none transition-colors appearance-none cursor-pointer"><option value="" disabled>Select a budget range</option><option>Under $5k</option><option>$5k – $10k</option><option>$10k – $25k</option><option>$25k – $50k</option><option>$50k – $100k</option><option>$100k+</option></select><ChevronDown className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 w-5 h-5 text-white" /></div></div>
               </div>
               <div className="flex flex-col"><label className="text-[13.5px] font-semibold text-white mb-2.5">Tell us about the project <span className="text-[#ff5a4e]">*</span></label><textarea ref={briefRef} value={brief} onChange={(e) => setBrief(e.target.value)} rows={5} required placeholder="Project overview, goals, timelines, etc..." className="w-full rounded-md bg-[#1a1a1a] border border-white/[0.08] px-4 py-3.5 text-[14px] text-white placeholder-white/25 focus:border-[#ff6b35]/60 focus:outline-none transition-colors resize-y min-h-[140px] leading-relaxed" /></div>
-              <button type="submit" disabled={sending} className="w-full h-[52px] mt-2 rounded-md bg-[#ff6b35] text-[15px] font-semibold text-white hover:bg-[#ff8552] transition-all shadow-[0_0_28px_rgba(255,107,53,0.28)] hover:shadow-[0_0_40px_rgba(255,107,53,0.42)] disabled:opacity-60">{sending ? 'Sending…' : 'Send an Inquiry →'}</button>
+              <button type="submit" disabled={sending} className="w-full h-[52px] mt-2 rounded-md bg-[#ff6b35] text-[15px] font-semibold text-white hover:bg-[#ff8552] transition-all shadow-[0_0_28px_rgba(255,107,53,0.28)] hover:shadow-[0_0_40px_rgba(255,107,53,0.42)] disabled:opacity-60">{sending ? 'Sending…' : 'Send Inquiry →'}</button>
               <p className="text-white/40 text-[13px] leading-relaxed">Sends directly to {email} — no email app needed.</p>
               {sent && (
                 <div className="rounded-md border border-white/10 bg-white/5 p-4">
@@ -1108,7 +1108,7 @@ const Footer = () => (
         <div className="md:col-span-2">
           <div className="flex items-center gap-3 mb-3">
             <div className="w-12 h-12 bg-[#ff6b35] rounded-lg shadow-layer-3 flex items-center justify-center"><Code2 className="w-7 h-7 text-white" /></div>
-            <span className="font-['Syne'] font-black text-xl tracking-[-0.05em] text-white">THE JIMMY LAB<span className="text-[#ff3c2f]">.</span></span>
+            <span className="font-['Syne'] font-black text-xl tracking-[-0.05em] text-white">JIMMY SOL<span className="text-[#ff3c2f]">.</span></span>
           </div>
           <p className="text-[#ff6b35] font-mono text-[11px] font-bold uppercase tracking-[0.22em] mb-5">Digital Experiences. Built Better.</p>
           <p className="text-white/60 leading-relaxed max-w-md mb-6">We design, build, and optimize digital experiences that help businesses, brands, and ideas move forward. Whether you need a new website, a custom web application, an immersive interactive experience, help improving an existing project, technical consulting, or training, we work closely with you to understand your goals and build a solution that fits your needs.</p>
@@ -1154,7 +1154,7 @@ const Footer = () => (
         </div>
       </div>
       <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
-        <p className="text-white/40 text-sm">© 2024 THE JIMMY LAB. All rights reserved.</p>
+        <p className="text-white/40 text-sm">© 2024 JIMMY SOL. All rights reserved.</p>
         <div className="flex gap-6 text-sm"><a href="#" className="text-white/40 hover:text-white transition-colors">Privacy Policy</a><a href="#" className="text-white/40 hover:text-white transition-colors">Terms of Service</a></div>
       </div>
     </div>
