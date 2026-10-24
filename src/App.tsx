@@ -964,9 +964,13 @@ const ConnectSection = () => {
   const [projectType, setProjectType] = useState('');
   const [budget, setBudget] = useState('');
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [sendError, setSendError] = useState('');
   const [inquiryCopied, setInquiryCopied] = useState(false);
   const briefRef = useRef<HTMLTextAreaElement>(null);
   const email = 'thejimmylab@gmail.com';
+  // Direct-send backend: Formspree form for thejimmylab@gmail.com.
+  const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xdeekyqk';
   const copyEmail = () => { navigator.clipboard?.writeText(email); setCopied(true); window.setTimeout(() => setCopied(false), 2000); };
 
   // Build the inquiry text once, so submit + copy-to-clipboard stay identical.
@@ -979,14 +983,31 @@ const ConnectSection = () => {
     brief.trim(),
   ].join('\n');
 
-  const submitInquiry = (e: React.FormEvent) => {
+  const submitInquiry = async (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = 'Project inquiry' + (projectType ? ': ' + projectType : '') + ' — ' + name.trim();
-    window.location.href =
-      'mailto:' + email +
-      '?subject=' + encodeURIComponent(subject) +
-      '&body=' + encodeURIComponent(inquiryText);
-    setSent(true);
+    setSendError('');
+    setSending(true);
+    try {
+      const formData = new FormData();
+      formData.append('name', name.trim());
+      formData.append('email', senderEmail.trim());
+      formData.append('_replyto', senderEmail.trim());
+      formData.append('_subject', 'Project inquiry' + (projectType ? ': ' + projectType : '') + ' — ' + name.trim());
+      formData.append('projectType', projectType || 'Not specified');
+      formData.append('budget', budget || 'Not specified');
+      formData.append('message', inquiryText);
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        body: formData,
+        headers: { Accept: 'application/json' },
+      });
+      if (!response.ok) throw new Error('Form service rejected the submission');
+      setSent(true);
+    } catch {
+      setSendError('Could not send right now. Please try again, or copy the inquiry below and email it to ' + email + '.');
+    } finally {
+      setSending(false);
+    }
   };
 
   const copyInquiry = async () => {
@@ -1057,12 +1078,17 @@ const ConnectSection = () => {
                 <div className="flex flex-col"><label className="font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-white/40 mb-2.5">Estimated Budget</label><div className="relative"><select value={budget} onChange={(e) => setBudget(e.target.value)} className="w-full h-[48px] rounded-md bg-[#1a1a1a] border border-white/[0.08] pl-4 pr-10 text-[14px] text-white focus:border-[#ff6b35]/60 focus:outline-none transition-colors appearance-none cursor-pointer"><option value="" disabled>Select a budget range</option><option>Under $5k</option><option>$5k – $10k</option><option>$10k – $25k</option><option>$25k – $50k</option><option>$50k – $100k</option><option>$100k+</option></select><ChevronDown className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-white/35" /></div></div>
               </div>
               <div className="flex flex-col"><label className="text-[13.5px] font-semibold text-white mb-2.5">Tell us about the project <span className="text-[#ff5a4e]">*</span></label><textarea ref={briefRef} value={brief} onChange={(e) => setBrief(e.target.value)} rows={5} required placeholder="Project overview, goals, timelines, etc..." className="w-full rounded-md bg-[#1a1a1a] border border-white/[0.08] px-4 py-3.5 text-[14px] text-white placeholder-white/25 focus:border-[#ff6b35]/60 focus:outline-none transition-colors resize-y min-h-[140px] leading-relaxed" /></div>
-              <button type="submit" className="w-full h-[52px] mt-2 rounded-md bg-[#ff6b35] text-[15px] font-semibold text-white hover:bg-[#ff8552] transition-all shadow-[0_0_28px_rgba(255,107,53,0.28)] hover:shadow-[0_0_40px_rgba(255,107,53,0.42)]">Launch Email Client →</button>
-              <p className="text-white/40 text-[13px] leading-relaxed">This opens your email app with the inquiry pre-filled to {email}. Nothing is sent until you press Send there.</p>
+              <button type="submit" disabled={sending} className="w-full h-[52px] mt-2 rounded-md bg-[#ff6b35] text-[15px] font-semibold text-white hover:bg-[#ff8552] transition-all shadow-[0_0_28px_rgba(255,107,53,0.28)] hover:shadow-[0_0_40px_rgba(255,107,53,0.42)] disabled:opacity-60">{sending ? 'Sending…' : 'Send Inquiry →'}</button>
+              <p className="text-white/40 text-[13px] leading-relaxed">Sends directly to {email} — no email app needed.</p>
               {sent && (
                 <div className="rounded-md border border-white/10 bg-white/5 p-4">
-                  <p className="text-white text-[14px] font-semibold">Your email app should have opened.</p>
-                  <p className="text-white/60 text-[13px] leading-relaxed mt-1">If it did not open, copy the inquiry below and paste it into an email to {email}.</p>
+                  <p className="text-white text-[14px] font-semibold">Inquiry sent successfully.</p>
+                  <p className="text-white/60 text-[13px] leading-relaxed mt-1">Thank you — we will get back within one business day.</p>
+                </div>
+              )}
+              {sendError && (
+                <div className="rounded-md border border-white/10 bg-white/5 p-4">
+                  <p className="text-white text-[14px] font-semibold">{sendError}</p>
                   <button type="button" onClick={copyInquiry} className="mt-3 inline-flex items-center gap-2 rounded-md border border-white/[0.12] bg-white/[0.06] px-3 py-1.5 font-mono text-[11px] text-white/70 hover:text-white hover:border-white/25 hover:bg-white/[0.1] transition-all"><Copy className="w-3.5 h-3.5" />{inquiryCopied ? 'Copied!' : 'Copy Inquiry'}</button>
                 </div>
               )}
