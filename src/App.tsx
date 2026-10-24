@@ -959,9 +959,62 @@ const JournalSection = () => {
 const ConnectSection = () => {
   const [copied, setCopied] = useState(false);
   const [brief, setBrief] = useState('');
+  const [name, setName] = useState('');
+  const [senderEmail, setSenderEmail] = useState('');
+  const [projectType, setProjectType] = useState('');
+  const [budget, setBudget] = useState('');
+  const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [sendError, setSendError] = useState('');
+  const [inquiryCopied, setInquiryCopied] = useState(false);
   const briefRef = useRef<HTMLTextAreaElement>(null);
-  const email = 'info@jimmystudio.io';
+  const email = 'thejimmylab@gmail.com';
+  // Direct-send backend: Formspree form for thejimmylab@gmail.com.
+  const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xdeekyqk';
   const copyEmail = () => { navigator.clipboard?.writeText(email); setCopied(true); window.setTimeout(() => setCopied(false), 2000); };
+
+  // Build the inquiry text once, so submit + copy-to-clipboard stay identical.
+  const inquiryText = [
+    'Name: ' + name.trim(),
+    'Email: ' + senderEmail.trim(),
+    'Project type: ' + (projectType || 'Not specified'),
+    'Estimated budget: ' + (budget || 'Not specified'),
+    '',
+    brief.trim(),
+  ].join('\n');
+
+  const submitInquiry = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSendError('');
+    setSending(true);
+    try {
+      const formData = new FormData();
+      formData.append('name', name.trim());
+      formData.append('email', senderEmail.trim());
+      formData.append('_replyto', senderEmail.trim());
+      formData.append('_subject', 'Project inquiry' + (projectType ? ': ' + projectType : '') + ' — ' + name.trim());
+      formData.append('projectType', projectType || 'Not specified');
+      formData.append('budget', budget || 'Not specified');
+      formData.append('message', inquiryText);
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        body: formData,
+        headers: { Accept: 'application/json' },
+      });
+      if (!response.ok) throw new Error('Form service rejected the submission');
+      setSent(true);
+    } catch {
+      setSendError('Could not send right now. Please try again, or copy the inquiry below and email it to ' + email + '.');
+    } finally {
+      setSending(false);
+    }
+  };
+
+  const copyInquiry = async () => {
+    try { await navigator.clipboard?.writeText(inquiryText); } catch { /* clipboard may be blocked */ }
+    setInquiryCopied(true);
+    window.setTimeout(() => setInquiryCopied(false), 2000);
+  };
 
   // pick up whatever was typed in the hero prompt
   useEffect(() => {
@@ -1015,17 +1068,30 @@ const ConnectSection = () => {
           </div>
           <div className="rounded-2xl bg-[#0e0e0e] border border-white/[0.08] p-8 sm:p-10">
             <h3 className="font-['Syne'] text-[26px] font-bold text-white mb-8">Send a Project Inquiry</h3>
-            <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+            <form className="space-y-6" onSubmit={submitInquiry}>
               <div className="grid sm:grid-cols-2 gap-x-6 gap-y-6">
-                <div className="flex flex-col"><label className="text-[13.5px] font-semibold text-white mb-2.5">Your Name <span className="text-[#ff5a4e]">*</span></label><input type="text" required placeholder="John Doe" className="w-full h-[48px] rounded-md bg-[#1a1a1a] border border-white/[0.08] px-4 text-[14px] text-white placeholder-white/25 focus:border-[#ff6b35]/60 focus:outline-none transition-colors" /></div>
-                <div className="flex flex-col"><label className="text-[13.5px] font-semibold text-white mb-2.5">Your Email <span className="text-[#ff5a4e]">*</span></label><input type="email" required placeholder="john@example.com" className="w-full h-[48px] rounded-md bg-[#1a1a1a] border border-white/[0.08] px-4 text-[14px] text-white placeholder-white/25 focus:border-[#ff6b35]/60 focus:outline-none transition-colors" /></div>
+                <div className="flex flex-col"><label className="text-[13.5px] font-semibold text-white mb-2.5">Your Name <span className="text-[#ff5a4e]">*</span></label><input type="text" required value={name} onChange={(e) => setName(e.target.value)} placeholder="John Doe" className="w-full h-[48px] rounded-md bg-[#1a1a1a] border border-white/[0.08] px-4 text-[14px] text-white placeholder-white/25 focus:border-[#ff6b35]/60 focus:outline-none transition-colors" /></div>
+                <div className="flex flex-col"><label className="text-[13.5px] font-semibold text-white mb-2.5">Your Email <span className="text-[#ff5a4e]">*</span></label><input type="email" required value={senderEmail} onChange={(e) => setSenderEmail(e.target.value)} placeholder="john@example.com" className="w-full h-[48px] rounded-md bg-[#1a1a1a] border border-white/[0.08] px-4 text-[14px] text-white placeholder-white/25 focus:border-[#ff6b35]/60 focus:outline-none transition-colors" /></div>
               </div>
               <div className="grid sm:grid-cols-2 gap-x-6 gap-y-6">
-                <div className="flex flex-col"><label className="font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-white/40 mb-2.5">Project Type</label><div className="relative"><select defaultValue="" className="w-full h-[48px] rounded-md bg-[#1a1a1a] border border-white/[0.08] pl-4 pr-10 text-[14px] text-white focus:border-[#ff6b35]/60 focus:outline-none transition-colors appearance-none cursor-pointer"><option value="" disabled>Select a project type</option><option>Animation & Creative Development</option><option>Web Design & UI/UX</option><option>Website Redesign</option><option>Graphic Design</option><option>Logo Design</option><option>Branding & Visual Identity</option><option>Frontend Development</option><option>Backend Development</option><option>Full-Stack Development</option><option>Web Application / SaaS Development</option><option>E-Commerce Development</option><option>3D & Interactive Experiences</option><option>Product Configurators</option><option>Mobile App Development</option><option>Integration & Automation</option><option>SEO & Website Optimization</option><option>Website / Application Upgrade</option><option>Legacy Technology / Stack Migration</option><option>Maintenance & Technical Support</option><option>Code Review & Technical Audit</option><option>1:1 Consultation / Strategy</option><option>1:1 Learning / Training</option><option>Not Sure — Help Me Choose</option><option>Other</option></select><ChevronDown className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-white/35" /></div></div>
-                <div className="flex flex-col"><label className="font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-white/40 mb-2.5">Estimated Budget</label><div className="relative"><select defaultValue="" className="w-full h-[48px] rounded-md bg-[#1a1a1a] border border-white/[0.08] pl-4 pr-10 text-[14px] text-white focus:border-[#ff6b35]/60 focus:outline-none transition-colors appearance-none cursor-pointer"><option value="" disabled>Select a budget range</option><option>Under $5k</option><option>$5k – $10k</option><option>$10k – $25k</option><option>$25k – $50k</option><option>$50k – $100k</option><option>$100k+</option></select><ChevronDown className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-white/35" /></div></div>
+                <div className="flex flex-col"><label className="font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-white/40 mb-2.5">Project Type</label><div className="relative"><select value={projectType} onChange={(e) => setProjectType(e.target.value)} className="w-full h-[48px] rounded-md bg-[#1a1a1a] border border-white/[0.08] pl-4 pr-10 text-[14px] text-white focus:border-[#ff6b35]/60 focus:outline-none transition-colors appearance-none cursor-pointer"><option value="" disabled>Select a project type</option><option>Animation & Creative Development</option><option>Web Design & UI/UX</option><option>Website Redesign</option><option>Graphic Design</option><option>Logo Design</option><option>Branding & Visual Identity</option><option>Frontend Development</option><option>Backend Development</option><option>Full-Stack Development</option><option>Web Application / SaaS Development</option><option>E-Commerce Development</option><option>3D & Interactive Experiences</option><option>Product Configurators</option><option>Mobile App Development</option><option>Integration & Automation</option><option>SEO & Website Optimization</option><option>Website / Application Upgrade</option><option>Legacy Technology / Stack Migration</option><option>Maintenance & Technical Support</option><option>Code Review & Technical Audit</option><option>1:1 Consultation / Strategy</option><option>1:1 Learning / Training</option><option>Not Sure — Help Me Choose</option><option>Other</option></select><ChevronDown className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-white/35" /></div></div>
+                <div className="flex flex-col"><label className="font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-white/40 mb-2.5">Estimated Budget</label><div className="relative"><select value={budget} onChange={(e) => setBudget(e.target.value)} className="w-full h-[48px] rounded-md bg-[#1a1a1a] border border-white/[0.08] pl-4 pr-10 text-[14px] text-white focus:border-[#ff6b35]/60 focus:outline-none transition-colors appearance-none cursor-pointer"><option value="" disabled>Select a budget range</option><option>Under $5k</option><option>$5k – $10k</option><option>$10k – $25k</option><option>$25k – $50k</option><option>$50k – $100k</option><option>$100k+</option></select><ChevronDown className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-white/35" /></div></div>
               </div>
               <div className="flex flex-col"><label className="text-[13.5px] font-semibold text-white mb-2.5">Tell us about the project <span className="text-[#ff5a4e]">*</span></label><textarea ref={briefRef} value={brief} onChange={(e) => setBrief(e.target.value)} rows={5} required placeholder="Project overview, goals, timelines, etc..." className="w-full rounded-md bg-[#1a1a1a] border border-white/[0.08] px-4 py-3.5 text-[14px] text-white placeholder-white/25 focus:border-[#ff6b35]/60 focus:outline-none transition-colors resize-y min-h-[140px] leading-relaxed" /></div>
-              <button type="submit" className="w-full h-[52px] mt-2 rounded-md bg-[#ff6b35] text-[15px] font-semibold text-white hover:bg-[#ff8552] transition-all shadow-[0_0_28px_rgba(255,107,53,0.28)] hover:shadow-[0_0_40px_rgba(255,107,53,0.42)]">Launch Email Client →</button>
+              <button type="submit" disabled={sending} className="w-full h-[52px] mt-2 rounded-md bg-[#ff6b35] text-[15px] font-semibold text-white hover:bg-[#ff8552] transition-all shadow-[0_0_28px_rgba(255,107,53,0.28)] hover:shadow-[0_0_40px_rgba(255,107,53,0.42)] disabled:opacity-60">{sending ? 'Sending…' : 'Send Inquiry →'}</button>
+              <p className="text-white/40 text-[13px] leading-relaxed">Sends directly to {email} — no email app needed.</p>
+              {sent && (
+                <div className="rounded-md border border-white/10 bg-white/5 p-4">
+                  <p className="text-white text-[14px] font-semibold">Inquiry sent successfully.</p>
+                  <p className="text-white/60 text-[13px] leading-relaxed mt-1">Thank you — we will get back within one business day.</p>
+                </div>
+              )}
+              {sendError && (
+                <div className="rounded-md border border-white/10 bg-white/5 p-4">
+                  <p className="text-white text-[14px] font-semibold">{sendError}</p>
+                  <button type="button" onClick={copyInquiry} className="mt-3 inline-flex items-center gap-2 rounded-md border border-white/[0.12] bg-white/[0.06] px-3 py-1.5 font-mono text-[11px] text-white/70 hover:text-white hover:border-white/25 hover:bg-white/[0.1] transition-all"><Copy className="w-3.5 h-3.5" />{inquiryCopied ? 'Copied!' : 'Copy Inquiry'}</button>
+                </div>
+              )}
             </form>
           </div>
         </div>

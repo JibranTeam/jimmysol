@@ -90,7 +90,7 @@ export default function ServicePage({ service }: { service: Service }) {
                 className="mt-9 flex flex-wrap gap-4"
               >
                 <a
-                  href={`mailto:info@jimmystudio.io?subject=${encodeURIComponent(service.title + " inquiry")}`}
+                  href={`mailto:thejimmylab@gmail.com?subject=${encodeURIComponent(service.title + " inquiry")}`}
                   className="btn-primary"
                 >
                   Start your project <ArrowRight className="w-4 h-4" />
@@ -292,7 +292,7 @@ export default function ServicePage({ service }: { service: Service }) {
             Tell us about your project and we'll get back within one business day with a clear plan and quote.
           </p>
           <div className="mt-9 flex flex-wrap justify-center gap-4">
-            <a href="mailto:info@jimmystudio.io" className="btn-primary">
+            <a href="mailto:thejimmylab@gmail.com" className="btn-primary">
               Get a free consultation <ArrowRight className="w-4 h-4" />
             </a>
             <a href="#/" className="inline-flex items-center gap-2 px-6 py-4 border-2 border-white/15 rounded-lg text-white hover:border-[#ff6b35] hover:text-[#ff6b35] transition-all">
