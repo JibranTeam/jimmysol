@@ -41,7 +41,7 @@ const Navigation = () => {
             <path d="M20 3 L37 33 H3 Z" stroke="#ffffff" strokeWidth="1.6" strokeLinejoin="round" />
             <path d="M20 12 L29 28 H11 Z" stroke="#ffffff" strokeWidth="1.3" strokeLinejoin="round" opacity="0.65" />
           </svg>
-          <span className="text-[15px] font-medium tracking-[0.38em] text-white">JIMMY&nbsp;SOL</span>
+          <span className="text-[14px] font-medium tracking-[0.22em] text-white whitespace-nowrap">THE&nbsp;JIMMY&nbsp;LAB</span>
         </a>
         <div className="hidden md:flex items-center gap-9">
           {navItems.map((item) => (
@@ -67,7 +67,7 @@ const Navigation = () => {
 };
 
 /* ================= Hero brief prompt ================= */
-const BRIEF_KEY = 'jimmysol:brief';
+const BRIEF_KEY = 'thejimmylab:brief';
 const PROMPTS = [
   'every new tool turns into a headache',
   'our site looks dated and loads slowly',
@@ -529,7 +529,7 @@ const AboutSection = () => {
           <div className="about-content">
             <div className="inline-block px-4 sm:px-6 py-1.5 rounded-full border border-white/30 text-xs sm:text-sm font-semibold text-white mb-4 sm:mb-6 tracking-widest uppercase backdrop-blur-sm bg-white/5">About Us</div>
             <h2 className="font-['Syne'] text-4xl md:text-5xl font-bold tracking-tight leading-[1.05] text-white mb-6">We're a Team of <span className="gradient-text">Digital Craftsmen</span></h2>
-            <p className="text-white/70 text-base leading-relaxed mb-4">Founded in 2016, JIMMY SOL is a digital agency specializing in web development, web design, interactive experiences, animation, and custom digital solutions.</p>
+            <p className="text-white/70 text-base leading-relaxed mb-4">Founded in 2016, THE JIMMY LAB is a digital agency specializing in web development, web design, interactive experiences, animation, and custom digital solutions.</p>
             <p className="text-white/70 text-base leading-relaxed mb-4">We help businesses, startups, entrepreneurs, and brands worldwide turn ideas into modern digital experiences that combine creative design, advanced technology, performance, and usability.</p>
             <p className="text-white/70 text-base leading-relaxed mb-4">Our expertise spans custom website development, full-stack web applications, interactive websites, 2D and 3D animation, product configurators, SaaS platforms, and AI-powered web solutions. Every project is designed around the client's goals, audience, and business requirements.</p>
             <p className="text-white/70 text-base leading-relaxed mb-8">With a focus on creative innovation and technical excellence, we create digital products that look exceptional, work seamlessly, and provide a strong foundation for business growth.</p>
@@ -586,7 +586,7 @@ const CollaborationBandsSection = () => {
       ))}
     </div>
   );
-  const bandText = 'JIMMY SOL • PUSHING THE LIMITS OF INTERACTION • DIRECT 1-ON-1 COLLABORATION • ';
+  const bandText = 'THE JIMMY LAB • PUSHING THE LIMITS OF INTERACTION • DIRECT 1-ON-1 COLLABORATION • ';
   return (
     <>
       <section className="bg-[#070f1a] border-y border-white/[0.04] py-12 overflow-hidden relative z-10 select-none">
@@ -810,11 +810,11 @@ const OurProcessSection = () => {
 const TestimonialsSection = () => {
   const [active, setActive] = useState(0);
   const testimonials = [
-    { name: 'Sarah Chen', role: 'CTO at TechVenture Inc.', initials: 'SC', gradient: 'from-blue-500 to-indigo-500', quote: 'JIMMY SOL transformed our entire digital infrastructure. Their team delivered a platform that handles 10x our previous traffic with half the latency. Absolutely exceptional work — they think like partners, not vendors.' },
-    { name: 'Marcus Rivera', role: 'Founder & CEO, GrowthStack', initials: 'MR', gradient: 'from-emerald-500 to-teal-500', quote: 'Working with JIMMY SOL was a game-changer for our e-commerce business. They rebuilt our entire storefront and we saw a 60% increase in conversions within the first month. The attention to detail is unmatched.' },
+    { name: 'Sarah Chen', role: 'CTO at TechVenture Inc.', initials: 'SC', gradient: 'from-blue-500 to-indigo-500', quote: 'THE JIMMY LAB transformed our entire digital infrastructure. Their team delivered a platform that handles 10x our previous traffic with half the latency. Absolutely exceptional work — they think like partners, not vendors.' },
+    { name: 'Marcus Rivera', role: 'Founder & CEO, GrowthStack', initials: 'MR', gradient: 'from-emerald-500 to-teal-500', quote: 'Working with THE JIMMY LAB was a game-changer for our e-commerce business. They rebuilt our entire storefront and we saw a 60% increase in conversions within the first month. The attention to detail is unmatched.' },
     { name: 'Emily Watson', role: 'Product Director, HealthSync', initials: 'EW', gradient: 'from-rose-500 to-pink-500', quote: 'From the initial wireframes to the final deployment, every step was handled with incredible professionalism. The telemedicine platform they built serves over 100K patients daily without a single hiccup.' },
-    { name: 'David Kim', role: 'CTO, FinanceHub', initials: 'DK', gradient: 'from-orange-500 to-amber-500', quote: 'The fintech dashboard JIMMY SOL built for us is blazing fast and beautiful. They understood complex trading workflows better than our own team. A true extension of our product org.' },
-    { name: 'Priya Patel', role: 'Head of Engineering, EduTech', initials: 'PP', gradient: 'from-violet-500 to-purple-500', quote: 'We needed to scale our learning platform to millions of students overnight. JIMMY SOL delivered a resilient architecture that has not gone down once in 18 months. Incredible reliability.' },
+    { name: 'David Kim', role: 'CTO, FinanceHub', initials: 'DK', gradient: 'from-orange-500 to-amber-500', quote: 'The fintech dashboard THE JIMMY LAB built for us is blazing fast and beautiful. They understood complex trading workflows better than our own team. A true extension of our product org.' },
+    { name: 'Priya Patel', role: 'Head of Engineering, EduTech', initials: 'PP', gradient: 'from-violet-500 to-purple-500', quote: 'We needed to scale our learning platform to millions of students overnight. THE JIMMY LAB delivered a resilient architecture that has not gone down once in 18 months. Incredible reliability.' },
     { name: 'James Wilson', role: 'CEO, RetailFlow', initials: 'JW', gradient: 'from-cyan-500 to-blue-500', quote: 'Our retail analytics suite is now the envy of the industry. The 2.5D cardboard interactions they designed made complex data feel tactile and joyful. Customers love it.' },
   ];
   const next = () => setActive((p) => (p + 1) % testimonials.length);
@@ -1078,7 +1078,7 @@ const ConnectSection = () => {
                 <div className="flex flex-col"><label className="font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-white/70 mb-2.5">Estimated Budget</label><div className="relative"><select value={budget} onChange={(e) => setBudget(e.target.value)} aria-label="Estimated Budget" style={{ colorScheme: 'dark' }} className="w-full h-[48px] rounded-md bg-[#1a1a1a] border border-white/25 pl-4 pr-10 text-[14px] text-white focus:border-[#ff6b35] focus:outline-none transition-colors appearance-none cursor-pointer"><option value="" disabled>Select a budget range</option><option>Under $5k</option><option>$5k – $10k</option><option>$10k – $25k</option><option>$25k – $50k</option><option>$50k – $100k</option><option>$100k+</option></select><ChevronDown className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 w-5 h-5 text-white" /></div></div>
               </div>
               <div className="flex flex-col"><label className="text-[13.5px] font-semibold text-white mb-2.5">Tell us about the project <span className="text-[#ff5a4e]">*</span></label><textarea ref={briefRef} value={brief} onChange={(e) => setBrief(e.target.value)} rows={5} required placeholder="Project overview, goals, timelines, etc..." className="w-full rounded-md bg-[#1a1a1a] border border-white/[0.08] px-4 py-3.5 text-[14px] text-white placeholder-white/25 focus:border-[#ff6b35]/60 focus:outline-none transition-colors resize-y min-h-[140px] leading-relaxed" /></div>
-              <button type="submit" disabled={sending} className="w-full h-[52px] mt-2 rounded-md bg-[#ff6b35] text-[15px] font-semibold text-white hover:bg-[#ff8552] transition-all shadow-[0_0_28px_rgba(255,107,53,0.28)] hover:shadow-[0_0_40px_rgba(255,107,53,0.42)] disabled:opacity-60">{sending ? 'Sending…' : 'Send Inquiry →'}</button>
+              <button type="submit" disabled={sending} className="w-full h-[52px] mt-2 rounded-md bg-[#ff6b35] text-[15px] font-semibold text-white hover:bg-[#ff8552] transition-all shadow-[0_0_28px_rgba(255,107,53,0.28)] hover:shadow-[0_0_40px_rgba(255,107,53,0.42)] disabled:opacity-60">{sending ? 'Sending…' : 'Send an Inquiry →'}</button>
               <p className="text-white/40 text-[13px] leading-relaxed">Sends directly to {email} — no email app needed.</p>
               {sent && (
                 <div className="rounded-md border border-white/10 bg-white/5 p-4">
@@ -1108,7 +1108,7 @@ const Footer = () => (
         <div className="md:col-span-2">
           <div className="flex items-center gap-3 mb-3">
             <div className="w-12 h-12 bg-[#ff6b35] rounded-lg shadow-layer-3 flex items-center justify-center"><Code2 className="w-7 h-7 text-white" /></div>
-            <span className="font-['Syne'] font-black text-xl tracking-[-0.05em] text-white">JIMMY SOL<span className="text-[#ff3c2f]">.</span></span>
+            <span className="font-['Syne'] font-black text-xl tracking-[-0.05em] text-white">THE JIMMY LAB<span className="text-[#ff3c2f]">.</span></span>
           </div>
           <p className="text-[#ff6b35] font-mono text-[11px] font-bold uppercase tracking-[0.22em] mb-5">Digital Experiences. Built Better.</p>
           <p className="text-white/60 leading-relaxed max-w-md mb-6">We design, build, and optimize digital experiences that help businesses, brands, and ideas move forward. Whether you need a new website, a custom web application, an immersive interactive experience, help improving an existing project, technical consulting, or training, we work closely with you to understand your goals and build a solution that fits your needs.</p>
@@ -1154,7 +1154,7 @@ const Footer = () => (
         </div>
       </div>
       <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
-        <p className="text-white/40 text-sm">© 2024 JIMMY SOL. All rights reserved.</p>
+        <p className="text-white/40 text-sm">© 2024 THE JIMMY LAB. All rights reserved.</p>
         <div className="flex gap-6 text-sm"><a href="#" className="text-white/40 hover:text-white transition-colors">Privacy Policy</a><a href="#" className="text-white/40 hover:text-white transition-colors">Terms of Service</a></div>
       </div>
     </div>
