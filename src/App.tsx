@@ -11,9 +11,10 @@ import { goToConnect } from './utils/goToConnect';
 import { navigateTo, navigateHomeToSection, normalizePath, scrollToSectionWithRetry } from './utils/navigation';
 import ServicePage from './pages/ServicePage';
 import JournalPostPage from './pages/JournalPostPage';
-import ComingSoonToast, { showComingSoon } from './components/ComingSoonToast';
+import ComingSoonToast from './components/ComingSoonToast';
 import { JOURNAL_POSTS, getJournalPostById } from './data/journal';
 import TeamPage from './pages/TeamPage';
+import ComingSoonPage from './pages/ComingSoonPage';
 import { PageTransition, RouteCurtain } from './components/PageTransition';
 import { CornerTicks } from './components/CornerTicks';
 import { services as serviceData, getServiceBySlug } from './data/services';
@@ -248,7 +249,7 @@ const HeroSection = () => {
           {[
             { value: '150+', label: 'Projects Delivered' },
             { value: '150+', label: 'Happy Clients' },
-            { value: '10+', label: 'Years Experience' },
+            { value: '2013', label: 'Founded' },
             { value: '5.0', label: 'Top Rated' },
           ].map((stat, i) => (
             <motion.div key={i} initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8 + i * 0.08 }} className="bg-[#05070a]/70 px-5 py-7">
@@ -474,7 +475,6 @@ const PartnersSection = () => {
     { name: 'Primary Logo', src: 'https://cdn.prod.website-files.com/6856e1e5780dec13ef3b7493/68f08e79927c526114395142_Primary%20Logo%20-%20Horizontal%20white_00.webp', srcSet: 'https://cdn.prod.website-files.com/6856e1e5780dec13ef3b7493/68f08e79927c526114395142_Primary%20Logo%20-%20Horizontal%20white_00-p-500.png 500w, https://cdn.prod.website-files.com/6856e1e5780dec13ef3b7493/68f08e79927c526114395142_Primary%20Logo%20-%20Horizontal%20white_00.webp 1318w', sizes: '140px', isWhite: true },
     { name: 'MyPlateMaterials', src: 'https://www.myplatematerials.com/cdn/shop/files/happetite-main-logo.png?v=1779783876', srcSet: 'https://www.myplatematerials.com/cdn/shop/files/happetite-main-logo_small.png?v=1779783876 1x, https://www.myplatematerials.com/cdn/shop/files/happetite-main-logo.png?v=1779783876 2x' },
     { name: 'LED ITALY', src: 'https://leditaly.com/wp-content/uploads/2022/03/LedItaly_restyling_DEF-6-1.png.webp', srcSet: 'https://leditaly.com/wp-content/uploads/yootheme/cache/67/LedItaly_restyling_DEF-6-1-67b2cf1c.webp 200w', sizes: '(min-width: 200px) 200px', isWhite: true },
-    { name: 'The Elephant and The Rider', text: 'The Elephant and The Rider' },
   ];
   const LogoItem = () => (
     <>
@@ -760,7 +760,7 @@ const PortfolioSection = () => {
             { title: 'Mobile Banking App', cat: 'Mobile Development', color: '#3b82f6', img: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&h=500&fit=crop&q=80' },
             { title: 'Restaurant Website', cat: 'Web Design', color: '#ffd700', img: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=500&fit=crop&q=80' },
           ].map((p) => (
-            <div key={p.title} onClick={() => showComingSoon('Project case study — Coming Soon')} className="portfolio-card group relative bg-[#0f1c2e] rounded-2xl overflow-hidden cursor-pointer shadow-[0_12px_40px_rgba(0,0,0,0.45)] border border-white/5 flex flex-col">
+            <div key={p.title} onClick={() => navigateTo('/coming-soon')} className="portfolio-card group relative bg-[#0f1c2e] rounded-2xl overflow-hidden cursor-pointer shadow-[0_12px_40px_rgba(0,0,0,0.45)] border border-white/5 flex flex-col">
               <div className="relative h-[260px] overflow-hidden shrink-0">
                 <img alt={p.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src={p.img} loading="lazy" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0f1c2e] via-[#0f1c2e]/10 to-transparent"></div>
@@ -775,7 +775,7 @@ const PortfolioSection = () => {
           ))}
         </div>
         <div className="w-full clear-both text-center mt-12 relative z-20">
-          <button type="button" onClick={() => showComingSoon('All projects — Coming Soon')} className="btn-primary inline-block px-10 py-4 text-sm font-bold tracking-wider cursor-pointer">VIEW ALL PROJECTS</button>
+          <button type="button" onClick={() => navigateTo('/coming-soon')} className="btn-primary inline-block px-10 py-4 text-sm font-bold tracking-wider cursor-pointer">VIEW ALL PROJECTS</button>
         </div>
       </div>
     </section>
@@ -1142,7 +1142,7 @@ const ConnectSection = () => {
             <div className="mt-9">
               <p className="font-mono text-[10px] font-medium uppercase tracking-[0.24em] text-white/30 mb-4">Follow us</p>
               <div className="flex flex-wrap items-center gap-x-7 gap-y-3">
-                {['GitHub', 'LinkedIn', 'X / Twitter', 'Dribbble'].map((s) => (<a key={s} href="#" onClick={(e) => { e.preventDefault(); showComingSoon(s + ' — Coming Soon'); }} className="font-mono text-[13.5px] text-white/45 hover:text-[#ff6b35] transition-colors">{s}</a>))}
+                {['GitHub', 'LinkedIn', 'X / Twitter', 'Dribbble'].map((s) => (<a key={s} href="/coming-soon" className="font-mono text-[13.5px] text-white/45 hover:text-[#ff6b35] transition-colors">{s}</a>))}
               </div>
             </div>
             <div className="w-full mt-12 p-6 rounded-2xl bg-white/5 border border-white/15 relative overflow-hidden group select-none">
@@ -1198,7 +1198,7 @@ const Footer = () => (
           </div>
           <p className="text-[#ff6b35] font-mono text-[11px] font-bold uppercase tracking-[0.22em] mb-5">Digital Experiences. Built Better.</p>
           <p className="text-white/60 leading-relaxed max-w-md mb-6">We design, build, and optimize digital experiences that help businesses, brands, and ideas move forward. Whether you need a new website, a custom web application, an immersive interactive experience, help improving an existing project, technical consulting, or training, we work closely with you to understand your goals and build a solution that fits your needs.</p>
-          <div className="flex gap-4">{['Twitter', 'LinkedIn', 'GitHub', 'Dribbble'].map((social) => (<a key={social} href="#" onClick={(e) => { e.preventDefault(); showComingSoon(social + ' — Coming Soon'); }} className="w-10 h-10 bg-white/5 border border-white/10 rounded-lg flex items-center justify-center text-white/60 hover:bg-[#ff6b35] hover:border-[#ff6b35] hover:text-white transition-all"><span className="text-xs font-bold">{social[0]}</span></a>))}</div>
+          <div className="flex gap-4">{['Twitter', 'LinkedIn', 'GitHub', 'Dribbble'].map((social) => (<a key={social} href="/coming-soon" className="w-10 h-10 bg-white/5 border border-white/10 rounded-lg flex items-center justify-center text-white/60 hover:bg-[#ff6b35] hover:border-[#ff6b35] hover:text-white transition-all"><span className="text-xs font-bold">{social[0]}</span></a>))}</div>
         </div>
         <div>
           <h4 className="font-['Syne'] font-bold text-white mb-6">Quick Links</h4>
@@ -1241,7 +1241,7 @@ const Footer = () => (
       </div>
       <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
         <p className="text-white/40 text-sm">© {new Date().getFullYear()} THE JIMMY LAB. All rights reserved.</p>
-        <div className="flex gap-6 text-sm"><a href="#" onClick={(e) => { e.preventDefault(); showComingSoon('Privacy Policy — Coming Soon'); }} className="text-white/40 hover:text-white transition-colors">Privacy Policy</a><a href="#" onClick={(e) => { e.preventDefault(); showComingSoon('Terms of Service — Coming Soon'); }} className="text-white/40 hover:text-white transition-colors">Terms of Service</a></div>
+        <div className="flex gap-6 text-sm"><a href="/coming-soon" className="text-white/40 hover:text-white transition-colors">Privacy Policy</a><a href="/coming-soon" className="text-white/40 hover:text-white transition-colors">Terms of Service</a></div>
       </div>
     </div>
   </footer>
@@ -1364,7 +1364,7 @@ function App() {
       if (!anchor) return;
       const href = anchor.getAttribute('href');
       if (!href) return;
-      if (href.startsWith('/services/') || href.startsWith('/journal/') || href === '/team' || href === '/') {
+      if (href.startsWith('/services/') || href.startsWith('/journal/') || href === '/team' || href === '/coming-soon' || href === '/') {
         e.preventDefault();
         navigateTo(href);
         return;
@@ -1386,13 +1386,16 @@ function App() {
   const journalMatch = route.match(/^\/journal\/([^/?]+)/);
   const journalPost = journalMatch ? getJournalPostById(journalMatch[1]) : undefined;
   const isTeamPage = /^\/team$/.test(route);
+  const isComingSoonPage = route === '/coming-soon';
   const isNotFound = route !== '/' && !service && !journalPost && !isTeamPage;
   // Per-page title + canonical + description + structured data.
   useEffect(() => {
-    document.title = service ? service.title + ' | THE JIMMY LAB' : journalPost ? journalPost.title + ' | THE JIMMY LAB' : isTeamPage ? 'Our Team | THE JIMMY LAB' : isNotFound ? 'Page Not Found | THE JIMMY LAB' : 'THE JIMMY LAB — Digital Experiences';
+    document.title = service ? service.title + ' | THE JIMMY LAB' : journalPost ? journalPost.title + ' | THE JIMMY LAB' : isTeamPage ? 'Our Team | THE JIMMY LAB' : isComingSoonPage ? 'Coming Soon | THE JIMMY LAB' : isNotFound ? 'Page Not Found | THE JIMMY LAB' : 'THE JIMMY LAB — Digital Experiences';
     const canonical = document.querySelector('link[rel="canonical"]');
     if (canonical) canonical.setAttribute('href', 'https://thejimmylab.vercel.app' + (route === '/' ? '/' : route));
-    const description = service ? service.tagline : journalPost ? journalPost.excerpt : isTeamPage ? 'Meet the team behind THE JIMMY LAB — six operators covering design, engineering, SEO and automation, based in Islamabad, Pakistan.' : isNotFound ? 'This page does not exist on THE JIMMY LAB.' : 'THE JIMMY LAB — a digital agency crafting immersive websites, web applications and interactive experiences with a signature 2.5D cardboard-style design approach.';
+    const description = service ? service.tagline : journalPost ? journalPost.excerpt : isTeamPage ? 'Meet the team behind THE JIMMY LAB — six operators covering design, engineering, SEO and automation, based in Islamabad, Pakistan.' : isComingSoonPage ? 'This section of THE JIMMY LAB is coming soon.' : isNotFound ? 'This page does not exist on THE JIMMY LAB.' : 'THE JIMMY LAB — a digital agency crafting immersive websites, web applications and interactive experiences with a signature 2.5D cardboard-style design approach.';
+    const robotsMeta = document.querySelector('meta[name="robots"]');
+    if (isComingSoonPage) { if (!robotsMeta) { const m = document.createElement('meta'); m.setAttribute('name', 'robots'); m.setAttribute('content', 'noindex'); document.head.appendChild(m); } else robotsMeta.setAttribute('content', 'noindex'); } else if (robotsMeta) robotsMeta.remove();
     const meta = document.querySelector('meta[name="description"]');
     if (meta) meta.setAttribute('content', description);
     const oldLd = document.getElementById('page-jsonld');
@@ -1416,15 +1419,15 @@ function App() {
       script.text = JSON.stringify(ld);
       document.head.appendChild(script);
     }
-  }, [route, service, journalPost, isTeamPage, isNotFound]);
-  const routeKey = service ? 'service-' + service.slug : journalPost ? 'journal-' + journalPost.id : isTeamPage ? 'team' : isNotFound ? 'notfound' : 'home';
+  }, [route, service, journalPost, isTeamPage, isComingSoonPage, isNotFound]);
+  const routeKey = service ? 'service-' + service.slug : journalPost ? 'journal-' + journalPost.id : isTeamPage ? 'team' : isComingSoonPage ? 'comingsoon' : isNotFound ? 'notfound' : 'home';
   return (
     <>
       <AnimatePresence>{showCurtain && <RouteCurtain key="curtain" />}</AnimatePresence>
       <ComingSoonToast />
       <AnimatePresence mode="wait">
         <PageTransition key={routeKey}>
-          {service ? <ServicePage service={service} /> : journalPost ? <JournalPostPage post={journalPost} /> : isTeamPage ? <TeamPage /> : isNotFound ? <NotFoundPage /> : <HomePage />}
+          {service ? <ServicePage service={service} /> : journalPost ? <JournalPostPage post={journalPost} /> : isTeamPage ? <TeamPage /> : isComingSoonPage ? <ComingSoonPage /> : isNotFound ? <NotFoundPage /> : <HomePage />}
         </PageTransition>
       </AnimatePresence>
     </>

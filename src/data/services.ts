@@ -60,7 +60,7 @@ export const services: Service[] = [
     stats: [
       { value: "150+", label: "Projects delivered" },
       { value: "95+", label: "Avg. Lighthouse score" },
-      { value: "8+", label: "Years of experience" },
+      { value: "2013", label: "Founded" },
     ],
     faq: [
       { q: "How long does a typical web project take?", a: "A marketing site typically takes 2–4 weeks, while a full web application can take 6–16 weeks depending on scope and complexity." },
