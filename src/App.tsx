@@ -622,6 +622,8 @@ const CollaborationBandsSection = () => {
 const ServicesSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+  const [servicePage, setServicePage] = useState(0);
+  const [serviceSlideDir, setServiceSlideDir] = useState<'next' | 'prev'>('next');
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.from('.service-title', { scrollTrigger: { trigger: sectionRef.current, start: 'top 80%' }, y: 50, opacity: 0, duration: 0.8, ease: 'power3.out' });
@@ -630,6 +632,10 @@ const ServicesSection = () => {
     return () => ctx.revert();
   }, []);
   const services = serviceData.map((s) => ({ icon: s.icon, title: s.title, desc: s.desc, color: s.color, link: '#/services/' + s.slug }));
+  const SERVICES_PER_PAGE = 9;
+  const totalServicePages = Math.ceil(services.length / SERVICES_PER_PAGE);
+  const pageServices = services.slice(servicePage * SERVICES_PER_PAGE, servicePage * SERVICES_PER_PAGE + SERVICES_PER_PAGE);
+  const goToServicePage = (page: number) => { if (page < 0 || page >= totalServicePages || page === servicePage) return; setServiceSlideDir(page > servicePage ? 'next' : 'prev'); setHoveredCard(null); setServicePage(page); };
   return (
     <section id="services" ref={sectionRef} className="relative py-32 bg-[#070f1a] overflow-hidden">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -642,8 +648,19 @@ const ServicesSection = () => {
           <h2 className="font-['Syne'] text-4xl md:text-5xl font-bold tracking-tight leading-[1.05] text-white mb-4">Solutions for Every <span className="gradient-text">Digital Need</span></h2>
           <p className="text-white/60 text-lg max-w-2xl mx-auto">From concept to launch, we provide comprehensive web development services that drive results.</p>
         </div>
+        <div className="flex items-center justify-end gap-3 mb-6">
+          <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-white/50">Page {servicePage + 1} of {totalServicePages}</span>
+          <div className="flex items-center gap-2">
+            {Array.from({ length: totalServicePages }).map((_, d) => (
+              <button key={d} type="button" onClick={() => goToServicePage(d)} aria-label={'Go to services page ' + (d + 1)} className="h-[3px] transition-all duration-300" style={{ width: d === servicePage ? 30 : 18, background: d === servicePage ? '#ff6b35' : 'rgba(255,255,255,0.25)' }} />
+            ))}
+          </div>
+          <button type="button" onClick={() => goToServicePage(servicePage - 1)} disabled={servicePage === 0} aria-label="Previous services page" className="grid h-11 w-11 place-items-center rounded-[6px] border border-white/20 text-white transition-all hover:border-white hover:bg-white hover:text-[#05070a] disabled:opacity-40 disabled:hover:border-white/20 disabled:hover:bg-transparent disabled:hover:text-white disabled:cursor-not-allowed"><ChevronLeft className="h-5 w-5" /></button>
+          <button type="button" onClick={() => goToServicePage(servicePage + 1)} disabled={servicePage === totalServicePages - 1} aria-label="Next services page" className="grid h-11 w-11 place-items-center rounded-[6px] border border-white/20 text-white transition-all hover:border-white hover:bg-white hover:text-[#05070a] disabled:opacity-40 disabled:hover:border-white/20 disabled:hover:bg-transparent disabled:hover:text-white disabled:cursor-not-allowed"><ChevronRight className="h-5 w-5" /></button>
+        </div>
+        <div key={servicePage} style={{ animation: serviceSlideDir === 'next' ? 'service-page-in-next 0.5s ease both' : 'service-page-in-prev 0.5s ease both' }}>
         <div className="services-grid grid sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
-          {services.map((service, i) => {
+          {pageServices.map((service, i) => {
             const hot = hoveredCard === i;
             return (
               <a
@@ -702,6 +719,7 @@ const ServicesSection = () => {
               </a>
             );
           })}
+        </div>
         </div>
       </div>
     </section>
