@@ -11,9 +11,10 @@ import { goToConnect } from './utils/goToConnect';
 import { navigateTo, navigateHomeToSection, normalizePath, scrollToSectionWithRetry } from './utils/navigation';
 import ServicePage from './pages/ServicePage';
 import JournalPostPage from './pages/JournalPostPage';
-import ComingSoonToast, { showComingSoon } from './components/ComingSoonToast';
+import ComingSoonToast from './components/ComingSoonToast';
 import { JOURNAL_POSTS, getJournalPostById } from './data/journal';
 import TeamPage from './pages/TeamPage';
+import ComingSoonPage from './pages/ComingSoonPage';
 import { PageTransition, RouteCurtain } from './components/PageTransition';
 import { CornerTicks } from './components/CornerTicks';
 import { services as serviceData, getServiceBySlug } from './data/services';
@@ -248,7 +249,7 @@ const HeroSection = () => {
           {[
             { value: '150+', label: 'Projects Delivered' },
             { value: '150+', label: 'Happy Clients' },
-            { value: '10+', label: 'Years Experience' },
+            { value: '2013', label: 'Founded' },
             { value: '5.0', label: 'Top Rated' },
           ].map((stat, i) => (
             <motion.div key={i} initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8 + i * 0.08 }} className="bg-[#05070a]/70 px-5 py-7">
@@ -760,7 +761,7 @@ const PortfolioSection = () => {
             { title: 'Mobile Banking App', cat: 'Mobile Development', color: '#3b82f6', img: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&h=500&fit=crop&q=80' },
             { title: 'Restaurant Website', cat: 'Web Design', color: '#ffd700', img: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=500&fit=crop&q=80' },
           ].map((p) => (
-            <div key={p.title} onClick={() => showComingSoon('Project case study — Coming Soon')} className="portfolio-card group relative bg-[#0f1c2e] rounded-2xl overflow-hidden cursor-pointer shadow-[0_12px_40px_rgba(0,0,0,0.45)] border border-white/5 flex flex-col">
+            <div key={p.title} onClick={() => navigateTo('/coming-soon')} className="portfolio-card group relative bg-[#0f1c2e] rounded-2xl overflow-hidden cursor-pointer shadow-[0_12px_40px_rgba(0,0,0,0.45)] border border-white/5 flex flex-col">
               <div className="relative h-[260px] overflow-hidden shrink-0">
                 <img alt={p.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src={p.img} loading="lazy" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0f1c2e] via-[#0f1c2e]/10 to-transparent"></div>
@@ -775,7 +776,7 @@ const PortfolioSection = () => {
           ))}
         </div>
         <div className="w-full clear-both text-center mt-12 relative z-20">
-          <button type="button" onClick={() => showComingSoon('All projects — Coming Soon')} className="btn-primary inline-block px-10 py-4 text-sm font-bold tracking-wider cursor-pointer">VIEW ALL PROJECTS</button>
+          <button type="button" onClick={() => navigateTo('/coming-soon')} className="btn-primary inline-block px-10 py-4 text-sm font-bold tracking-wider cursor-pointer">VIEW ALL PROJECTS</button>
         </div>
       </div>
     </section>
@@ -1142,7 +1143,7 @@ const ConnectSection = () => {
             <div className="mt-9">
               <p className="font-mono text-[10px] font-medium uppercase tracking-[0.24em] text-white/30 mb-4">Follow us</p>
               <div className="flex flex-wrap items-center gap-x-7 gap-y-3">
-                {['GitHub', 'LinkedIn', 'X / Twitter', 'Dribbble'].map((s) => (<a key={s} href="#" onClick={(e) => { e.preventDefault(); showComingSoon(s + ' — Coming Soon'); }} className="font-mono text-[13.5px] text-white/45 hover:text-[#ff6b35] transition-colors">{s}</a>))}
+                {['GitHub', 'LinkedIn', 'X / Twitter', 'Dribbble'].map((s) => (<a key={s} href="/coming-soon" className="font-mono text-[13.5px] text-white/45 hover:text-[#ff6b35] transition-colors">{s}</a>))}
               </div>
             </div>
             <div className="w-full mt-12 p-6 rounded-2xl bg-white/5 border border-white/15 relative overflow-hidden group select-none">
@@ -1198,7 +1199,7 @@ const Footer = () => (
           </div>
           <p className="text-[#ff6b35] font-mono text-[11px] font-bold uppercase tracking-[0.22em] mb-5">Digital Experiences. Built Better.</p>
           <p className="text-white/60 leading-relaxed max-w-md mb-6">We design, build, and optimize digital experiences that help businesses, brands, and ideas move forward. Whether you need a new website, a custom web application, an immersive interactive experience, help improving an existing project, technical consulting, or training, we work closely with you to understand your goals and build a solution that fits your needs.</p>
-          <div className="flex gap-4">{['Twitter', 'LinkedIn', 'GitHub', 'Dribbble'].map((social) => (<a key={social} href="#" onClick={(e) => { e.preventDefault(); showComingSoon(social + ' — Coming Soon'); }} className="w-10 h-10 bg-white/5 border border-white/10 rounded-lg flex items-center justify-center text-white/60 hover:bg-[#ff6b35] hover:border-[#ff6b35] hover:text-white transition-all"><span className="text-xs font-bold">{social[0]}</span></a>))}</div>
+          <div className="flex gap-4">{['Twitter', 'LinkedIn', 'GitHub', 'Dribbble'].map((social) => (<a key={social} href="/coming-soon" className="w-10 h-10 bg-white/5 border border-white/10 rounded-lg flex items-center justify-center text-white/60 hover:bg-[#ff6b35] hover:border-[#ff6b35] hover:text-white transition-all"><span className="text-xs font-bold">{social[0]}</span></a>))}</div>
         </div>
         <div>
           <h4 className="font-['Syne'] font-bold text-white mb-6">Quick Links</h4>
@@ -1241,7 +1242,7 @@ const Footer = () => (
       </div>
       <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
         <p className="text-white/40 text-sm">© {new Date().getFullYear()} THE JIMMY LAB. All rights reserved.</p>
-        <div className="flex gap-6 text-sm"><a href="#" onClick={(e) => { e.preventDefault(); showComingSoon('Privacy Policy — Coming Soon'); }} className="text-white/40 hover:text-white transition-colors">Privacy Policy</a><a href="#" onClick={(e) => { e.preventDefault(); showComingSoon('Terms of Service — Coming Soon'); }} className="text-white/40 hover:text-white transition-colors">Terms of Service</a></div>
+        <div className="flex gap-6 text-sm"><a href="/coming-soon" className="text-white/40 hover:text-white transition-colors">Privacy Policy</a><a href="/coming-soon" className="text-white/40 hover:text-white transition-colors">Terms of Service</a></div>
       </div>
     </div>
   </footer>
@@ -1269,6 +1270,17 @@ const HomePage = () => (
     </div>
   </div>
 );
+
+function NotFoundPage() {
+  return (
+    <div className="min-h-screen bg-[#070f1a] text-white flex flex-col items-center justify-center px-6 text-center">
+      <p className="font-mono text-sm tracking-widest text-white/40 mb-4">404 — PAGE NOT FOUND</p>
+      <h1 className="text-4xl md:text-6xl font-bold mb-4">This page doesn&apos;t exist.</h1>
+      <p className="text-white/60 max-w-md mb-8">The link you followed may be outdated, or the address may have a typo. The home page and all services are still here.</p>
+      <button onClick={() => navigateTo('/')} className="px-6 py-3 border border-white/35 hover:bg-white hover:text-black transition-colors font-mono text-sm tracking-wider">BACK TO HOME</button>
+    </div>
+  );
+}
 
 function App() {
   const [route, setRoute] = useState<string>(() => normalizePath(window.location.pathname));
@@ -1353,7 +1365,7 @@ function App() {
       if (!anchor) return;
       const href = anchor.getAttribute('href');
       if (!href) return;
-      if (href.startsWith('/services/') || href.startsWith('/journal/') || href === '/team' || href === '/') {
+      if (href.startsWith('/services/') || href.startsWith('/journal/') || href === '/team' || href === '/coming-soon' || href === '/') {
         e.preventDefault();
         navigateTo(href);
         return;
@@ -1375,20 +1387,48 @@ function App() {
   const journalMatch = route.match(/^\/journal\/([^/?]+)/);
   const journalPost = journalMatch ? getJournalPostById(journalMatch[1]) : undefined;
   const isTeamPage = /^\/team$/.test(route);
-  // Per-page title + canonical (descriptions per page are a later step).
+  const isComingSoonPage = route === '/coming-soon';
+  const isNotFound = route !== '/' && !service && !journalPost && !isTeamPage;
+  // Per-page title + canonical + description + structured data.
   useEffect(() => {
-    document.title = service ? service.title + ' | THE JIMMY LAB' : journalPost ? journalPost.title + ' | THE JIMMY LAB' : isTeamPage ? 'Our Team | THE JIMMY LAB' : 'THE JIMMY LAB — Digital Experiences';
+    document.title = service ? service.title + ' | THE JIMMY LAB' : journalPost ? journalPost.title + ' | THE JIMMY LAB' : isTeamPage ? 'Our Team | THE JIMMY LAB' : isComingSoonPage ? 'Coming Soon | THE JIMMY LAB' : isNotFound ? 'Page Not Found | THE JIMMY LAB' : 'THE JIMMY LAB — Digital Experiences';
     const canonical = document.querySelector('link[rel="canonical"]');
     if (canonical) canonical.setAttribute('href', 'https://thejimmylab.vercel.app' + (route === '/' ? '/' : route));
-  }, [route, service, journalPost, isTeamPage]);
-  const routeKey = service ? 'service-' + service.slug : journalPost ? 'journal-' + journalPost.id : isTeamPage ? 'team' : 'home';
+    const description = service ? service.tagline : journalPost ? journalPost.excerpt : isTeamPage ? 'Meet the team behind THE JIMMY LAB — six operators covering design, engineering, SEO and automation, based in Islamabad, Pakistan.' : isComingSoonPage ? 'This section of THE JIMMY LAB is coming soon.' : isNotFound ? 'This page does not exist on THE JIMMY LAB.' : 'THE JIMMY LAB — a digital agency crafting immersive websites, web applications and interactive experiences with a signature 2.5D cardboard-style design approach.';
+    const robotsMeta = document.querySelector('meta[name="robots"]');
+    if (isComingSoonPage) { if (!robotsMeta) { const m = document.createElement('meta'); m.setAttribute('name', 'robots'); m.setAttribute('content', 'noindex'); document.head.appendChild(m); } else robotsMeta.setAttribute('content', 'noindex'); } else if (robotsMeta) robotsMeta.remove();
+    const meta = document.querySelector('meta[name="description"]');
+    if (meta) meta.setAttribute('content', description);
+    const oldLd = document.getElementById('page-jsonld');
+    if (oldLd) oldLd.remove();
+    let ld: unknown = null;
+    if (service) {
+      ld = { '@context': 'https://schema.org', '@graph': [
+        { '@type': 'Service', name: service.title, description: service.tagline, url: 'https://thejimmylab.vercel.app/services/' + service.slug, provider: { '@type': 'Organization', name: 'THE JIMMY LAB', url: 'https://thejimmylab.vercel.app/' } },
+        { '@type': 'FAQPage', mainEntity: service.faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+      ] };
+    } else if (journalPost) {
+      const months: Record<string, string> = { January: '01', February: '02', March: '03', April: '04', May: '05', June: '06', July: '07', August: '08', September: '09', October: '10', November: '11', December: '12' };
+      const parts = journalPost.date.replace(',', '').split(' ');
+      const iso = parts.length === 3 && months[parts[0]] ? parts[2] + '-' + months[parts[0]] + '-' + parts[1].padStart(2, '0') : undefined;
+      ld = { '@context': 'https://schema.org', '@type': 'Article', headline: journalPost.title, description: journalPost.excerpt, url: 'https://thejimmylab.vercel.app/journal/' + journalPost.id, author: { '@type': 'Organization', name: 'THE JIMMY LAB', url: 'https://thejimmylab.vercel.app/' }, ...(iso ? { datePublished: iso } : {}) };
+    }
+    if (ld) {
+      const script = document.createElement('script');
+      script.id = 'page-jsonld';
+      script.type = 'application/ld+json';
+      script.text = JSON.stringify(ld);
+      document.head.appendChild(script);
+    }
+  }, [route, service, journalPost, isTeamPage, isComingSoonPage, isNotFound]);
+  const routeKey = service ? 'service-' + service.slug : journalPost ? 'journal-' + journalPost.id : isTeamPage ? 'team' : isComingSoonPage ? 'comingsoon' : isNotFound ? 'notfound' : 'home';
   return (
     <>
       <AnimatePresence>{showCurtain && <RouteCurtain key="curtain" />}</AnimatePresence>
       <ComingSoonToast />
       <AnimatePresence mode="wait">
         <PageTransition key={routeKey}>
-          {service ? <ServicePage service={service} /> : journalPost ? <JournalPostPage post={journalPost} /> : isTeamPage ? <TeamPage /> : <HomePage />}
+          {service ? <ServicePage service={service} /> : journalPost ? <JournalPostPage post={journalPost} /> : isTeamPage ? <TeamPage /> : isComingSoonPage ? <ComingSoonPage /> : isNotFound ? <NotFoundPage /> : <HomePage />}
         </PageTransition>
       </AnimatePresence>
     </>

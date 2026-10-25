@@ -1,0 +1,224 @@
+# THE JIMMY LAB
+
+THE JIMMY LAB is a digital agency crafting immersive websites, web applications and interactive experiences. Based in Islamabad, Pakistan. Founded in 2013.
+
+## Services
+
+- [Web Development](https://thejimmylab.vercel.app/services/web-development): Fast, secure and scalable web applications built around your business.
+- [UI/UX Design](https://thejimmylab.vercel.app/services/ui-ux-design): Interfaces that feel effortless — designed from research, not guesswork.
+- [Mobile Development](https://thejimmylab.vercel.app/services/mobile-development): Mobile experiences that feel native, ship fast and scale with your users.
+- [E-Commerce](https://thejimmylab.vercel.app/services/e-commerce): Storefronts built to convert — fast, flexible and beautiful at every step.
+- [AI Solutions](https://thejimmylab.vercel.app/services/ai-solutions): Turn your data and workflows into intelligent, automated products.
+- [Web Animation](https://thejimmylab.vercel.app/services/web-animation): Motion that guides, delights and sets your brand apart.
+- [Logo Design & Branding](https://thejimmylab.vercel.app/services/logo-design-branding): A mark people remember, and a brand system that holds up everywhere it lands.
+- [2D/3D Graphic Design](https://thejimmylab.vercel.app/services/graphic-design-2d-3d): Custom 2D illustration and 3D renders — no stock clichés, ever.
+- [1:1 Consultation & Training](https://thejimmylab.vercel.app/services/consultation-training): Senior expertise on tap — unblock your team without hiring for it.
+- [SEO & Website Optimization](https://thejimmylab.vercel.app/services/seo-website-optimization): Get found on Google, load fast everywhere, and turn search traffic into enquiries.
+- [Maintenance & Support](https://thejimmylab.vercel.app/services/maintenance-support): Never worry about updates, downtime or broken pages again.
+- [Integration & Automation](https://thejimmylab.vercel.app/services/integration-automation): Less copy-paste, fewer dropped leads, more time for real work.
+- [Website Redesign & Migration](https://thejimmylab.vercel.app/services/website-redesign-migration): New design, same traffic — a relaunch done properly.
+- [Code Review & Technical Audit](https://thejimmylab.vercel.app/services/code-review-technical-audit): Know exactly where your code stands — before it becomes a problem.
+
+## Journal
+
+- [Modern Scroll-Linked Animation Techniques](https://thejimmylab.vercel.app/journal/scroll-animation-techniques) (Motion): A deep dive into building performant, responsive scroll animations with the vanilla Motion library in Astro.
+- [Why Astro is the Ultimate Framework for Portfolios](https://thejimmylab.vercel.app/journal/astro-for-portfolios) (Engineering): How Astro's island architecture and zero-JS output by default make it the perfect tool for fast creative portfolios.
+- [Core Principles of Functional Motion Design](https://thejimmylab.vercel.app/journal/motion-design-principles) (Motion): Why animation in web design is a functional tool, not just an aesthetic embellishment, and how to apply it.
+- [AI-Assisted Development in 2026: Speed Without Losing Craft](https://thejimmylab.vercel.app/journal/ai-assisted-development-2026) (AI): AI tools now write a large share of first drafts. The craft has moved from typing code to reviewing it, and that changes how a good team works.
+- [Core Web Vitals in 2026: What Actually Moves the Score](https://thejimmylab.vercel.app/journal/core-web-vitals-2026) (Performance): Most sites fail the same few checks for the same few reasons. Here is the short list of fixes that move the score, in order.
+- [Interactive 3D on the Web Without Killing Performance](https://thejimmylab.vercel.app/journal/interactive-3d-without-slowing-down) (Interactive): 3D on a website grabs attention, but it is also the fastest way to drain a phone battery. Here is how to keep the wow and lose the cost.
+
+## Team
+
+- [Our Team](https://thejimmylab.vercel.app/team): Six operators covering design, engineering, SEO and automation.
+
+## Contact
+
+- Email (shown on site): hello@thejimmylab.com
+- Fiverr: https://www.fiverr.com/jimmy3105
+- Website: https://thejimmylab.vercel.app/
+
+
+## Service details
+
+### Web Development — https://thejimmylab.vercel.app/services/web-development
+
+Production-grade websites and web applications engineered to scale from day one.
+
+Q: How long does a typical web project take?
+A: A marketing site typically takes 2–4 weeks, while a full web application can take 6–16 weeks depending on scope and complexity.
+
+Q: Do you provide ongoing support?
+A: Yes — we offer maintenance and retainer packages covering updates, monitoring and new feature development.
+
+Q: Can you work with our existing codebase?
+A: Absolutely. We regularly audit, refactor and extend existing React, Node.js and PHP codebases.
+
+### UI/UX Design — https://thejimmylab.vercel.app/services/ui-ux-design
+
+Pixel-perfect interfaces and design systems crafted around real user behaviour.
+
+Q: Do you also implement the designs?
+A: Yes — our designers and engineers work side-by-side, so the shipped product matches the design pixel-for-pixel.
+
+Q: Can you redesign our existing product?
+A: Absolutely. We start with a UX audit, then redesign and improve without disrupting your current flow.
+
+Q: What tools do you use?
+A: Figma is our primary tool, with Framer for high-fidelity prototypes and After Effects for motion studies.
+
+### Mobile Development — https://thejimmylab.vercel.app/services/mobile-development
+
+Native-quality mobile apps for iOS and Android built with modern cross-platform tooling.
+
+Q: Native or cross-platform?
+A: For most products, cross-platform (React Native/Flutter) gives the best speed-to-market and cost, while still feeling native.
+
+Q: Can you take our app to the store?
+A: Yes — we handle the full submission process for both the App Store and Google Play.
+
+Q: Do you build MVPs?
+A: Definitely. MVPs are our speciality — a lean, focused first release to validate your idea fast.
+
+### E-Commerce — https://thejimmylab.vercel.app/services/e-commerce
+
+High-converting storefronts and headless commerce builds that turn browsers into buyers.
+
+Q: Shopify or custom?
+A: It depends on your needs. Shopify is great for speed-to-market; a headless build gives maximum flexibility and performance.
+
+Q: Can you migrate our existing store?
+A: Yes — we migrate products, customers and orders with zero downtime and SEO preserved.
+
+Q: Do you handle payments?
+A: We integrate Stripe, PayPal, Apple Pay and local payment gateways, plus subscription billing.
+
+### AI Solutions — https://thejimmylab.vercel.app/services/ai-solutions
+
+AI-powered products, automations and copilots that put intelligence to work for your business.
+
+Q: What can AI actually do for my business?
+A: It depends on your data and workflows — but common wins are automating support, document processing, content and data analysis.
+
+Q: Is our data kept private?
+A: Yes. We can use private models, on-prem hosting and strict data isolation depending on your compliance needs.
+
+Q: How do you measure success?
+A: We define clear metrics up front — time saved, cost reduced, or revenue generated — and report against them.
+
+### Web Animation — https://thejimmylab.vercel.app/services/web-animation
+
+Scroll-driven, 2D & 3D motion that makes interfaces feel alive and unforgettable.
+
+Q: Will animation slow my site down?
+A: No — we optimise every animation for performance and respect reduced-motion preferences for accessibility.
+
+Q: Can you animate an existing site?
+A: Yes. We can add scroll experiences, interactions and motion to your current product without a rebuild.
+
+Q: Do you do 3D product configurators?
+A: Absolutely — interactive 3D configurators are one of our signature offerings.
+
+### Logo Design & Branding — https://thejimmylab.vercel.app/services/logo-design-branding
+
+Distinctive logos and complete brand systems that make you instantly recognisable everywhere.
+
+Q: How many concepts do we get?
+A: We present two to three distinct strategic directions, then refine the chosen route together until it's right.
+
+Q: Do you redesign existing logos?
+A: Yes — evolutionary refreshes that keep your equity while modernising the mark are a big part of our work.
+
+Q: What files do we receive?
+A: Full vector and raster suites, plus favicon, app icons and a printable brand guidelines document.
+
+### 2D/3D Graphic Design — https://thejimmylab.vercel.app/services/graphic-design-2d-3d
+
+Illustration, motion graphics and 3D visuals that give your product a visual language of its own.
+
+Q: Can 3D models run on our website?
+A: Yes — we deliver Draco-compressed glTF models tuned for Three.js, typically under 2 MB per scene.
+
+Q: Do you work from our sketches?
+A: Absolutely. Rough sketches, moodboards or napkins — we can start from anything and professionalise it.
+
+Q: Who owns the artwork?
+A: You do. Full commercial rights transfer on final payment, including source files.
+
+### 1:1 Consultation & Training — https://thejimmylab.vercel.app/services/consultation-training
+
+Focused 1-on-1 guidance, code reviews and hands-on training for teams and individuals.
+
+Q: How do sessions work?
+A: 60 or 90 minute video calls, screen-share first. You leave each session with notes and next steps.
+
+Q: Can you train our whole team?
+A: Yes — private cohort workshops, scheduled around your sprints, using your own codebase as the curriculum.
+
+Q: Do you offer ongoing retainers?
+A: We keep a limited number of monthly advisory slots for continued guidance between builds.
+
+### SEO & Website Optimization — https://thejimmylab.vercel.app/services/seo-website-optimization
+
+Higher rankings, faster pages and more organic traffic — technical SEO and performance work that compounds over time.
+
+Q: How long before SEO results show?
+A: Technical and speed fixes usually show within weeks; ranking and traffic growth typically builds over 2–3 months.
+
+Q: Do you write content too?
+A: We map keywords and optimise existing pages, and can brief or produce SEO content as part of a package.
+
+Q: Is this a one-time job or ongoing?
+A: Both — a one-time audit and fix, or a monthly retainer for continuous optimisation and reporting.
+
+### Maintenance & Support — https://thejimmylab.vercel.app/services/maintenance-support
+
+Your site stays fast, secure and up to date — updates, monitoring, backups and fixes handled for you.
+
+Q: What counts as a small fix?
+A: Text and image changes, broken links, layout bugs and small feature tweaks — anything that fits in a short session.
+
+Q: Do you support sites you did not build?
+A: Yes — we start with a quick health check, then take over maintenance from there.
+
+Q: Can I cancel anytime?
+A: Yes — maintenance is month to month, with your backups and documentation handed over if you leave.
+
+### Integration & Automation — https://thejimmylab.vercel.app/services/integration-automation
+
+Connect your tools and automate the busywork — CRMs, forms, payments and workflows that run themselves.
+
+Q: Which tools can you connect?
+A: GoHighLevel, HubSpot, Stripe, Calendly, email platforms and most tools with an API or webhook — tell us your stack and we will map it.
+
+Q: What if an automation breaks?
+A: Every flow has error alerts, and maintenance clients get priority fixes — nothing fails silently for weeks.
+
+Q: Do I need a CRM first?
+A: No — we can set up GoHighLevel or a simpler CRM as part of the project, then build the automations on top.
+
+### Website Redesign & Migration — https://thejimmylab.vercel.app/services/website-redesign-migration
+
+A fresh look without losing what works — redesigns and platform moves with zero ranking or content loss.
+
+Q: Will I lose my Google rankings?
+A: No — redirect mapping and SEO preservation are built into every redesign and migration, with checks after launch.
+
+Q: Can you move my site to a different platform?
+A: Yes — WordPress, Wix, Shopify, Squarespace and custom stacks are all in scope, with content migrated intact.
+
+Q: How long does a redesign take?
+A: Most redesigns take 3–6 weeks depending on page count and whether a platform move is included.
+
+### Code Review & Technical Audit — https://thejimmylab.vercel.app/services/code-review-technical-audit
+
+A senior, independent look at your codebase — what is solid, what is risky, and what to fix first.
+
+Q: How is this different from your consultation code reviews?
+A: Consultation reviews happen inside a 1:1 session. This is a standalone, documented audit of the whole codebase with a written report and roadmap.
+
+Q: Do you need access to our code?
+A: Yes — read-only repository access is enough, under NDA if you need one.
+
+Q: Can you fix what you find?
+A: Yes — fixes can be quoted as a follow-up project, or your team can work from the report directly.
