@@ -719,6 +719,9 @@ const ServicesSection = () => {
               </a>
             );
           })}
+          {Array.from({ length: SERVICES_PER_PAGE - pageServices.length }).map((_, b) => (
+            <div key={'blank-' + b} aria-hidden="true" className="relative rounded-[6px] border border-dashed border-white/10 bg-[rgba(7,11,14,0.72)] px-5 py-6 sm:px-6 sm:py-7 min-h-[200px]" />
+          ))}
         </div>
         </div>
       </div>
