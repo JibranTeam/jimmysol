@@ -413,27 +413,27 @@ const ModesSection = () => {
               const o = offsetOf(i); const isActive = o === 0; const abs = Math.abs(o); const isHovered = hovered === i; const isBright = isActive || isHovered;
               return (
                 <div key={m.n} onClick={() => !isActive && setActive(i)} onMouseEnter={() => setHovered(i)} onMouseLeave={() => setHovered(null)} className="modes-card group absolute flex flex-col justify-between overflow-hidden rounded-[6px] p-6" style={{
-                  width: 300, maxWidth: '90vw', height: 380,
+                  width: 320, maxWidth: '90vw', height: 400,
                   background: 'linear-gradient(155deg, rgb(10, 15, 20) 0%, rgb(7, 11, 16) 55%, rgb(5, 8, 12) 100%)',
-                  border: '1px solid ' + (isHovered ? 'rgba(255,255,255,0.38)' : isActive ? 'rgba(255,255,255,0.24)' : 'rgba(255,255,255,0.09)'),
-                  boxShadow: isHovered ? 'rgba(0,0,0,0.9) 0px 24px 48px -20px, 0 0 0 1px rgba(255,255,255,0.08)' : isActive ? 'rgba(0,0,0,0.9) 0px 18px 40px -22px' : 'none',
+                  border: '1px solid ' + (isHovered ? m.color + 'a8' : isActive ? 'rgba(255,255,255,0.24)' : 'rgba(255,255,255,0.09)'),
+                  boxShadow: isHovered ? '0 18px 40px -20px rgba(' + m.rgb + ',0.55), rgba(0,0,0,0.9) 0px 24px 48px -20px' : isActive ? 'rgba(0,0,0,0.9) 0px 18px 40px -22px' : 'none',
                   cursor: isActive ? 'default' : 'pointer', opacity: abs > 1 ? 0 : isHovered || isActive ? 1 : 0.82,
                   filter: isHovered || isActive ? 'blur(0px)' : 'blur(0.8px)',
                   transform: isActive ? (isHovered ? 'translateZ(220px) scale(1.08)' : 'translateZ(200px) scale(1.06)') : 'translateX(' + o * 320 + 'px) translateZ(' + (isHovered ? -80 : -100) + 'px) scale(' + (isHovered ? 0.86 : 0.82) + ') rotateY(' + o * -24 + 'deg)',
                   zIndex: isActive ? 20 : 10 - abs, pointerEvents: abs > 1 ? 'none' : 'auto', transformStyle: 'preserve-3d',
                 }}>
-                  <CornerTicks color={isBright ? 'rgba(255,255,255,0.38)' : 'rgba(255,255,255,0.16)'} />
-                  <div className="absolute inset-0 pointer-events-none z-0 transition-opacity duration-500" style={{ opacity: isHovered ? 0.10 : isActive ? 0.07 : 0.035, maskImage: 'radial-gradient(rgba(0,0,0,0.05) 30%, rgba(0,0,0,0.8) 95%)', WebkitMaskImage: 'radial-gradient(rgba(0,0,0,0.05) 30%, rgba(0,0,0,0.8) 95%)' }}>
-                    <HoneycombPattern id={'honeycomb-' + m.title.toLowerCase()} color="#ffffff" />
+                  <CornerTicks color={isHovered ? m.color : isBright ? 'rgba(255,255,255,0.38)' : 'rgba(255,255,255,0.16)'} />
+                  <div className="absolute inset-0 pointer-events-none z-0 transition-opacity duration-500" style={{ opacity: isHovered ? 0.12 : isActive ? 0.07 : 0.035, maskImage: 'radial-gradient(rgba(0,0,0,0.05) 30%, rgba(0,0,0,0.8) 95%)', WebkitMaskImage: 'radial-gradient(rgba(0,0,0,0.05) 30%, rgba(0,0,0,0.8) 95%)' }}>
+                    <HoneycombPattern id={'honeycomb-' + m.title.toLowerCase()} color={isHovered ? m.color : '#ffffff'} />
                   </div>
                   <span className="pointer-events-none absolute right-3.5 top-3.5 font-mono text-[10px] tracking-[0.2em] transition-colors duration-300" style={{ color: 'rgba(255,255,255,0.2)' }}>{m.n}</span>
                   <div className="relative z-10 flex flex-col items-center gap-2 mt-0.5 mb-2">
-                    <h3 className="text-[20px] font-semibold tracking-[-0.01em] leading-none mt-1 text-center transition-all duration-500" style={isBright ? { color: 'transparent', WebkitTextStroke: '1px rgba(255,255,255,0.85)' } : { color: 'rgba(255,255,255,0.78)' }}>{m.title}</h3>
-                    <div className="font-mono text-[8.5px] uppercase tracking-[0.2em] px-2 py-0.5 border transition-all duration-500" style={{ color: 'rgba(255,255,255,0.6)', background: 'transparent', borderColor: isBright ? 'rgba(255,255,255,0.16)' : 'transparent', opacity: isBright ? 1 : 0 }}>{m.subtitle}</div>
+                    <h3 className="text-[20px] font-semibold tracking-[-0.01em] leading-none mt-1 text-center transition-all duration-500" style={isHovered ? { color: 'transparent', WebkitTextStroke: '1px ' + m.color, textShadow: '0 0 24px rgba(' + m.rgb + ',0.25)' } : isActive ? { color: 'transparent', WebkitTextStroke: '1px rgba(255,255,255,0.85)' } : { color: 'rgba(255,255,255,0.78)' }}>{m.title}</h3>
+                    <div className="font-mono text-[8.5px] uppercase tracking-[0.2em] px-2 py-0.5 border transition-all duration-500" style={isHovered ? { color: m.color, background: 'rgba(' + m.rgb + ',0.12)', borderColor: 'rgba(' + m.rgb + ',0.4)', opacity: 1 } : { color: 'rgba(255,255,255,0.6)', background: 'transparent', borderColor: isBright ? 'rgba(255,255,255,0.16)' : 'transparent', opacity: isBright ? 1 : 0 }}>{m.subtitle}</div>
                   </div>
                   <div className="relative z-10 flex-1 flex items-center justify-center my-1">
                     <div className="transition-transform duration-700" style={{ transform: isHovered ? 'scale(1.08)' : isActive ? 'scale(1.04)' : 'scale(0.94)' }}>
-                      <m.Art active={isActive} color="#ffffff" />
+                      <m.Art active={isActive} color={isHovered ? m.color : "#ffffff"} />
                     </div>
                   </div>
                   <div className="relative z-10 flex flex-col items-center text-center mb-0.5 transition-all duration-500" style={{ opacity: isBright ? 1 : 0, transform: isBright ? 'none' : 'translateY(20px) scale(0.92)' }}>

@@ -302,18 +302,18 @@ select option:disabled {
   .modes-layout-container {
     max-width: 1200px;
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr);
-    gap: clamp(1rem, 4vw, 4rem);
-    align-items: start;
+    display: block;
     position: relative;
     z-index: 2;
   }
   .modes-col-left {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
     display: flex;
     align-items: center;
     justify-content: center;
-    align-self: start;
     height: 540px;
   }
   .modes-vertical-heading {
@@ -323,10 +323,8 @@ select option:disabled {
     font-size: clamp(3rem, 9vw, 6.5rem);
     letter-spacing: 0.06em;
     color: transparent;
-    -webkit-text-stroke: 2px rgba(255, 255, 255, 0.9);
-    text-shadow:
-      4px -4px 0 rgba(255, 255, 255, 0.08),
-      0 0 30px rgba(255, 255, 255, 0.10);
+    -webkit-text-stroke: 2px rgba(255, 255, 255, 0.35);
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.06);
     text-transform: uppercase;
     line-height: 1;
     user-select: none;
@@ -335,12 +333,11 @@ select option:disabled {
       text-shadow 0.45s ease,
       transform 0.45s ease;
   }
-  .modes-layout-container:hover .modes-vertical-heading {
+  .modes-layout-container:hover .modes-vertical-heading,
+  .modes-vertical-heading:hover {
     -webkit-text-stroke-color: #ffffff;
-    text-shadow:
-      6px -6px 0 rgba(255, 255, 255, 0.12),
-      0 0 44px rgba(255, 255, 255, 0.18);
-    transform: rotate(180deg) translateX(3px);
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.25);
+    transform: rotate(180deg);
   }
   @media (max-width: 1024px) {
     .modes-vertical-heading {
@@ -348,10 +345,24 @@ select option:disabled {
     }
   }
   .modes-col-right {
+    position: relative;
+    z-index: 2;
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
+  }
+  @media (max-width: 1024px) {
+    .modes-layout-container {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: clamp(1rem, 4vw, 4rem);
+      align-items: start;
+    }
+    .modes-col-left {
+      position: static;
+      height: 540px;
+    }
   }
   .modes-card {
     transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.65s ease,
