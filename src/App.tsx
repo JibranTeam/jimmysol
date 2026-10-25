@@ -415,26 +415,26 @@ const ModesSection = () => {
                 <article key={m.n} onClick={() => !isActive && setActive(i)} onMouseEnter={() => setHovered(i)} onMouseLeave={() => setHovered(null)} className="modes-card group absolute flex flex-col overflow-hidden rounded-3xl p-8" style={{
                   width: 340, maxWidth: '90vw', height: 520,
                   background: isHovered ? 'linear-gradient(180deg, rgba(' + m.rgb + ',0.12) 0%, rgba(7,11,14,0.95) 55%, #070f1a 100%)' : 'linear-gradient(180deg, rgba(7,11,14,0.95) 0%, #070f1a 100%)',
-                  border: '1.5px solid ' + (isHovered ? m.color + 'a8' : isActive ? m.color + '8c' : 'rgba(255,255,255,0.12)'),
-                  boxShadow: isHovered ? '0 18px 40px -20px rgba(' + m.rgb + ',0.55), 0 28px 56px -16px rgba(0,0,0,0.85), inset 0 1px 0 rgba(255,255,255,0.14)' : isActive ? '0 28px 56px -16px rgba(0,0,0,0.85), 0 16px 44px -12px rgba(' + m.rgb + ',0.28), inset 0 1px 0 rgba(255,255,255,0.14)' : '0 16px 32px -12px rgba(0,0,0,0.7)',
+                  border: '1.5px solid ' + (isHovered ? m.color + 'a8' : 'rgba(255,255,255,0.12)'),
+                  boxShadow: isHovered ? '0 18px 40px -20px rgba(' + m.rgb + ',0.55), 0 28px 56px -16px rgba(0,0,0,0.85), inset 0 1px 0 rgba(255,255,255,0.14)' : '0 16px 32px -12px rgba(0,0,0,0.7)',
                   cursor: isActive ? 'default' : 'pointer', opacity: abs > 1 ? 0 : isActive ? 1 : 0.85,
                   filter: isActive ? 'blur(0px)' : 'blur(0.8px) brightness(0.9)',
                   transform: isActive ? (isHovered ? 'translateZ(220px) scale(1.04)' : 'translateZ(200px) scale(1.02)') : 'translateX(' + o * 360 + 'px) translateZ(' + (isHovered ? -80 : -100) + 'px) scale(' + (isHovered ? 0.85 : 0.82) + ') rotateY(' + o * -24 + 'deg)',
                   zIndex: isActive ? 20 : 10 - abs, pointerEvents: abs > 1 ? 'none' : 'auto', transformStyle: 'preserve-3d',
                 }}>
                   <div className="flex flex-col items-center text-center">
-                    <h3 className="font-['Syne'] text-[34px] font-extrabold leading-none tracking-tight transition-all duration-500" style={isActive ? { color: 'transparent', WebkitTextStroke: '1.8px ' + m.color, textShadow: '0 0 24px rgba(' + m.rgb + ',0.25)' } : { color: '#ffffff' }}>{m.title}</h3>
-                    <span className="mt-4 text-[11px] font-semibold tracking-[0.06em] rounded-full px-4 py-1.5" style={{ color: m.color, background: 'rgba(' + m.rgb + ',0.12)', border: '1px solid rgba(' + m.rgb + ',0.4)' }}>{m.subtitle}</span>
+                    <h3 className="font-['Syne'] text-[34px] font-extrabold leading-none tracking-tight transition-all duration-500" style={isHovered ? { color: 'transparent', WebkitTextStroke: '1.8px ' + m.color, textShadow: '0 0 24px rgba(' + m.rgb + ',0.25)' } : { color: '#ffffff' }}>{m.title}</h3>
+                    <span className="mt-4 text-[11px] font-semibold tracking-[0.06em] rounded-full px-4 py-1.5" style={isHovered ? { color: m.color, background: 'rgba(' + m.rgb + ',0.12)', border: '1px solid rgba(' + m.rgb + ',0.4)' } : { color: 'rgba(255,255,255,0.70)', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.15)' }}>{m.subtitle}</span>
                   </div>
                   <div className="relative flex-1 flex items-center justify-center my-4">
-                    <div className="absolute w-[180px] h-[180px] rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(' + m.rgb + ',0.16) 0%, transparent 68%)' }} />
+                    <div className="absolute w-[180px] h-[180px] rounded-full pointer-events-none" style={{ background: isHovered ? 'radial-gradient(circle, rgba(' + m.rgb + ',0.16) 0%, transparent 68%)' : 'radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 68%)' }} />
                     <div className="relative transition-transform duration-500" style={{ transform: isHovered ? 'scale(1.28)' : isActive ? 'scale(1.18)' : 'scale(1)' }}>
-                      <m.Art active={isActive} color={m.color} />
+                      <m.Art active={isActive} color={isHovered ? m.color : "#e8e8e8"} />
                     </div>
                   </div>
                   <div className="flex flex-col items-center text-center">
                     <p className="text-[15px] leading-[1.75] text-white/80 max-w-[280px]">{m.desc}</p>
-                    <a href={m.link} className="mt-5 inline-flex items-center gap-2 text-[14px] font-semibold hover:text-white transition-colors" style={{ color: m.color }}>{m.cta} <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span></a>
+                    <a href={m.link} className="mt-5 inline-flex items-center gap-2 text-[14px] font-semibold hover:text-white transition-colors" style={{ color: isHovered ? m.color : "rgba(255,255,255,0.70)" }}>{m.cta} <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span></a>
                   </div>
                 </article>
               );
