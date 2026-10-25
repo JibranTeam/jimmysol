@@ -1290,6 +1290,32 @@ function App() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  // Fragment-only navigation (typing/pasting an old hash link, or using
+  // back/forward, in a tab where the app is already loaded) does NOT reload
+  // the page and does NOT fire popstate — only hashchange. Without this
+  // listener, a legacy hash link opened in an already-loaded tab would
+  // silently stay on the current page instead of redirecting.
+  useEffect(() => {
+    const onHashChange = () => {
+      const hash = window.location.hash;
+      if (hash.startsWith('#/')) {
+        const path = normalizePath('/' + hash.slice(2));
+        window.history.replaceState(null, '', path);
+        setRoute(path);
+        window.scrollTo(0, 0);
+        return;
+      }
+      if (hash) {
+        const section = hash.slice(1);
+        if (['home', 'about', 'services', 'portfolio', 'process', 'journal', 'connect', 'top'].includes(section) && normalizePath(window.location.pathname) !== '/') {
+          try { window.sessionStorage.setItem('thejimmylab:pendingSection', section); } catch { /* storage may be blocked */ }
+          setRoute('/');
+        }
+      }
+    };
+    window.addEventListener('hashchange', onHashChange);
+    return () => window.removeEventListener('hashchange', onHashChange);
+  }, []);
   // After landing on home with a pending section (from another page, or a
   // legacy hash link), scroll to it once it is in the DOM.
   useEffect(() => {
