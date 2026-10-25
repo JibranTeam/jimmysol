@@ -976,6 +976,56 @@ const ConnectSection = () => {
   const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xdeekyqk';
   const copyEmail = () => { navigator.clipboard?.writeText(email); setCopied(true); window.setTimeout(() => setCopied(false), 2000); };
 
+  // Suggestion chips above the "Tell us about the project" box: clicking one
+  // drops its starter text into the box (appended on a new line if the box
+  // already has text), so the visitor just finishes the sentence.
+  const projectSuggestions = [
+    '👋 Hey Jimmy, can you help me with...',
+    '⏱ Can you provide your hourly rates for...',
+  ];
+  const insertSuggestion = (suggestion: string) => {
+    setBrief((prev) => (prev.trim() ? prev.trimEnd() + '\n' + suggestion : suggestion));
+    window.setTimeout(() => {
+      briefRef.current?.focus();
+      const len = briefRef.current?.value.length ?? 0;
+      briefRef.current?.setSelectionRange(len, len);
+    }, 50);
+  };
+
+  // Emoji picker + attachments, both inside the brief box. Emoji inserts at
+  // the cursor; attachments are sent with the form (FormData) when present.
+  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+  const [attachments, setAttachments] = useState<File[]>([]);
+  const [attachError, setAttachError] = useState('');
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const emojiList = ['😊', '👍', '👋', '🙏', '🚀', '💡', '🎉', '✅', '🔥', '💼', '📈', '🎨', '💻', '📱', '🌟', '❤️', '👏', '🤝', '💬', '📅', '⏱', '💰', '✨', '👀'];
+  const insertEmoji = (emoji: string) => {
+    const el = briefRef.current;
+    const start = el?.selectionStart ?? brief.length;
+    const end = el?.selectionEnd ?? brief.length;
+    const next = (brief.slice(0, start) + emoji + brief.slice(end)).slice(0, 2500);
+    setBrief(next);
+    setShowEmojiPicker(false);
+    window.setTimeout(() => {
+      el?.focus();
+      const pos = Math.min(start + emoji.length, 2500);
+      el?.setSelectionRange(pos, pos);
+    }, 0);
+  };
+  const handleFiles = (files: FileList | null) => {
+    if (!files) return;
+    const next = [...attachments];
+    let error = '';
+    for (const file of Array.from(files)) {
+      if (next.length >= 5) { error = 'Maximum 5 files.'; break; }
+      if (file.size > 10 * 1024 * 1024) { error = file.name + ' is over 10 MB and was skipped.'; continue; }
+      next.push(file);
+    }
+    setAttachments(next);
+    setAttachError(error);
+    if (fileInputRef.current) fileInputRef.current.value = '';
+  };
+
   // Build the inquiry text once, so submit + copy-to-clipboard stay identical.
   const inquiryText = [
     'Name: ' + name.trim(),
@@ -998,7 +1048,11 @@ const ConnectSection = () => {
       formData.append('_subject', 'Project inquiry' + (projectType ? ': ' + projectType : '') + ' — ' + name.trim());
       formData.append('projectType', projectType || 'Not specified');
       formData.append('budget', budget || 'Not specified');
-      formData.append('message', inquiryText);
+      const messageText = attachments.length
+        ? inquiryText + '\n\nAttached files: ' + attachments.map((file) => file.name).join(', ')
+        : inquiryText;
+      formData.append('message', messageText);
+      attachments.forEach((file) => formData.append('attachment', file));
       const response = await fetch(FORMSPREE_ENDPOINT, {
         method: 'POST',
         body: formData,
@@ -1052,9 +1106,10 @@ const ConnectSection = () => {
             <div className="mt-10">
               <p className="font-mono text-[10px] font-medium uppercase tracking-[0.24em] text-white/30 mb-3.5">Send an email</p>
               <div className="flex flex-wrap items-center gap-x-4 gap-y-3">
-                <a href={'mailto:' + email} className="font-['Syne'] text-[22px] md:text-[26px] font-semibold text-white hover:text-[#ff6b35] transition-colors tracking-tight leading-none">{displayEmail}</a>
+                <a href={'mailto:' + email} className="btn-ghost" style={{ textTransform: 'none', letterSpacing: '0.05em' }}><span>{displayEmail}</span><ArrowUpRight className="w-4 h-4" /></a>
                 <button onClick={copyEmail} className="inline-flex items-center gap-2 rounded-md border border-white/[0.12] bg-white/[0.06] px-3 py-1.5 font-mono text-[11px] text-white/70 hover:text-white hover:border-white/25 hover:bg-white/[0.1] transition-all shrink-0"><Copy className="w-3.5 h-3.5" />{copied ? 'Copied!' : 'Copy Email'}</button>
               </div>
+              <div className="mt-3"><a href="https://www.fiverr.com/jimmy3105" target="_blank" rel="noreferrer" className="btn-ghost" style={{ textTransform: 'none', letterSpacing: '0.05em' }}><span>contact@thejimmylab.com</span><ArrowUpRight className="w-4 h-4" /></a></div>
             </div>
             <div className="mt-9">
               <p className="font-mono text-[10px] font-medium uppercase tracking-[0.24em] text-white/30 mb-4">Follow us</p>
@@ -1080,7 +1135,7 @@ const ConnectSection = () => {
                 <div className="flex flex-col"><label className="font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-white/70 mb-2.5">Project Type</label><div className="relative"><select value={projectType} onChange={(e) => setProjectType(e.target.value)} aria-label="Project Type" style={{ colorScheme: 'dark' }} className="w-full h-[48px] rounded-md bg-[#1a1a1a] border border-white/25 pl-4 pr-10 text-[14px] text-white focus:border-[#ff6b35] focus:outline-none transition-colors appearance-none cursor-pointer"><option value="" disabled>Select a project type</option><option>Animation & Creative Development</option><option>Web Design & UI/UX</option><option>Website Redesign</option><option>Graphic Design</option><option>Logo Design</option><option>Branding & Visual Identity</option><option>Frontend Development</option><option>Backend Development</option><option>Full-Stack Development</option><option>Web Application / SaaS Development</option><option>E-Commerce Development</option><option>3D & Interactive Experiences</option><option>Product Configurators</option><option>Mobile App Development</option><option>Integration & Automation</option><option>SEO & Website Optimization</option><option>Website / Application Upgrade</option><option>Legacy Technology / Stack Migration</option><option>Maintenance & Technical Support</option><option>Code Review & Technical Audit</option><option>1:1 Consultation / Strategy</option><option>1:1 Learning / Training</option><option>Not Sure — Help Me Choose</option><option>Other</option></select><ChevronDown className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 w-5 h-5 text-white" /></div></div>
                 <div className="flex flex-col"><label className="font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-white/70 mb-2.5">Estimated Budget</label><div className="relative"><select value={budget} onChange={(e) => setBudget(e.target.value)} aria-label="Estimated Budget" style={{ colorScheme: 'dark' }} className="w-full h-[48px] rounded-md bg-[#1a1a1a] border border-white/25 pl-4 pr-10 text-[14px] text-white focus:border-[#ff6b35] focus:outline-none transition-colors appearance-none cursor-pointer"><option value="" disabled>Select a budget range</option><option>Under $5k</option><option>$5k – $10k</option><option>$10k – $25k</option><option>$25k – $50k</option><option>$50k – $100k</option><option>$100k+</option></select><ChevronDown className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 w-5 h-5 text-white" /></div></div>
               </div>
-              <div className="flex flex-col"><label className="text-[13.5px] font-semibold text-white mb-2.5">Tell us about the project <span className="text-[#ff5a4e]">*</span></label><textarea ref={briefRef} value={brief} onChange={(e) => setBrief(e.target.value)} rows={5} required placeholder="Project overview, goals, timelines, etc..." className="w-full rounded-md bg-[#1a1a1a] border border-white/[0.08] px-4 py-3.5 text-[14px] text-white placeholder-white/25 focus:border-[#ff6b35]/60 focus:outline-none transition-colors resize-y min-h-[140px] leading-relaxed" /></div>
+              <div className="flex flex-col"><label className="text-[13.5px] font-semibold text-white mb-2.5">Tell us about the project <span className="text-[#ff5a4e]">*</span></label><div className="rounded-md border border-white/[0.08] bg-[#1a1a1a] px-4 py-3.5 focus-within:border-[#ff6b35]/60 transition-colors"><textarea ref={briefRef} value={brief} onChange={(e) => setBrief(e.target.value)} rows={5} required maxLength={2500} placeholder="Project overview, goals, timelines, etc..." className="w-full bg-transparent border-0 px-0 py-0 text-[14px] text-white placeholder-white/25 focus:outline-none resize-y min-h-[140px] leading-relaxed" /><div className="mt-1.5 text-right font-mono text-[11px] text-white/40">{brief.length}/2500</div><div className="flex flex-wrap gap-2 mt-3">{projectSuggestions.map((suggestion) => (<button key={suggestion} type="button" onClick={() => insertSuggestion(suggestion)} className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-[12px] text-white/70 hover:text-white hover:border-[#ff6b35]/60 hover:bg-[#ff6b35]/10 transition-all">{suggestion}</button>))}</div><div className="relative mt-2 pt-2.5 border-t border-white/[0.06] flex items-center gap-2"><button type="button" onClick={() => setShowEmojiPicker((v) => !v)} aria-label="Add emoji" className="w-8 h-8 inline-flex items-center justify-center rounded-md text-[16px] text-white/60 hover:text-white hover:bg-white/10 transition-all">😊</button><button type="button" onClick={() => fileInputRef.current?.click()} aria-label="Attach a file" className="w-8 h-8 inline-flex items-center justify-center rounded-md text-[16px] text-white/60 hover:text-white hover:bg-white/10 transition-all">📎</button><input ref={fileInputRef} type="file" multiple className="hidden" onChange={(e) => handleFiles(e.target.files)} />{showEmojiPicker && (<div className="absolute bottom-full left-0 mb-2 z-20 grid grid-cols-8 gap-1 rounded-lg border border-white/15 bg-[#0a1628] p-2 shadow-xl">{emojiList.map((emoji) => (<button key={emoji} type="button" onClick={() => insertEmoji(emoji)} className="w-8 h-8 inline-flex items-center justify-center rounded-md text-[18px] hover:bg-white/10 transition-all">{emoji}</button>))}</div>)}</div>{attachments.length > 0 && (<div className="mt-2.5 flex flex-wrap gap-2">{attachments.map((file, i) => (<span key={file.name + i} className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-[12px] text-white/70">{file.name} ({(file.size / 1024).toFixed(0)} KB)<button type="button" onClick={() => setAttachments((prev) => prev.filter((_, j) => j !== i))} aria-label={'Remove ' + file.name} className="text-white/50 hover:text-white">×</button></span>))}</div>)}{attachError && (<p className="mt-2 text-[12px] text-[#ff5a4e]">{attachError}</p>)}</div></div>
               <button type="submit" disabled={sending} className="w-full h-[52px] mt-2 rounded-md bg-[#ff6b35] text-[15px] font-semibold text-white hover:bg-[#ff8552] transition-all shadow-[0_0_28px_rgba(255,107,53,0.28)] hover:shadow-[0_0_40px_rgba(255,107,53,0.42)] disabled:opacity-60">{sending ? 'Sending…' : 'Send an Inquiry →'}</button>
               <p className="text-white/40 text-[13px] leading-relaxed">Sends directly to us — no email app needed.</p>
               {sent && (
