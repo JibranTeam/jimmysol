@@ -56,7 +56,7 @@ export default function TeamPage() {
       {/* ---------- header ---------- */}
       <header className="sticky top-0 z-50 bg-[#05070a]/85 backdrop-blur-md border-b border-white/10">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <a href="#/" className="flex items-center gap-3 group">
+          <a href="/" className="flex items-center gap-3 group">
             <div className="w-10 h-10 bg-[#ff6b35] rounded-lg shadow-layer-3 flex items-center justify-center group-hover:rotate-12 transition-transform">
               <Code2 className="w-6 h-6 text-white" />
             </div>
@@ -64,7 +64,7 @@ export default function TeamPage() {
               THE JIMMY LAB<span className="text-[#ff3c2f]">.</span>
             </span>
           </a>
-          <a href="#/" className="inline-flex items-center gap-2 text-sm font-semibold text-white/70 hover:text-[#ff6b35] transition-colors">
+          <a href="/" className="inline-flex items-center gap-2 text-sm font-semibold text-white/70 hover:text-[#ff6b35] transition-colors">
             <ArrowLeft className="w-4 h-4" /> Back to home
           </a>
         </div>
@@ -161,7 +161,7 @@ export default function TeamPage() {
           <p className="mt-5 text-white/60 text-lg max-w-2xl mx-auto">Tell us what you're building and we'll match you with the right operators within one business day.</p>
           <div className="mt-9 flex flex-wrap justify-center gap-4">
             <a href="#connect" onClick={(e) => { e.preventDefault(); goToConnect(); }} className="btn-primary">Start a project <ArrowRight className="w-4 h-4" /></a>
-            <a href="#/" className="inline-flex items-center gap-2 px-6 py-4 border-2 border-white/15 rounded-lg text-white hover:border-[#ff6b35] hover:text-[#ff6b35] transition-all">Back to home</a>
+            <a href="/" className="inline-flex items-center gap-2 px-6 py-4 border-2 border-white/15 rounded-lg text-white hover:border-[#ff6b35] hover:text-[#ff6b35] transition-all">Back to home</a>
           </div>
         </div>
       </section>

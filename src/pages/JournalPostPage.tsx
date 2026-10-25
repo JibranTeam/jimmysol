@@ -13,7 +13,7 @@ export default function JournalPostPage({ post }: { post: JournalPost }) {
       <div className="rule-grid" aria-hidden="true" />
       <header className="sticky top-0 z-50 bg-[#05070a]/85 backdrop-blur-md border-b border-white/10">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <a href="#/" className="flex items-center gap-3 group">
+          <a href="/" className="flex items-center gap-3 group">
             <div className="w-10 h-10 bg-[#ff6b35] rounded-lg shadow-layer-3 flex items-center justify-center group-hover:rotate-12 transition-transform">
               <Code2 className="w-6 h-6 text-white" />
             </div>
@@ -39,7 +39,7 @@ export default function JournalPostPage({ post }: { post: JournalPost }) {
             transition={{ duration: 0.4 }}
             className="flex items-center gap-2 text-sm text-white/45 mb-8"
           >
-            <a href="#/" className="hover:text-white transition-colors">Home</a>
+            <a href="/" className="hover:text-white transition-colors">Home</a>
             <span>/</span>
             <a href="#journal" className="hover:text-white transition-colors">Journal</a>
             <span>/</span>
@@ -113,12 +113,12 @@ export default function JournalPostPage({ post }: { post: JournalPost }) {
                     <span className="text-white/40">{other.date}</span>
                   </div>
                   <h3 className="font-['Syne'] text-[18px] font-bold mb-3 leading-snug text-white group-hover:text-[#ff6b35] transition-colors">
-                    <a href={'#/journal/' + other.id}>{other.title}</a>
+                    <a href={'/journal/' + other.id}>{other.title}</a>
                   </h3>
                   <p className="text-[13px] text-white/60 leading-relaxed mb-6">{other.excerpt}</p>
                 </div>
                 <div className="pt-4 border-t border-white/[0.06]">
-                  <a href={'#/journal/' + other.id} className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.14em] text-[#ff6b35] group-hover:gap-3 transition-all">
+                  <a href={'/journal/' + other.id} className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.14em] text-[#ff6b35] group-hover:gap-3 transition-all">
                     Read Post <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">→</span>
                   </a>
                 </div>
