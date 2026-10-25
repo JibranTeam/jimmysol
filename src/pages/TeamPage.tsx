@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight, Code2, Globe2, MoonStar, Users2 } from "lucide-react";
 import { cn } from "../utils/cn";
+import { goToConnect } from "../utils/goToConnect";
 
 /* ================= Team data ================= */
 const team = [
@@ -159,7 +160,7 @@ export default function TeamPage() {
           <h2 className="font-['Syne'] text-3xl md:text-5xl font-extrabold text-white leading-tight">Want this team on <span className="gradient-text">your project?</span></h2>
           <p className="mt-5 text-white/60 text-lg max-w-2xl mx-auto">Tell us what you're building and we'll match you with the right operators within one business day.</p>
           <div className="mt-9 flex flex-wrap justify-center gap-4">
-            <a href="#connect" className="btn-primary">Start a project <ArrowRight className="w-4 h-4" /></a>
+            <a href="#connect" onClick={(e) => { e.preventDefault(); goToConnect(); }} className="btn-primary">Start a project <ArrowRight className="w-4 h-4" /></a>
             <a href="#/" className="inline-flex items-center gap-2 px-6 py-4 border-2 border-white/15 rounded-lg text-white hover:border-[#ff6b35] hover:text-[#ff6b35] transition-all">Back to home</a>
           </div>
         </div>

@@ -7,6 +7,7 @@ import {
   Shield, ChevronDown, ChevronLeft, ChevronRight, Quote, Copy
 } from 'lucide-react';
 import { cn } from './utils/cn';
+import { goToConnect } from './utils/goToConnect';
 import ServicePage from './pages/ServicePage';
 import JournalPostPage from './pages/JournalPostPage';
 import ComingSoonToast, { showComingSoon } from './components/ComingSoonToast';
@@ -50,7 +51,7 @@ const Navigation = () => {
           {navItems.map((item) => (
             <a key={item.name} href={item.href} className="text-[15px] text-white/75 hover:text-white transition-colors">{item.name}</a>
           ))}
-          <a href="#connect" className="btn-primary">Start Project <ArrowUpRight className="w-3.5 h-3.5" /></a>
+          <a href="#connect" onClick={(e) => { e.preventDefault(); goToConnect(); }} className="btn-primary">Start Project <ArrowUpRight className="w-3.5 h-3.5" /></a>
         </div>
         <button className="md:hidden text-white p-2" onClick={() => setIsOpen(!isOpen)}>{isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}</button>
       </div>
@@ -1199,11 +1200,17 @@ function App() {
       window.setTimeout(() => {
         setRoute(next);
         if (next.startsWith('#') && !next.startsWith('#/')) {
-          window.setTimeout(() => {
+          // Retry until the section is in the DOM (page switch + transition
+          // can take longer than one fixed timeout), instead of giving up
+          // after a single 80ms attempt and landing at the top of the page.
+          const startedAt = Date.now();
+          const tryScroll = () => {
             const el = document.getElementById(next.slice(1));
             if (el) el.scrollIntoView({ behavior: 'auto', block: 'start' });
+            else if (Date.now() - startedAt < 1500) window.setTimeout(tryScroll, 100);
             else window.scrollTo(0, 0);
-          }, 80);
+          };
+          window.setTimeout(tryScroll, 80);
         } else {
           window.scrollTo(0, 0);
         }
