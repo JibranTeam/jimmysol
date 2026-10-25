@@ -390,7 +390,7 @@ const ModesSection = () => {
   const onUp = (x: number) => { if (dragX.current === null) return; const d = x - dragX.current; if (Math.abs(d) > 45) go(d < 0 ? 1 : -1); dragX.current = null; };
   return (
     <section id="modes" className="relative w-full overflow-hidden bg-[#070f1a] py-24 md:py-32 px-5">
-      <div className="absolute inset-0 pointer-events-none z-[1]" style={{ background: 'radial-gradient(circle, rgba(255,107,53,0.10) 0%, transparent 65%)' }} />
+      
       <div className="relative z-[2] mx-auto w-full max-w-4xl px-4 text-center mb-8 md:mb-10">
         <Words
           aria="Design. Build. Consult. Learn."
