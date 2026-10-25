@@ -1106,10 +1106,10 @@ const ConnectSection = () => {
             <div className="mt-10">
               <p className="font-mono text-[10px] font-medium uppercase tracking-[0.24em] text-white/30 mb-3.5">Send an email</p>
               <div className="flex flex-wrap items-center gap-x-4 gap-y-3">
-                <a href={'mailto:' + email} className="font-['Syne'] text-[22px] md:text-[26px] font-semibold text-white hover:text-[#ff6b35] transition-colors tracking-tight leading-none">{displayEmail}</a>
+                <a href={'mailto:' + email} className="btn-ghost" style={{ textTransform: 'none', letterSpacing: '0.05em' }}><span>{displayEmail}</span><ArrowUpRight className="w-4 h-4" /></a>
                 <button onClick={copyEmail} className="inline-flex items-center gap-2 rounded-md border border-white/[0.12] bg-white/[0.06] px-3 py-1.5 font-mono text-[11px] text-white/70 hover:text-white hover:border-white/25 hover:bg-white/[0.1] transition-all shrink-0"><Copy className="w-3.5 h-3.5" />{copied ? 'Copied!' : 'Copy Email'}</button>
               </div>
-              <div className="mt-3"><a href="https://www.fiverr.com/jimmy3105" target="_blank" rel="noreferrer" className="font-mono text-[13.5px] text-white/45 hover:text-[#ff6b35] transition-colors">contact@thejimmylab.com</a></div>
+              <div className="mt-3"><a href="https://www.fiverr.com/jimmy3105" target="_blank" rel="noreferrer" className="btn-ghost" style={{ textTransform: 'none', letterSpacing: '0.05em' }}><span>contact@thejimmylab.com</span><ArrowUpRight className="w-4 h-4" /></a></div>
             </div>
             <div className="mt-9">
               <p className="font-mono text-[10px] font-medium uppercase tracking-[0.24em] text-white/30 mb-4">Follow us</p>
