@@ -380,7 +380,7 @@ const ModesSection = () => {
     { n: '03', title: '1 ON 1', subtitle: 'Technology & Project Consultancy', desc: 'Get focused 1-on-1 guidance to solve technical challenges, evaluate ideas, plan projects, or make smarter technology decisions.', color: '#06d6a0', rgb: '6,214,160', Art: ConsultArt, link: '#/services/consultation-training', cta: 'Explore Consultancy' },
     { n: '04', title: 'LEARN', subtitle: 'Web Development & Tech Training', desc: 'Learn modern web development through practical projects, expert guidance and real-world workflows.', color: '#ffd166', rgb: '255,209,102', Art: LearnArt, link: '#/services/consultation-training', cta: 'Explore Training' },
   ];
-  const [active, setActive] = useState(0);
+  const [active, setActive] = useState(3);
   const dragX = useRef<number | null>(null);
   const total = modes.length;
   const go = (dir: number) => setActive((prev) => (prev + dir + total) % total);
@@ -407,43 +407,44 @@ const ModesSection = () => {
       <div className="modes-layout-container">
         <div className="modes-col-left"><h2 className="modes-vertical-heading">MODES</h2></div>
         <div className="modes-col-right">
-          <div tabIndex={0} role="group" aria-label="Modes carousel" onMouseDown={(e) => onDown(e.clientX)} onMouseUp={(e) => onUp(e.clientX)} onTouchStart={(e) => onDown(e.touches[0].clientX)} onTouchEnd={(e) => onUp(e.changedTouches[0].clientX)} onKeyDown={(e) => { if (e.key === 'ArrowLeft') go(-1); if (e.key === 'ArrowRight') go(1); }} className="w-full h-[680px] flex items-center justify-center relative z-10 cursor-grab active:cursor-grabbing select-none outline-none" style={{ perspective: '1250px', transformStyle: 'preserve-3d', touchAction: 'pan-y' }}>
+          <div tabIndex={0} role="group" aria-label="Modes carousel" onMouseDown={(e) => onDown(e.clientX)} onMouseUp={(e) => onUp(e.clientX)} onTouchStart={(e) => onDown(e.touches[0].clientX)} onTouchEnd={(e) => onUp(e.changedTouches[0].clientX)} onKeyDown={(e) => { if (e.key === 'ArrowLeft') go(-1); if (e.key === 'ArrowRight') go(1); }} className="w-full h-[440px] flex items-center justify-center relative z-10 cursor-grab active:cursor-grabbing select-none outline-none" style={{ perspective: '1250px', transformStyle: 'preserve-3d', touchAction: 'pan-y' }}>
             {modes.map((m, i) => {
               const o = offsetOf(i); const isActive = o === 0; const abs = Math.abs(o);
               return (
-                <article key={m.n} onClick={() => !isActive && setActive(i)} className="modes-card absolute flex flex-col overflow-hidden rounded-3xl p-8" style={{
-                  width: 340, maxWidth: '90vw', height: 520,
-                  background: 'linear-gradient(180deg,#161616 0%,#0a0a0a 100%)',
-                  border: '1px solid ' + (isActive ? 'rgba(255,255,255,0.35)' : 'rgba(255,255,255,0.15)'),
-                  boxShadow: isActive ? '0 28px 56px -16px rgba(0,0,0,0.9), inset 0 1px 0 rgba(255,255,255,0.10)' : '0 16px 32px -12px rgba(0,0,0,0.7)',
-                  cursor: isActive ? 'default' : 'pointer', opacity: abs > 1 ? 0 : isActive ? 1 : 0.85,
-                  filter: isActive ? 'blur(0px)' : 'blur(0.8px) brightness(0.9)',
-                  transform: isActive ? 'translateZ(200px) scale(1.02)' : 'translateX(' + o * 360 + 'px) translateZ(-100px) scale(0.82) rotateY(' + o * -24 + 'deg)',
+                <div key={m.n} onClick={() => !isActive && setActive(i)} className="modes-card group absolute flex flex-col justify-between overflow-hidden rounded-[6px] p-6" style={{
+                  width: 300, maxWidth: '90vw', height: 380,
+                  background: 'linear-gradient(155deg, rgb(10, 15, 20) 0%, rgb(7, 11, 16) 55%, rgb(5, 8, 12) 100%)',
+                  border: '1px solid ' + (isActive ? 'rgba(255,255,255,0.24)' : 'rgba(255,255,255,0.09)'),
+                  boxShadow: isActive ? 'rgba(0,0,0,0.9) 0px 18px 40px -22px' : 'none',
+                  cursor: isActive ? 'default' : 'pointer', opacity: abs > 1 ? 0 : isActive ? 1 : 0.82,
+                  filter: isActive ? 'blur(0px)' : 'blur(0.8px)',
+                  transform: isActive ? 'translateZ(200px) scale(1.06)' : 'translateX(' + o * 320 + 'px) translateZ(-100px) scale(0.82) rotateY(' + o * -24 + 'deg)',
                   zIndex: isActive ? 20 : 10 - abs, pointerEvents: abs > 1 ? 'none' : 'auto', transformStyle: 'preserve-3d',
                 }}>
-                  <div className="absolute inset-0 pointer-events-none z-0" style={{ opacity: isActive ? 0.10 : 0.05 }}>
-                    <HoneycombPattern id={'honeycomb-arena-' + m.title.toLowerCase()} color="#ffffff" />
+                  <CornerTicks color={isActive ? 'rgba(255,255,255,0.38)' : 'rgba(255,255,255,0.16)'} />
+                  <div className="absolute inset-0 pointer-events-none z-0 transition-opacity duration-500" style={{ opacity: isActive ? 0.07 : 0.035, maskImage: 'radial-gradient(rgba(0,0,0,0.05) 30%, rgba(0,0,0,0.8) 95%)', WebkitMaskImage: 'radial-gradient(rgba(0,0,0,0.05) 30%, rgba(0,0,0,0.8) 95%)' }}>
+                    <HoneycombPattern id={'honeycomb-' + m.title.toLowerCase()} color="#ffffff" />
                   </div>
-                  <span className="absolute top-5 right-6 z-10 font-mono text-[13px] tracking-[0.2em] text-white/50">{m.n}</span>
-                  <div className="relative z-10 flex flex-col items-center text-center">
-                    <h3 className="font-['Syne'] text-[34px] font-extrabold leading-none tracking-tight transition-all duration-500" style={isActive ? { color: 'transparent', WebkitTextStroke: '1.8px #ffffff' } : { color: '#ffffff' }}>{m.title}</h3>
-                    <span className="mt-4 text-[11px] font-semibold tracking-[0.06em] rounded-full px-4 py-1.5" style={{ color: 'rgba(255,255,255,0.75)', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.25)' }}>{m.subtitle}</span>
+                  <span className="pointer-events-none absolute right-3.5 top-3.5 font-mono text-[10px] tracking-[0.2em] transition-colors duration-300" style={{ color: 'rgba(255,255,255,0.2)' }}>{m.n}</span>
+                  <div className="relative z-10 flex flex-col items-center gap-2 mt-0.5 mb-2">
+                    <h3 className="text-[20px] font-semibold tracking-[-0.01em] leading-none mt-1 text-center transition-all duration-500" style={isActive ? { color: 'transparent', WebkitTextStroke: '1px rgba(255,255,255,0.68)' } : { color: 'rgba(255,255,255,0.78)' }}>{m.title}</h3>
+                    <div className="font-mono text-[8.5px] uppercase tracking-[0.2em] px-2 py-0.5 border transition-all duration-500" style={{ color: 'rgba(255,255,255,0.6)', background: 'transparent', borderColor: isActive ? 'rgba(255,255,255,0.16)' : 'transparent', opacity: isActive ? 1 : 0 }}>{m.subtitle}</div>
                   </div>
-                  <div className="relative z-10 flex-1 flex items-center justify-center my-4">
-                    <div className="relative transition-transform duration-700" style={{ transform: isActive ? 'scale(1.18)' : 'scale(1)' }}>
+                  <div className="relative z-10 flex-1 flex items-center justify-center my-1">
+                    <div className="transition-transform duration-700" style={{ transform: isActive ? 'scale(1.04)' : 'scale(0.94)' }}>
                       <m.Art active={isActive} color="#ffffff" />
                     </div>
                   </div>
-                  <div className="relative z-10 flex flex-col items-center text-center">
-                    <p className="text-[15px] leading-[1.75] text-white/70 max-w-[280px]">{m.desc}</p>
+                  <div className="relative z-10 flex flex-col items-center text-center mb-0.5 transition-all duration-500" style={{ opacity: isActive ? 1 : 0, transform: isActive ? 'none' : 'translateY(20px) scale(0.92)' }}>
+                    <p className="text-[12.5px] font-light leading-[1.65] text-white/55 px-1 transition-colors duration-500">{m.desc}</p>
                   </div>
-                </article>
+                </div>
               );
             })}
           </div>
-          <div className="flex items-center gap-2 mt-4 z-20">
+          <div className="flex items-center justify-center gap-2 mt-8 z-20">
             {modes.map((m, i) => (
-              <button key={'dash-' + m.n} onClick={() => setActive(i)} aria-label={'Go to ' + m.title} className="h-[3px] rounded-full transition-all duration-300" style={{ width: i === active ? 32 : 16, background: i === active ? '#ffffff' : 'rgba(255,255,255,0.25)' }} />
+              <button key={'dash-' + m.n} onClick={() => setActive(i)} aria-label={'Go to ' + m.title} className="h-[3px] transition-all duration-300" style={{ width: i === active ? 30 : 14, background: i === active ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.18)' }} />
             ))}
           </div>
           <div className="flex gap-6 mt-6 z-20 justify-center items-center">
