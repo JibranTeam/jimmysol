@@ -16,7 +16,7 @@ export default function ServicePage({ service }: { service: Service }) {
       <div className="rule-grid" aria-hidden="true" />
       <header className="sticky top-0 z-50 bg-[#05070a]/85 backdrop-blur-md border-b border-white/10">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <a href="#/" className="flex items-center gap-3 group">
+          <a href="/" className="flex items-center gap-3 group">
             <div className="w-10 h-10 bg-[#ff6b35] rounded-lg shadow-layer-3 flex items-center justify-center group-hover:rotate-12 transition-transform">
               <Code2 className="w-6 h-6 text-white" />
             </div>
@@ -25,7 +25,7 @@ export default function ServicePage({ service }: { service: Service }) {
             </span>
           </a>
           <a
-            href="#/"
+            href="/"
             className="inline-flex items-center gap-2 text-sm font-semibold text-white/70 hover:text-[#ff6b35] transition-colors"
           >
             <ArrowLeft className="w-4 h-4" /> Back to home
@@ -46,7 +46,7 @@ export default function ServicePage({ service }: { service: Service }) {
             transition={{ duration: 0.4 }}
             className="flex items-center gap-2 text-sm text-white/45 mb-8"
           >
-            <a href="#/" className="hover:text-white transition-colors">Home</a>
+            <a href="/" className="hover:text-white transition-colors">Home</a>
             <span>/</span>
             <span>Services</span>
             <span>/</span>
@@ -259,7 +259,7 @@ export default function ServicePage({ service }: { service: Service }) {
               <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[#ff6b35]">Explore</span>
               <h2 className="font-['Syne'] text-3xl md:text-4xl font-bold text-white mt-3">Other services</h2>
             </div>
-            <a href="#/" className="hidden sm:inline-flex items-center gap-2 text-sm font-semibold text-white/60 hover:text-[#ff6b35] transition-colors">
+            <a href="/" className="hidden sm:inline-flex items-center gap-2 text-sm font-semibold text-white/60 hover:text-[#ff6b35] transition-colors">
               All services <ArrowRight className="w-4 h-4" />
             </a>
           </div>
@@ -267,7 +267,7 @@ export default function ServicePage({ service }: { service: Service }) {
             {others.slice(0, 3).map((s) => (
               <a
                 key={s.slug}
-                href={`#/services/${s.slug}`}
+                href={`/services/${s.slug}`}
                 className="group rounded-2xl p-6 border border-white/10 bg-[#0a1628] hover:-translate-y-1 transition-all duration-300"
               >
                 <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style={{ backgroundColor: `${s.color}1f` }}>
@@ -297,7 +297,7 @@ export default function ServicePage({ service }: { service: Service }) {
             <a href="mailto:thejimmylab@gmail.com" className="btn-primary">
               Get a free consultation <ArrowRight className="w-4 h-4" />
             </a>
-            <a href="#/" className="inline-flex items-center gap-2 px-6 py-4 border-2 border-white/15 rounded-lg text-white hover:border-[#ff6b35] hover:text-[#ff6b35] transition-all">
+            <a href="/" className="inline-flex items-center gap-2 px-6 py-4 border-2 border-white/15 rounded-lg text-white hover:border-[#ff6b35] hover:text-[#ff6b35] transition-all">
               Back to home
             </a>
           </div>

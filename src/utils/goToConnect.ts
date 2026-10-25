@@ -1,14 +1,11 @@
 /**
  * Take the visitor to the Connect section on the home page, from any page.
- * A plain "#connect" link alone is not reliable here: the app switches pages
- * first (Service / Team / Journal -> Home), and a single timed scroll can run
- * before the Connect section is in the DOM. If the visitor is already on
- * "#connect", a hash change does not even fire, so scroll directly instead.
+ * Previously this worked through the "#connect" hash route; with real-URL
+ * routing it navigates home first (if needed) and then scrolls to the
+ * section once it is in the DOM.
  */
+import { navigateHomeToSection } from './navigation';
+
 export function goToConnect() {
-  if (window.location.hash === '#connect') {
-    document.getElementById('connect')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    return;
-  }
-  window.location.hash = 'connect';
+  navigateHomeToSection('connect');
 }

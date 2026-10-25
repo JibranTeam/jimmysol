@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import { cn } from './utils/cn';
 import { goToConnect } from './utils/goToConnect';
+import { navigateTo, navigateHomeToSection, normalizePath, scrollToSectionWithRetry } from './utils/navigation';
 import ServicePage from './pages/ServicePage';
 import JournalPostPage from './pages/JournalPostPage';
 import ComingSoonToast, { showComingSoon } from './components/ComingSoonToast';
@@ -126,7 +127,7 @@ const HeroPrompt = () => {
     window.dispatchEvent(new CustomEvent('brief', { detail: value.trim() }));
     setSent(true);
     window.setTimeout(() => {
-      window.location.hash = 'connect';
+      goToConnect();
       setSent(false);
       setValue('');
     }, 550);
@@ -379,10 +380,10 @@ const LearnArt = ({ active: _a = false, color = '#ff6b35' }: { active?: boolean;
 /* ================= MODES ================= */
 const ModesSection = () => {
   const modes = [
-    { n: '01', title: 'DESIGN', subtitle: 'Interface & Brand Systems', desc: 'Wireframes, design systems and pixel-perfect interfaces crafted around real user behaviour.', color: '#ff6b35', rgb: '255,107,53', Art: DesignArt, link: '#/services/ui-ux-design', cta: 'Explore Design' },
-    { n: '02', title: 'BUILD', subtitle: 'Engineering & Development', desc: 'Production-grade React, Next.js and TypeScript builds engineered to scale from day one.', color: '#38bdf8', rgb: '56,184,248', Art: BuildArt, link: '#/services/web-development', cta: 'Explore Build' },
-    { n: '03', title: '1 ON 1', subtitle: 'Technology & Project Consultancy', desc: 'Get focused 1-on-1 guidance to solve technical challenges, evaluate ideas, plan projects, or make smarter technology decisions.', color: '#06d6a0', rgb: '6,214,160', Art: ConsultArt, link: '#/services/consultation-training', cta: 'Explore Consultancy' },
-    { n: '04', title: 'LEARN', subtitle: 'Web Development & Tech Training', desc: 'Learn modern web development through practical projects, expert guidance and real-world workflows.', color: '#ffd166', rgb: '255,209,102', Art: LearnArt, link: '#/services/consultation-training', cta: 'Explore Training' },
+    { n: '01', title: 'DESIGN', subtitle: 'Interface & Brand Systems', desc: 'Wireframes, design systems and pixel-perfect interfaces crafted around real user behaviour.', color: '#ff6b35', rgb: '255,107,53', Art: DesignArt, link: '/services/ui-ux-design', cta: 'Explore Design' },
+    { n: '02', title: 'BUILD', subtitle: 'Engineering & Development', desc: 'Production-grade React, Next.js and TypeScript builds engineered to scale from day one.', color: '#38bdf8', rgb: '56,184,248', Art: BuildArt, link: '/services/web-development', cta: 'Explore Build' },
+    { n: '03', title: '1 ON 1', subtitle: 'Technology & Project Consultancy', desc: 'Get focused 1-on-1 guidance to solve technical challenges, evaluate ideas, plan projects, or make smarter technology decisions.', color: '#06d6a0', rgb: '6,214,160', Art: ConsultArt, link: '/services/consultation-training', cta: 'Explore Consultancy' },
+    { n: '04', title: 'LEARN', subtitle: 'Web Development & Tech Training', desc: 'Learn modern web development through practical projects, expert guidance and real-world workflows.', color: '#ffd166', rgb: '255,209,102', Art: LearnArt, link: '/services/consultation-training', cta: 'Explore Training' },
   ];
   const [active, setActive] = useState(0);
   const [hovered, setHovered] = useState<number | null>(null);
@@ -537,7 +538,7 @@ const AboutSection = () => {
             <p className="text-white/70 text-base leading-relaxed mb-4">We help businesses, startups, entrepreneurs, and brands worldwide turn ideas into modern digital experiences that combine creative design, advanced technology, performance, and usability.</p>
             <p className="text-white/70 text-base leading-relaxed mb-4">Our expertise spans custom website development, full-stack web applications, interactive websites, 2D and 3D animation, product configurators, SaaS platforms, and AI-powered web solutions. Every project is designed around the client's goals, audience, and business requirements.</p>
             <p className="text-white/70 text-base leading-relaxed mb-8">With a focus on creative innovation and technical excellence, we create digital products that look exceptional, work seamlessly, and provide a strong foundation for business growth.</p>
-            <a href="#/team" className="group flex items-center gap-4 self-start -ml-3 pl-3 pr-5 py-3 rounded-2xl border border-transparent transition-all duration-300 hover:border-[#ff6b35]/40 hover:bg-[#ff6b35]/[0.06]">
+            <a href="/team" className="group flex items-center gap-4 self-start -ml-3 pl-3 pr-5 py-3 rounded-2xl border border-transparent transition-all duration-300 hover:border-[#ff6b35]/40 hover:bg-[#ff6b35]/[0.06]">
               <div className="flex -space-x-3">{[1, 2, 3, 4].map((i) => (<div key={i} className="w-12 h-12 rounded-full bg-gradient-to-br from-[#d4a574] to-[#b88a5e] border-2 border-[#0a1628] flex items-center justify-center text-[#0a1628] font-bold text-sm">{String.fromCharCode(64 + i)}</div>))}</div>
               <div>
                 <div className="text-white font-semibold flex items-center gap-2 group-hover:text-[#ff6b35] transition-colors">Meet our team <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" /></div>
@@ -630,7 +631,7 @@ const ServicesSection = () => {
     }, sectionRef);
     return () => ctx.revert();
   }, []);
-  const services = serviceData.map((s) => ({ icon: s.icon, title: s.title, desc: s.desc, color: s.color, link: '#/services/' + s.slug }));
+  const services = serviceData.map((s) => ({ icon: s.icon, title: s.title, desc: s.desc, color: s.color, link: '/services/' + s.slug }));
   const SERVICES_PER_PAGE = 9;
   const totalServicePages = Math.ceil(services.length / SERVICES_PER_PAGE);
   const servicePages = Array.from({ length: totalServicePages }, (_, pg) => services.slice(pg * SERVICES_PER_PAGE, pg * SERVICES_PER_PAGE + SERVICES_PER_PAGE));
@@ -672,7 +673,7 @@ const ServicesSection = () => {
                 className="service-card relative group block"
                 onMouseEnter={() => setHoveredCard(globalIndex)}
                 onMouseLeave={() => setHoveredCard(null)}
-                onClick={() => { if (service.link) window.location.hash = service.link.replace(/^#/, ''); }}
+                onClick={(e) => { if (service.link) { e.preventDefault(); navigateTo(service.link); } }}
               >
                 <div
                   className={cn(
@@ -956,10 +957,10 @@ const JournalSection = () => {
                 <div>
                   <div className="relative overflow-hidden rounded-xl aspect-[16/10] mb-5 bg-[#0a1628] border border-white/[0.06]">{post.featured && (<span className="absolute top-3 left-3 z-10 text-[9px] font-bold tracking-[0.18em] uppercase bg-[#ff6b35] text-white px-2.5 py-1 rounded-full shadow-md border border-white/10">Featured</span>)}<img src={post.image} alt={post.title} className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105" loading="lazy" /></div>
                   <div className="flex items-center gap-2 mb-4 text-[11px] font-mono"><span className="text-[9px] uppercase tracking-wider text-[#ff6b35] border border-[#ff6b35]/30 bg-[#ff6b35]/10 px-2 py-0.5 rounded-md">{post.category}</span><span className="text-white/20">•</span><span className="text-white/40">{post.date}</span><span className="text-white/20">•</span><span className="text-white/40">{post.read}</span></div>
-                  <h3 className="font-['Syne'] text-[18px] font-bold mb-3 leading-snug text-white group-hover:text-[#ff6b35] transition-colors"><a href={'#/journal/' + post.id}>{post.title}</a></h3>
+                  <h3 className="font-['Syne'] text-[18px] font-bold mb-3 leading-snug text-white group-hover:text-[#ff6b35] transition-colors"><a href={'/journal/' + post.id}>{post.title}</a></h3>
                   <p className="text-[13px] text-white/60 leading-relaxed mb-6">{post.excerpt}</p>
                 </div>
-                <div className="pt-4 border-t border-white/[0.06]"><a href={'#/journal/' + post.id} className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.14em] text-[#ff6b35]">Read Post <span aria-hidden="true">→</span></a></div>
+                <div className="pt-4 border-t border-white/[0.06]"><a href={'/journal/' + post.id} className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.14em] text-[#ff6b35]">Read Post <span aria-hidden="true">→</span></a></div>
               </article>
             ))}
           </div>
@@ -970,10 +971,10 @@ const JournalSection = () => {
               <div>
                 <div className="relative overflow-hidden rounded-xl aspect-[16/10] mb-5 bg-[#0a1628] border border-white/[0.06]"><div className="absolute inset-0 bg-gradient-to-tr from-[#ff6b35]/15 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-10 pointer-events-none" />{post.featured && (<span className="absolute top-3 left-3 z-20 text-[9px] font-bold tracking-[0.18em] uppercase bg-[#ff6b35] text-white px-2.5 py-1 rounded-full shadow-lg border border-white/10">Featured</span>)}<img src={post.image} alt={post.title} className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105" loading="lazy" /></div>
                 <div className="flex items-center gap-2.5 mb-4 text-[11px] font-mono"><span className="text-[9px] uppercase tracking-wider text-[#ff6b35] border border-[#ff6b35]/25 bg-[#ff6b35]/10 px-2 py-0.5 rounded-md group-hover:bg-[#ff6b35] group-hover:text-white transition-colors duration-300">{post.category}</span><span className="text-white/20">•</span><span className="text-white/40">{post.date}</span><span className="text-white/20">•</span><span className="text-white/40">{post.read}</span></div>
-                <h3 className="font-['Syne'] text-[20px] font-bold mb-3 leading-snug text-white group-hover:text-[#ff6b35] transition-colors duration-300"><a href={'#/journal/' + post.id} className="focus-visible:outline-none">{post.title}</a></h3>
+                <h3 className="font-['Syne'] text-[20px] font-bold mb-3 leading-snug text-white group-hover:text-[#ff6b35] transition-colors duration-300"><a href={'/journal/' + post.id} className="focus-visible:outline-none">{post.title}</a></h3>
                 <p className="text-[13px] text-white/60 leading-relaxed mb-6">{post.excerpt}</p>
               </div>
-              <div className="pt-4 border-t border-white/[0.06]"><a href={'#/journal/' + post.id} className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.14em] text-[#ff6b35] group-hover:gap-3 transition-all">Read Post <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">→</span></a></div>
+              <div className="pt-4 border-t border-white/[0.06]"><a href={'/journal/' + post.id} className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.14em] text-[#ff6b35] group-hover:gap-3 transition-all">Read Post <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">→</span></a></div>
             </article>
           ))}
         </div>
@@ -1208,7 +1209,7 @@ const Footer = () => (
               { name: 'Services', href: '#services' },
               { name: 'Work', href: '#portfolio' },
               { name: 'Process', href: '#process' },
-              { name: 'Team', href: '#/team' },
+              { name: 'Team', href: '/team' },
               { name: 'Journal', href: '#journal' },
               { name: 'Contact', href: '#connect' },
             ].map((link) => (
@@ -1222,12 +1223,12 @@ const Footer = () => (
           <h4 className="font-['Syne'] font-bold text-white mb-6">Services</h4>
           <ul className="space-y-3">
             {[
-              { name: 'Web Design & UI/UX', href: '#/services/ui-ux-design' },
-              { name: 'Full-Stack Development', href: '#/services/web-development' },
-              { name: 'Animation & Creative', href: '#/services/web-animation' },
-              { name: 'E-Commerce', href: '#/services/e-commerce' },
-              { name: 'Mobile Apps', href: '#/services/mobile-development' },
-              { name: 'AI Solutions', href: '#/services/ai-solutions' },
+              { name: 'Web Design & UI/UX', href: '/services/ui-ux-design' },
+              { name: 'Full-Stack Development', href: '/services/web-development' },
+              { name: 'Animation & Creative', href: '/services/web-animation' },
+              { name: 'E-Commerce', href: '/services/e-commerce' },
+              { name: 'Mobile Apps', href: '/services/mobile-development' },
+              { name: 'AI Solutions', href: '/services/ai-solutions' },
               { name: 'SEO & Optimization', href: '#services' },
               { name: 'Maintenance & Support', href: '#connect' },
             ].map((service) => (
@@ -1270,44 +1271,116 @@ const HomePage = () => (
 );
 
 function App() {
-  const [route, setRoute] = useState<string>(() => window.location.hash || '#/');
+  const [route, setRoute] = useState<string>(() => normalizePath(window.location.pathname));
   const [showCurtain, setShowCurtain] = useState(false);
+  // Legacy hash URLs (#/services/..., #/team, #/journal/...) shared before
+  // real-URL routing: redirect them once to the matching real path.
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash.startsWith('#/')) {
+      const path = normalizePath('/' + hash.slice(2));
+      window.history.replaceState(null, '', path);
+      setRoute(path);
+    } else if (hash) {
+      const section = hash.slice(1);
+      if (['home', 'about', 'services', 'portfolio', 'process', 'journal', 'connect', 'top'].includes(section)) {
+        try { window.sessionStorage.setItem('thejimmylab:pendingSection', section); } catch { /* storage may be blocked */ }
+        setRoute('/');
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  // Fragment-only navigation (typing/pasting an old hash link, or using
+  // back/forward, in a tab where the app is already loaded) does NOT reload
+  // the page and does NOT fire popstate — only hashchange. Without this
+  // listener, a legacy hash link opened in an already-loaded tab would
+  // silently stay on the current page instead of redirecting.
   useEffect(() => {
     const onHashChange = () => {
-      const next = window.location.hash || '#/';
-      const current = route;
-      const isSamePage = next.split('#').slice(0, 2).join('#') === current.split('#').slice(0, 2).join('#');
-      if (isSamePage) { setRoute(next); return; }
-      setShowCurtain(true);
-      window.setTimeout(() => {
-        setRoute(next);
-        if (next.startsWith('#') && !next.startsWith('#/')) {
-          // Retry until the section is in the DOM (page switch + transition
-          // can take longer than one fixed timeout), instead of giving up
-          // after a single 80ms attempt and landing at the top of the page.
-          const startedAt = Date.now();
-          const tryScroll = () => {
-            const el = document.getElementById(next.slice(1));
-            if (el) el.scrollIntoView({ behavior: 'auto', block: 'start' });
-            else if (Date.now() - startedAt < 1500) window.setTimeout(tryScroll, 100);
-            else window.scrollTo(0, 0);
-          };
-          window.setTimeout(tryScroll, 80);
-        } else {
-          window.scrollTo(0, 0);
+      const hash = window.location.hash;
+      if (hash.startsWith('#/')) {
+        const path = normalizePath('/' + hash.slice(2));
+        window.history.replaceState(null, '', path);
+        setRoute(path);
+        window.scrollTo(0, 0);
+        return;
+      }
+      if (hash) {
+        const section = hash.slice(1);
+        if (['home', 'about', 'services', 'portfolio', 'process', 'journal', 'connect', 'top'].includes(section) && normalizePath(window.location.pathname) !== '/') {
+          try { window.sessionStorage.setItem('thejimmylab:pendingSection', section); } catch { /* storage may be blocked */ }
+          setRoute('/');
         }
-      }, 320);
-      window.setTimeout(() => setShowCurtain(false), 1000);
+      }
     };
     window.addEventListener('hashchange', onHashChange);
     return () => window.removeEventListener('hashchange', onHashChange);
+  }, []);
+  // After landing on home with a pending section (from another page, or a
+  // legacy hash link), scroll to it once it is in the DOM.
+  useEffect(() => {
+    if (route !== '/') return;
+    let pending: string | null = null;
+    try { pending = window.sessionStorage.getItem('thejimmylab:pendingSection'); } catch { /* storage may be blocked */ }
+    if (pending) {
+      try { window.sessionStorage.removeItem('thejimmylab:pendingSection'); } catch { /* storage may be blocked */ }
+      scrollToSectionWithRetry(pending);
+    }
   }, [route]);
+  useEffect(() => {
+    const onPopState = () => {
+      const next = normalizePath(window.location.pathname);
+      if (next === route) return;
+      setShowCurtain(true);
+      window.setTimeout(() => {
+        setRoute(next);
+        let pending: string | null = null;
+        try { pending = window.sessionStorage.getItem('thejimmylab:pendingSection'); } catch { /* storage may be blocked */ }
+        if (!pending) window.scrollTo(0, 0);
+      }, 320);
+      window.setTimeout(() => setShowCurtain(false), 1000);
+    };
+    window.addEventListener('popstate', onPopState);
+    return () => window.removeEventListener('popstate', onPopState);
+  }, [route]);
+  // SPA link handling: plain <a> links to real internal paths, and home
+  // section anchors clicked from another page, navigate without a reload.
+  useEffect(() => {
+    const onDocumentClick = (e: MouseEvent) => {
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      const target = e.target as HTMLElement | null;
+      const anchor = target?.closest?.('a');
+      if (!anchor) return;
+      const href = anchor.getAttribute('href');
+      if (!href) return;
+      if (href.startsWith('/services/') || href.startsWith('/journal/') || href === '/team' || href === '/') {
+        e.preventDefault();
+        navigateTo(href);
+        return;
+      }
+      if (href.startsWith('#')) {
+        const section = href.slice(1);
+        if (['home', 'about', 'services', 'portfolio', 'process', 'journal', 'connect', 'top'].includes(section) && normalizePath(window.location.pathname) !== '/') {
+          e.preventDefault();
+          navigateHomeToSection(section);
+        }
+      }
+    };
+    document.addEventListener('click', onDocumentClick);
+    return () => document.removeEventListener('click', onDocumentClick);
+  }, []);
 
-  const serviceMatch = route.match(/^#\/services\/([^#/?]+)/);
+  const serviceMatch = route.match(/^\/services\/([^/?]+)/);
   const service = serviceMatch ? getServiceBySlug(serviceMatch[1]) : undefined;
-  const journalMatch = route.match(/^#\/journal\/([^#/?]+)/);
+  const journalMatch = route.match(/^\/journal\/([^/?]+)/);
   const journalPost = journalMatch ? getJournalPostById(journalMatch[1]) : undefined;
-  const isTeamPage = /^#\/team\/?$/.test(route);
+  const isTeamPage = /^\/team$/.test(route);
+  // Per-page title + canonical (descriptions per page are a later step).
+  useEffect(() => {
+    document.title = service ? service.title + ' | THE JIMMY LAB' : journalPost ? journalPost.title + ' | THE JIMMY LAB' : isTeamPage ? 'Our Team | THE JIMMY LAB' : 'THE JIMMY LAB — Digital Experiences';
+    const canonical = document.querySelector('link[rel="canonical"]');
+    if (canonical) canonical.setAttribute('href', 'https://thejimmylab.vercel.app' + (route === '/' ? '/' : route));
+  }, [route, service, journalPost, isTeamPage]);
   const routeKey = service ? 'service-' + service.slug : journalPost ? 'journal-' + journalPost.id : isTeamPage ? 'team' : 'home';
   return (
     <>
