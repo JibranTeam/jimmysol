@@ -442,7 +442,7 @@ const ModesSection = () => {
           </div>
           <div className="flex items-center gap-2 mt-4 z-20">
             {modes.map((m, i) => (
-              <button key={'dot-' + m.n} onClick={() => setActive(i)} aria-label={'Go to ' + m.title} className="h-2 transition-all duration-300" style={{ width: i === active ? 26 : 8, background: i === active ? m.color : 'rgba(255,255,255,0.18)' }} />
+              <button key={'dot-' + m.n} onClick={() => setActive(i)} aria-label={'Go to ' + m.title} className="h-[3px] transition-all duration-300" style={{ width: i === active ? 30 : 18, background: i === active ? m.color : 'rgba(255,255,255,0.18)' }} />
             ))}
           </div>
           <div className="flex gap-6 mt-6 z-20 justify-center items-center">
