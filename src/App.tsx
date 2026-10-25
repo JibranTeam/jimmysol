@@ -968,6 +968,9 @@ const ConnectSection = () => {
   const [inquiryCopied, setInquiryCopied] = useState(false);
   const briefRef = useRef<HTMLTextAreaElement>(null);
   const email = 'thejimmylab@gmail.com';
+  // Shown on the site; the mailto link still points at the original Gmail
+  // inbox until a real hello@thejimmylab.com mailbox exists.
+  const displayEmail = 'hello@thejimmylab.com';
   // Direct-send backend: Formspree form for thejimmylab@gmail.com.
   const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xdeekyqk';
   const copyEmail = () => { navigator.clipboard?.writeText(email); setCopied(true); window.setTimeout(() => setCopied(false), 2000); };
@@ -1048,7 +1051,7 @@ const ConnectSection = () => {
             <div className="mt-10">
               <p className="font-mono text-[10px] font-medium uppercase tracking-[0.24em] text-white/30 mb-3.5">Send an email</p>
               <div className="flex flex-wrap items-center gap-x-4 gap-y-3">
-                <a href={'mailto:' + email} className="font-['Syne'] text-[22px] md:text-[26px] font-semibold text-white hover:text-[#ff6b35] transition-colors tracking-tight leading-none">{email}</a>
+                <a href={'mailto:' + email} className="font-['Syne'] text-[22px] md:text-[26px] font-semibold text-white hover:text-[#ff6b35] transition-colors tracking-tight leading-none">{displayEmail}</a>
                 <button onClick={copyEmail} className="inline-flex items-center gap-2 rounded-md border border-white/[0.12] bg-white/[0.06] px-3 py-1.5 font-mono text-[11px] text-white/70 hover:text-white hover:border-white/25 hover:bg-white/[0.1] transition-all shrink-0"><Copy className="w-3.5 h-3.5" />{copied ? 'Copied!' : 'Copy Email'}</button>
               </div>
             </div>
@@ -1078,7 +1081,7 @@ const ConnectSection = () => {
               </div>
               <div className="flex flex-col"><label className="text-[13.5px] font-semibold text-white mb-2.5">Tell us about the project <span className="text-[#ff5a4e]">*</span></label><textarea ref={briefRef} value={brief} onChange={(e) => setBrief(e.target.value)} rows={5} required placeholder="Project overview, goals, timelines, etc..." className="w-full rounded-md bg-[#1a1a1a] border border-white/[0.08] px-4 py-3.5 text-[14px] text-white placeholder-white/25 focus:border-[#ff6b35]/60 focus:outline-none transition-colors resize-y min-h-[140px] leading-relaxed" /></div>
               <button type="submit" disabled={sending} className="w-full h-[52px] mt-2 rounded-md bg-[#ff6b35] text-[15px] font-semibold text-white hover:bg-[#ff8552] transition-all shadow-[0_0_28px_rgba(255,107,53,0.28)] hover:shadow-[0_0_40px_rgba(255,107,53,0.42)] disabled:opacity-60">{sending ? 'Sending…' : 'Send an Inquiry →'}</button>
-              <p className="text-white/40 text-[13px] leading-relaxed">Sends directly to {email} — no email app needed.</p>
+              <p className="text-white/40 text-[13px] leading-relaxed">Sends directly to us — no email app needed.</p>
               {sent && (
                 <div className="rounded-md border border-white/10 bg-white/5 p-4">
                   <p className="text-white text-[14px] font-semibold">Inquiry sent successfully.</p>
