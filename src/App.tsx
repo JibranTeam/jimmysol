@@ -8,6 +8,9 @@ import {
 } from 'lucide-react';
 import { cn } from './utils/cn';
 import ServicePage from './pages/ServicePage';
+import JournalPostPage from './pages/JournalPostPage';
+import ComingSoonToast, { showComingSoon } from './components/ComingSoonToast';
+import { JOURNAL_POSTS, getJournalPostById } from './data/journal';
 import TeamPage from './pages/TeamPage';
 import { PageTransition, RouteCurtain } from './components/PageTransition';
 import { CornerTicks } from './components/CornerTicks';
@@ -529,7 +532,7 @@ const AboutSection = () => {
           <div className="about-content">
             <div className="inline-block px-4 sm:px-6 py-1.5 rounded-full border border-white/30 text-xs sm:text-sm font-semibold text-white mb-4 sm:mb-6 tracking-widest uppercase backdrop-blur-sm bg-white/5">About Us</div>
             <h2 className="font-['Syne'] text-4xl md:text-5xl font-bold tracking-tight leading-[1.05] text-white mb-6">We're a Team of <span className="gradient-text">Digital Craftsmen</span></h2>
-            <p className="text-white/70 text-base leading-relaxed mb-4">Founded in 2016, THE JIMMY LAB is a digital agency specializing in web development, web design, interactive experiences, animation, and custom digital solutions.</p>
+            <p className="text-white/70 text-base leading-relaxed mb-4">Founded in 2013, THE JIMMY LAB is a digital agency specializing in web development, web design, interactive experiences, animation, and custom digital solutions.</p>
             <p className="text-white/70 text-base leading-relaxed mb-4">We help businesses, startups, entrepreneurs, and brands worldwide turn ideas into modern digital experiences that combine creative design, advanced technology, performance, and usability.</p>
             <p className="text-white/70 text-base leading-relaxed mb-4">Our expertise spans custom website development, full-stack web applications, interactive websites, 2D and 3D animation, product configurators, SaaS platforms, and AI-powered web solutions. Every project is designed around the client's goals, audience, and business requirements.</p>
             <p className="text-white/70 text-base leading-relaxed mb-8">With a focus on creative innovation and technical excellence, we create digital products that look exceptional, work seamlessly, and provide a strong foundation for business growth.</p>
@@ -728,7 +731,7 @@ const PortfolioSection = () => {
             { title: 'Mobile Banking App', cat: 'Mobile Development', color: '#3b82f6', img: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&h=500&fit=crop&q=80' },
             { title: 'Restaurant Website', cat: 'Web Design', color: '#ffd700', img: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=500&fit=crop&q=80' },
           ].map((p) => (
-            <div key={p.title} className="portfolio-card group relative bg-[#0f1c2e] rounded-2xl overflow-hidden cursor-pointer shadow-[0_12px_40px_rgba(0,0,0,0.45)] border border-white/5 flex flex-col">
+            <div key={p.title} onClick={() => showComingSoon('Project case study — Coming Soon')} className="portfolio-card group relative bg-[#0f1c2e] rounded-2xl overflow-hidden cursor-pointer shadow-[0_12px_40px_rgba(0,0,0,0.45)] border border-white/5 flex flex-col">
               <div className="relative h-[260px] overflow-hidden shrink-0">
                 <img alt={p.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src={p.img} loading="lazy" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0f1c2e] via-[#0f1c2e]/10 to-transparent"></div>
@@ -743,7 +746,7 @@ const PortfolioSection = () => {
           ))}
         </div>
         <div className="w-full clear-both text-center mt-12 relative z-20">
-          <button type="button" className="btn-primary inline-block px-10 py-4 text-sm font-bold tracking-wider cursor-pointer">VIEW ALL PROJECTS</button>
+          <button type="button" onClick={() => showComingSoon('All projects — Coming Soon')} className="btn-primary inline-block px-10 py-4 text-sm font-bold tracking-wider cursor-pointer">VIEW ALL PROJECTS</button>
         </div>
       </div>
     </section>
@@ -901,11 +904,7 @@ const FAQSection = () => {
 
 /* ================= Journal ================= */
 const JournalSection = () => {
-  const articles = [
-    { id: 'scroll-animation-techniques', featured: true, category: 'Motion', date: 'May 28, 2026', read: '4 min read', title: 'Modern Scroll-Linked Animation Techniques', excerpt: 'A deep dive into building performant, responsive scroll animations with the vanilla Motion library in Astro.', image: 'https://images.unsplash.com/photo-1550439062-609e1531270e?w=800&h=500&fit=crop&q=80' },
-    { id: 'astro-for-portfolios', featured: false, category: 'Engineering', date: 'May 20, 2026', read: '4 min read', title: 'Why Astro is the Ultimate Framework for Portfolios', excerpt: "How Astro's island architecture and zero-JS output by default make it the perfect tool for fast creative portfolios.", image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=500&fit=crop&q=80' },
-    { id: 'motion-design-principles', featured: false, category: 'Motion', date: 'May 15, 2026', read: '4 min read', title: 'Core Principles of Functional Motion Design', excerpt: 'Why animation in web design is a functional tool, not just an aesthetic embellishment, and how to apply it.', image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=500&fit=crop&q=80' },
-  ];
+  const articles = JOURNAL_POSTS;
   return (
     <section id="journal" className="relative py-24 md:py-32 lg:py-40 bg-[#0a1628] overflow-hidden border-t border-white/5">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -919,7 +918,7 @@ const JournalSection = () => {
             <h2 className="font-['Syne'] text-3xl md:text-4xl lg:text-[42px] font-bold leading-[1.05] tracking-tight text-white mb-4">Perspectives on design &amp; <span className="gradient-text">engineering.</span></h2>
             <p className="text-[15px] leading-relaxed text-white/60 max-w-[520px]">Stay updated with our research, notes, and technical findings on frontend performance and interactive motion.</p>
           </div>
-          <a href="#services" className="inline-flex items-center gap-2 text-sm font-semibold tracking-wide text-white/70 hover:text-[#ff6b35] transition-colors duration-300 shrink-0 group">Read All Articles<ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" /></a>
+          <a href="#journal" className="inline-flex items-center gap-2 text-sm font-semibold tracking-wide text-white/70 hover:text-[#ff6b35] transition-colors duration-300 shrink-0 group">Read All Articles<ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" /></a>
         </div>
         <div className="md:hidden mb-2">
           <div className="flex items-center justify-between gap-4 mb-6"><span className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/30">Swipe to explore</span><div className="flex items-center gap-1.5">{articles.map((_, i) => (<span key={i} className={cn('w-2 h-2 rounded-full transition-all duration-300', i === 0 ? 'bg-[#ff6b35] w-5' : 'bg-white/15')} />))}</div></div>
@@ -929,10 +928,10 @@ const JournalSection = () => {
                 <div>
                   <div className="relative overflow-hidden rounded-xl aspect-[16/10] mb-5 bg-[#0a1628] border border-white/[0.06]">{post.featured && (<span className="absolute top-3 left-3 z-10 text-[9px] font-bold tracking-[0.18em] uppercase bg-[#ff6b35] text-white px-2.5 py-1 rounded-full shadow-md border border-white/10">Featured</span>)}<img src={post.image} alt={post.title} className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105" loading="lazy" /></div>
                   <div className="flex items-center gap-2 mb-4 text-[11px] font-mono"><span className="text-[9px] uppercase tracking-wider text-[#ff6b35] border border-[#ff6b35]/30 bg-[#ff6b35]/10 px-2 py-0.5 rounded-md">{post.category}</span><span className="text-white/20">•</span><span className="text-white/40">{post.date}</span><span className="text-white/20">•</span><span className="text-white/40">{post.read}</span></div>
-                  <h3 className="font-['Syne'] text-[18px] font-bold mb-3 leading-snug text-white group-hover:text-[#ff6b35] transition-colors"><a href={'#' + post.id}>{post.title}</a></h3>
+                  <h3 className="font-['Syne'] text-[18px] font-bold mb-3 leading-snug text-white group-hover:text-[#ff6b35] transition-colors"><a href={'#/journal/' + post.id}>{post.title}</a></h3>
                   <p className="text-[13px] text-white/60 leading-relaxed mb-6">{post.excerpt}</p>
                 </div>
-                <div className="pt-4 border-t border-white/[0.06]"><a href="#services" className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.14em] text-[#ff6b35]">Read Post <span aria-hidden="true">→</span></a></div>
+                <div className="pt-4 border-t border-white/[0.06]"><a href={'#/journal/' + post.id} className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.14em] text-[#ff6b35]">Read Post <span aria-hidden="true">→</span></a></div>
               </article>
             ))}
           </div>
@@ -943,10 +942,10 @@ const JournalSection = () => {
               <div>
                 <div className="relative overflow-hidden rounded-xl aspect-[16/10] mb-5 bg-[#0a1628] border border-white/[0.06]"><div className="absolute inset-0 bg-gradient-to-tr from-[#ff6b35]/15 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-10 pointer-events-none" />{post.featured && (<span className="absolute top-3 left-3 z-20 text-[9px] font-bold tracking-[0.18em] uppercase bg-[#ff6b35] text-white px-2.5 py-1 rounded-full shadow-lg border border-white/10">Featured</span>)}<img src={post.image} alt={post.title} className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105" loading="lazy" /></div>
                 <div className="flex items-center gap-2.5 mb-4 text-[11px] font-mono"><span className="text-[9px] uppercase tracking-wider text-[#ff6b35] border border-[#ff6b35]/25 bg-[#ff6b35]/10 px-2 py-0.5 rounded-md group-hover:bg-[#ff6b35] group-hover:text-white transition-colors duration-300">{post.category}</span><span className="text-white/20">•</span><span className="text-white/40">{post.date}</span><span className="text-white/20">•</span><span className="text-white/40">{post.read}</span></div>
-                <h3 className="font-['Syne'] text-[20px] font-bold mb-3 leading-snug text-white group-hover:text-[#ff6b35] transition-colors duration-300"><a href={'#' + post.id} className="focus-visible:outline-none">{post.title}</a></h3>
+                <h3 className="font-['Syne'] text-[20px] font-bold mb-3 leading-snug text-white group-hover:text-[#ff6b35] transition-colors duration-300"><a href={'#/journal/' + post.id} className="focus-visible:outline-none">{post.title}</a></h3>
                 <p className="text-[13px] text-white/60 leading-relaxed mb-6">{post.excerpt}</p>
               </div>
-              <div className="pt-4 border-t border-white/[0.06]"><a href="#services" className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.14em] text-[#ff6b35] group-hover:gap-3 transition-all">Read Post <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">→</span></a></div>
+              <div className="pt-4 border-t border-white/[0.06]"><a href={'#/journal/' + post.id} className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.14em] text-[#ff6b35] group-hover:gap-3 transition-all">Read Post <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">→</span></a></div>
             </article>
           ))}
         </div>
@@ -1044,7 +1043,7 @@ const ConnectSection = () => {
             <p className="text-white/45 text-[15px] leading-[1.7] mt-7 max-w-[400px]">Have an idea or a project that needs a motion-first digital experience? Send us an email or use the form.</p>
             <div className="mt-7 self-start inline-flex items-center gap-2.5 rounded-full border border-[#ff6b35]/30 bg-[#ff6b35]/[0.07] px-4 py-2">
               <span className="w-1.5 h-1.5 rounded-full bg-[#ff6b35] animate-pulse shrink-0" />
-              <span className="font-mono text-[12px] text-[#ff6b35] tracking-tight whitespace-nowrap">Accepting projects for Q3 2025</span>
+              <span className="font-mono text-[12px] text-[#ff6b35] tracking-tight whitespace-nowrap">Accepting projects</span>
             </div>
             <div className="mt-10">
               <p className="font-mono text-[10px] font-medium uppercase tracking-[0.24em] text-white/30 mb-3.5">Send an email</p>
@@ -1056,7 +1055,7 @@ const ConnectSection = () => {
             <div className="mt-9">
               <p className="font-mono text-[10px] font-medium uppercase tracking-[0.24em] text-white/30 mb-4">Follow us</p>
               <div className="flex flex-wrap items-center gap-x-7 gap-y-3">
-                {['GitHub', 'LinkedIn', 'X / Twitter', 'Dribbble'].map((s) => (<a key={s} href="#" className="font-mono text-[13.5px] text-white/45 hover:text-[#ff6b35] transition-colors">{s}</a>))}
+                {['GitHub', 'LinkedIn', 'X / Twitter', 'Dribbble'].map((s) => (<a key={s} href="#" onClick={(e) => { e.preventDefault(); showComingSoon(s + ' — Coming Soon'); }} className="font-mono text-[13.5px] text-white/45 hover:text-[#ff6b35] transition-colors">{s}</a>))}
               </div>
             </div>
             <div className="w-full mt-12 p-6 rounded-2xl bg-white/5 border border-white/15 relative overflow-hidden group select-none">
@@ -1112,7 +1111,7 @@ const Footer = () => (
           </div>
           <p className="text-[#ff6b35] font-mono text-[11px] font-bold uppercase tracking-[0.22em] mb-5">Digital Experiences. Built Better.</p>
           <p className="text-white/60 leading-relaxed max-w-md mb-6">We design, build, and optimize digital experiences that help businesses, brands, and ideas move forward. Whether you need a new website, a custom web application, an immersive interactive experience, help improving an existing project, technical consulting, or training, we work closely with you to understand your goals and build a solution that fits your needs.</p>
-          <div className="flex gap-4">{['Twitter', 'LinkedIn', 'GitHub', 'Dribbble'].map((social) => (<a key={social} href="#" className="w-10 h-10 bg-white/5 border border-white/10 rounded-lg flex items-center justify-center text-white/60 hover:bg-[#ff6b35] hover:border-[#ff6b35] hover:text-white transition-all"><span className="text-xs font-bold">{social[0]}</span></a>))}</div>
+          <div className="flex gap-4">{['Twitter', 'LinkedIn', 'GitHub', 'Dribbble'].map((social) => (<a key={social} href="#" onClick={(e) => { e.preventDefault(); showComingSoon(social + ' — Coming Soon'); }} className="w-10 h-10 bg-white/5 border border-white/10 rounded-lg flex items-center justify-center text-white/60 hover:bg-[#ff6b35] hover:border-[#ff6b35] hover:text-white transition-all"><span className="text-xs font-bold">{social[0]}</span></a>))}</div>
         </div>
         <div>
           <h4 className="font-['Syne'] font-bold text-white mb-6">Quick Links</h4>
@@ -1154,8 +1153,8 @@ const Footer = () => (
         </div>
       </div>
       <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
-        <p className="text-white/40 text-sm">© 2024 THE JIMMY LAB. All rights reserved.</p>
-        <div className="flex gap-6 text-sm"><a href="#" className="text-white/40 hover:text-white transition-colors">Privacy Policy</a><a href="#" className="text-white/40 hover:text-white transition-colors">Terms of Service</a></div>
+        <p className="text-white/40 text-sm">© {new Date().getFullYear()} THE JIMMY LAB. All rights reserved.</p>
+        <div className="flex gap-6 text-sm"><a href="#" onClick={(e) => { e.preventDefault(); showComingSoon('Privacy Policy — Coming Soon'); }} className="text-white/40 hover:text-white transition-colors">Privacy Policy</a><a href="#" onClick={(e) => { e.preventDefault(); showComingSoon('Terms of Service — Coming Soon'); }} className="text-white/40 hover:text-white transition-colors">Terms of Service</a></div>
       </div>
     </div>
   </footer>
@@ -1214,14 +1213,17 @@ function App() {
 
   const serviceMatch = route.match(/^#\/services\/([^#/?]+)/);
   const service = serviceMatch ? getServiceBySlug(serviceMatch[1]) : undefined;
+  const journalMatch = route.match(/^#\/journal\/([^#/?]+)/);
+  const journalPost = journalMatch ? getJournalPostById(journalMatch[1]) : undefined;
   const isTeamPage = /^#\/team\/?$/.test(route);
-  const routeKey = service ? 'service-' + service.slug : isTeamPage ? 'team' : 'home';
+  const routeKey = service ? 'service-' + service.slug : journalPost ? 'journal-' + journalPost.id : isTeamPage ? 'team' : 'home';
   return (
     <>
       <AnimatePresence>{showCurtain && <RouteCurtain key="curtain" />}</AnimatePresence>
+      <ComingSoonToast />
       <AnimatePresence mode="wait">
         <PageTransition key={routeKey}>
-          {service ? <ServicePage service={service} /> : isTeamPage ? <TeamPage /> : <HomePage />}
+          {service ? <ServicePage service={service} /> : journalPost ? <JournalPostPage post={journalPost} /> : isTeamPage ? <TeamPage /> : <HomePage />}
         </PageTransition>
       </AnimatePresence>
     </>
