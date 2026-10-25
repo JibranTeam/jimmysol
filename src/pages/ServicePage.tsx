@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight, Check, ChevronDown, Code2 } from "lucide-react";
 import { cn } from "../utils/cn";
+import { goToConnect } from "../utils/goToConnect";
 import { services, type Service } from "../data/services";
 
 export default function ServicePage({ service }: { service: Service }) {
@@ -90,7 +91,8 @@ export default function ServicePage({ service }: { service: Service }) {
                 className="mt-9 flex flex-wrap gap-4"
               >
                 <a
-                  href={`mailto:thejimmylab@gmail.com?subject=${encodeURIComponent(service.title + " inquiry")}`}
+                  href="#connect"
+                  onClick={(e) => { e.preventDefault(); goToConnect(); }}
                   className="btn-primary"
                 >
                   Start your project <ArrowRight className="w-4 h-4" />

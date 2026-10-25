@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { ArrowLeft, ArrowRight, Code2 } from 'lucide-react';
 import { JOURNAL_POSTS, type JournalPost } from '../data/journal';
+import { goToConnect } from '../utils/goToConnect';
 
 export default function JournalPostPage({ post }: { post: JournalPost }) {
   const others = JOURNAL_POSTS.filter((p) => p.id !== post.id).slice(0, 3);
@@ -89,7 +90,7 @@ export default function JournalPostPage({ post }: { post: JournalPost }) {
             <a href="#journal" className="inline-flex items-center gap-2 px-6 py-4 border-2 border-white/15 rounded-lg text-white hover:border-[#ff6b35] hover:text-[#ff6b35] transition-all">
               <ArrowLeft className="w-4 h-4" /> Back to Journal
             </a>
-            <a href="#connect" className="btn-primary">
+            <a href="#connect" onClick={(e) => { e.preventDefault(); goToConnect(); }} className="btn-primary">
               Start a project <ArrowRight className="w-4 h-4" />
             </a>
           </div>
