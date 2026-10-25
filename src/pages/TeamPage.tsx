@@ -111,7 +111,7 @@ export default function TeamPage() {
                 </div>
                 <h3 className="font-['Syne'] text-lg font-bold tracking-tight text-white">{member.name}</h3>
                 <p className="text-xs text-[#ffd700] mt-1.5 font-bold uppercase tracking-[0.12em] leading-relaxed">{member.role}</p>
-                <a href={member.link} target="_blank" rel="noreferrer" className="mt-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-white bg-white/10 hover:bg-[#ff6b35] hover:text-white border border-white/10 px-3 py-2 rounded-full transition-all self-start group/link">LinkedIn<ArrowRight className="w-3.5 h-3.5 transition-transform group-hover/link:translate-x-1" /></a>
+                <span aria-disabled="true" title="LinkedIn links disabled for now" className="mt-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-white/40 bg-white/5 border border-white/10 px-3 py-2 rounded-full self-start cursor-not-allowed">LinkedIn</span>
               </motion.div>
             ))}
           </div>
@@ -176,7 +176,7 @@ export default function TeamPage() {
               THE JIMMY LAB<span className="text-[#ff3c2f]">.</span>
             </span>
           </div>
-          <p className="text-white/40 text-sm">© 2024 THE JIMMY LAB. All rights reserved.</p>
+          <p className="text-white/40 text-sm">© {new Date().getFullYear()} THE JIMMY LAB. All rights reserved.</p>
         </div>
       </footer>
     </div>

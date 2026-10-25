@@ -312,7 +312,7 @@ export default function ServicePage({ service }: { service: Service }) {
               THE JIMMY LAB<span className="text-[#ff3c2f]">.</span>
             </span>
           </div>
-          <p className="text-white/40 text-sm">© 2024 THE JIMMY LAB. All rights reserved.</p>
+          <p className="text-white/40 text-sm">© {new Date().getFullYear()} THE JIMMY LAB. All rights reserved.</p>
         </div>
       </footer>
     </div>
