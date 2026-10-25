@@ -314,7 +314,7 @@ select option:disabled {
     align-items: center;
     justify-content: center;
     align-self: start;
-    height: 560px;
+    height: 680px;
   }
   .modes-vertical-heading {
     writing-mode: vertical-rl;
