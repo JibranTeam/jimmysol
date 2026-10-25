@@ -299,35 +299,35 @@ const Words = ({
 const HoneycombPattern = ({ id, color }: { id: string; color: string }) => (
   <svg width="100%" height="100%"><defs><pattern id={id} x="0" y="0" width="28" height="49" patternUnits="userSpaceOnUse"><g stroke={color} strokeWidth="2" fill="none"><path d="M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM-0.01 58.25l13 7.5v15l-13 7.5L-13 80.75v-15l12.99-7.5zM27.99 58.25l13 7.5v15l-13 7.5L15 80.75v-15l12.99-7.5zM-0.01-15.25l13 7.5v15l-13 7.5L-13-17.75v-15l12.99-7.5zM27.99-15.25l13 7.5v15l-13 7.5L15-17.75v-15l12.99-7.5zM13.99 33.75l13 7.5v15l-13 7.5L1 56.25v-15l12.99-7.5zM-0.01 9.25l13 7.5v15l-13 7.5L-13 31.75v-15l12.99-7.5zM27.99 9.25l13 7.5v15l-13 7.5L15 31.75v-15l12.99-7.5z" /></g></pattern></defs><rect x="0" y="0" width="100%" height="100%" fill={'url(#' + id + ')'} /></svg>
 );
-const DesignArt = ({ active: _a = false }: { active?: boolean }) => (
+const DesignArt = ({ active: _a = false, color = '#ff6b35' }: { active?: boolean; color?: string }) => (
   <svg viewBox="0 0 200 160" width="130" height="115" fill="none">
-    <ellipse cx="100" cy="140" rx="55" ry="9" fill="#ff6b35" opacity="0.14" />
-    <rect x="34" y="24" width="132" height="92" rx="10" fill="#101c2e" stroke="#ff6b35" strokeWidth="2.5" />
-    <rect x="34" y="24" width="132" height="20" rx="10" fill="#ff6b35" opacity="0.18" />
-    <circle cx="48" cy="34" r="3.2" fill="#ff6b35" /><circle cx="59" cy="34" r="3.2" fill="#ffd166" opacity="0.8" /><circle cx="70" cy="34" r="3.2" fill="#06d6a0" opacity="0.8" />
-    <rect x="46" y="56" width="42" height="46" rx="6" fill="#ff6b35" opacity="0.25" />
+    <ellipse cx="100" cy="140" rx="55" ry="9" fill={color} opacity="0.14" />
+    <rect x="34" y="24" width="132" height="92" rx="10" fill="#101c2e" stroke={color} strokeWidth="2.5" />
+    <rect x="34" y="24" width="132" height="20" rx="10" fill={color} opacity="0.18" />
+    <circle cx="48" cy="34" r="3.2" fill={color} /><circle cx="59" cy="34" r="3.2" fill={color} opacity="0.8" /><circle cx="70" cy="34" r="3.2" fill={color} opacity="0.8" />
+    <rect x="46" y="56" width="42" height="46" rx="6" fill={color} opacity="0.25" />
     <rect x="96" y="56" width="58" height="8" rx="4" fill="#ffffff" opacity="0.35" />
     <rect x="96" y="70" width="44" height="8" rx="4" fill="#ffffff" opacity="0.2" />
     <rect x="96" y="84" width="52" height="8" rx="4" fill="#ffffff" opacity="0.2" />
-    <rect x="96" y="98" width="30" height="8" rx="4" fill="#ff6b35" opacity="0.6" />
-    <circle cx="163" cy="112" r="15" fill="#ff6b35" /><path d="M157 112l4 4 8-8" stroke="#fff" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+    <rect x="96" y="98" width="30" height="8" rx="4" fill={color} opacity="0.6" />
+    <circle cx="163" cy="112" r="15" fill={color} /><path d="M157 112l4 4 8-8" stroke="#fff" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" fill="none" />
   </svg>
 );
-const BuildArt = ({ active: _b = false }: { active?: boolean }) => (
+const BuildArt = ({ active: _b = false, color = '#ff6b35' }: { active?: boolean; color?: string }) => (
   <svg viewBox="0 0 200 160" width="130" height="115" fill="none">
-    <ellipse cx="100" cy="140" rx="55" ry="9" fill="#38bdf8" opacity="0.14" />
-    <rect x="26" y="30" width="148" height="84" rx="10" fill="#0d1a2b" stroke="#38bdf8" strokeWidth="2.5" />
-    <path d="M62 58l-16 14 16 14" stroke="#38bdf8" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-    <path d="M138 58l16 14-16 14" stroke="#38bdf8" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-    <path d="M110 52l-20 40" stroke="#ff6b35" strokeWidth="4" strokeLinecap="round" />
-    <rect x="26" y="30" width="148" height="16" rx="8" fill="#38bdf8" opacity="0.15" />
-    <circle cx="40" cy="38" r="2.6" fill="#38bdf8" /><circle cx="50" cy="38" r="2.6" fill="#38bdf8" opacity="0.5" />
+    <ellipse cx="100" cy="140" rx="55" ry="9" fill={color} opacity="0.14" />
+    <rect x="26" y="30" width="148" height="84" rx="10" fill="#0d1a2b" stroke={color} strokeWidth="2.5" />
+    <path d="M62 58l-16 14 16 14" stroke={color} strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+    <path d="M138 58l16 14-16 14" stroke={color} strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+    <path d="M110 52l-20 40" stroke={color} strokeWidth="4" strokeLinecap="round" />
+    <rect x="26" y="30" width="148" height="16" rx="8" fill={color} opacity="0.15" />
+    <circle cx="40" cy="38" r="2.6" fill={color} /><circle cx="50" cy="38" r="2.6" fill={color} opacity="0.5" />
   </svg>
 );
-const ConsultArt = ({ active = false }: { active?: boolean }) => (
+const ConsultArt = ({ active = false, color = '#ff6b35' }: { active?: boolean; color?: string }) => (
   <svg viewBox="0 0 200 170" width="130" height="118" fill="none">
-    <ellipse cx="100" cy="152" rx="46" ry="8" fill="#06d6a0" opacity="0.14" />
-    <g stroke="#06d6a0" strokeWidth="2.5" strokeLinecap="round" fill="none">
+    <ellipse cx="100" cy="152" rx="46" ry="8" fill={color} opacity="0.14" />
+    <g stroke={color} strokeWidth="2.5" strokeLinecap="round" fill="none">
       <path d="M90 24a14 14 0 0 1 20 0">
         <animate attributeName="opacity" values={active ? '0;0.9;0' : '0;0.45;0'} keyTimes="0;0.3;1" calcMode="spline" keySplines="0.3 0 0.4 1;0.4 0 0.7 1" dur="1.8s" repeatCount="indefinite" begin="0s" />
       </path>
@@ -338,59 +338,60 @@ const ConsultArt = ({ active = false }: { active?: boolean }) => (
         <animate attributeName="opacity" values={active ? '0;0.35;0' : '0;0.18;0'} keyTimes="0;0.3;1" calcMode="spline" keySplines="0.3 0 0.4 1;0.4 0 0.7 1" dur="1.8s" repeatCount="indefinite" begin="0.6s" />
       </path>
     </g>
-    <line x1="100" y1="40" x2="100" y2="62" stroke="#06d6a0" strokeWidth="7" strokeLinecap="round" />
-    <circle cx="100" cy="36" r="11" fill="#06d6a0">
+    <line x1="100" y1="40" x2="100" y2="62" stroke={color} strokeWidth="7" strokeLinecap="round" />
+    <circle cx="100" cy="36" r="11" fill={color}>
       <animate attributeName="r" values="11;12.5;11" dur="1.8s" repeatCount="indefinite" />
     </circle>
-    <circle cx="42" cy="108" r="12" fill="#06d6a0" />
-    <circle cx="158" cy="108" r="12" fill="#06d6a0" />
-    <rect x="50" y="66" width="100" height="78" rx="22" fill="#0f1a29" stroke="#06d6a0" strokeWidth="7" />
-    <circle cx="82" cy="106" r="10" fill="#06d6a0" />
-    <circle cx="118" cy="106" r="10" fill="#06d6a0" />
+    <circle cx="42" cy="108" r="12" fill={color} />
+    <circle cx="158" cy="108" r="12" fill={color} />
+    <rect x="50" y="66" width="100" height="78" rx="22" fill="#0f1a29" stroke={color} strokeWidth="7" />
+    <circle cx="82" cy="106" r="10" fill={color} />
+    <circle cx="118" cy="106" r="10" fill={color} />
   </svg>
 );
-const LearnArt = ({ active: _a = false }: { active?: boolean }) => (
+const LearnArt = ({ active: _a = false, color = '#ff6b35' }: { active?: boolean; color?: string }) => (
   <svg viewBox="0 0 200 212" width="132" height="140" fill="none">
-    <ellipse cx="100" cy="202" rx="62" ry="7" fill="#ffd166" opacity="0.1" />
-    <g stroke="#ffd166" strokeWidth="5" strokeLinecap="round" opacity="0.9">
+    <ellipse cx="100" cy="202" rx="62" ry="7" fill={color} opacity="0.1" />
+    <g stroke={color} strokeWidth="5" strokeLinecap="round" opacity="0.9">
       <line x1="100" y1="6" x2="100" y2="22" />
       <line x1="66" y1="18" x2="76" y2="29" />
       <line x1="134" y1="18" x2="124" y2="29" />
       <line x1="52" y1="48" x2="68" y2="48" />
       <line x1="148" y1="48" x2="132" y2="48" />
     </g>
-    <path d="M100 30c-17 0-28 13-28 28 0 10 5 17 12 22v8h32v-8c7-5 12-12 12-22 0-15-11-28-28-28z" fill="#0f1a29" stroke="#ffd166" strokeWidth="5" strokeLinejoin="round" />
-    <path d="M100 82V68m0 0l-8-12m8 12l8-12" stroke="#ffd166" strokeWidth="3.5" strokeLinecap="round" fill="none" opacity="0.85" />
-    <rect x="86" y="88" width="28" height="12" rx="4" fill="#ffd166" />
-    <rect x="86" y="88" width="28" height="4" rx="2" fill="#d9a94a" opacity="0.55" />
-    <circle cx="50" cy="140" r="15" fill="#0f1a29" stroke="#ffd166" strokeWidth="4" />
-    <path d="M22 188c0-17 12-28 28-28s28 11 28 28" fill="#0f1a29" stroke="#ffd166" strokeWidth="4" strokeLinecap="round" />
-    <circle cx="150" cy="140" r="15" fill="#0f1a29" stroke="#ffd166" strokeWidth="4" />
-    <path d="M122 188c0-17 12-28 28-28s28 11 28 28" fill="#0f1a29" stroke="#ffd166" strokeWidth="4" strokeLinecap="round" />
-    <circle cx="100" cy="150" r="16.5" fill="#0f1a29" stroke="#ffd166" strokeWidth="4.5" />
-    <path d="M70 198c0-18 13-30 30-30s30 12 30 30" fill="#0f1a29" stroke="#ffd166" strokeWidth="4.5" strokeLinecap="round" />
+    <path d="M100 30c-17 0-28 13-28 28 0 10 5 17 12 22v8h32v-8c7-5 12-12 12-22 0-15-11-28-28-28z" fill="#0f1a29" stroke={color} strokeWidth="5" strokeLinejoin="round" />
+    <path d="M100 82V68m0 0l-8-12m8 12l8-12" stroke={color} strokeWidth="3.5" strokeLinecap="round" fill="none" opacity="0.85" />
+    <rect x="86" y="88" width="28" height="12" rx="4" fill={color} />
+    <rect x="86" y="88" width="28" height="4" rx="2" fill={color} opacity="0.55" />
+    <circle cx="50" cy="140" r="15" fill="#0f1a29" stroke={color} strokeWidth="4" />
+    <path d="M22 188c0-17 12-28 28-28s28 11 28 28" fill="#0f1a29" stroke={color} strokeWidth="4" strokeLinecap="round" />
+    <circle cx="150" cy="140" r="15" fill="#0f1a29" stroke={color} strokeWidth="4" />
+    <path d="M122 188c0-17 12-28 28-28s28 11 28 28" fill="#0f1a29" stroke={color} strokeWidth="4" strokeLinecap="round" />
+    <circle cx="100" cy="150" r="16.5" fill="#0f1a29" stroke={color} strokeWidth="4.5" />
+    <path d="M70 198c0-18 13-30 30-30s30 12 30 30" fill="#0f1a29" stroke={color} strokeWidth="4.5" strokeLinecap="round" />
   </svg>
 );
 
 /* ================= MODES ================= */
 const ModesSection = () => {
   const modes = [
-    { n: '01', title: 'DESIGN', subtitle: 'Interface & Brand Systems', desc: 'Wireframes, design systems and pixel-perfect interfaces crafted around real user behaviour.', color: '#ff6b35', Art: DesignArt },
-    { n: '02', title: 'BUILD', subtitle: 'Engineering & Development', desc: 'Production-grade React, Next.js and TypeScript builds engineered to scale from day one.', color: '#38bdf8', Art: BuildArt },
-    { n: '03', title: '1 ON 1', subtitle: 'Technology & Project Consultancy', desc: 'Get focused 1-on-1 guidance to solve technical challenges, evaluate ideas, plan projects, or make smarter technology decisions.', color: '#06d6a0', Art: ConsultArt },
-    { n: '04', title: 'LEARN', subtitle: 'Web Development & Tech Training', desc: 'Learn modern web development through practical projects, expert guidance and real-world workflows.', color: '#ffd166', Art: LearnArt },
+    { n: '01', title: 'DESIGN', subtitle: 'Interface & Brand Systems', desc: 'Wireframes, design systems and pixel-perfect interfaces crafted around real user behaviour.', color: '#ff6b35', rgb: '255,107,53', Art: DesignArt, link: '#/services/ui-ux-design', cta: 'Explore Design' },
+    { n: '02', title: 'BUILD', subtitle: 'Engineering & Development', desc: 'Production-grade React, Next.js and TypeScript builds engineered to scale from day one.', color: '#38bdf8', rgb: '56,184,248', Art: BuildArt, link: '#/services/web-development', cta: 'Explore Build' },
+    { n: '03', title: '1 ON 1', subtitle: 'Technology & Project Consultancy', desc: 'Get focused 1-on-1 guidance to solve technical challenges, evaluate ideas, plan projects, or make smarter technology decisions.', color: '#06d6a0', rgb: '6,214,160', Art: ConsultArt, link: '#/services/consultation-training', cta: 'Explore Consultancy' },
+    { n: '04', title: 'LEARN', subtitle: 'Web Development & Tech Training', desc: 'Learn modern web development through practical projects, expert guidance and real-world workflows.', color: '#ffd166', rgb: '255,209,102', Art: LearnArt, link: '#/services/consultation-training', cta: 'Explore Training' },
   ];
-  const [active, setActive] = useState(1);
+  const [active, setActive] = useState(0);
+  const [hovered, setHovered] = useState<number | null>(null);
   const dragX = useRef<number | null>(null);
   const total = modes.length;
-  const go = (dir: number) => setActive((p) => (p + dir + total) % total);
+  const go = (dir: number) => setActive((prev) => (prev + dir + total) % total);
   const offsetOf = (i: number) => { let o = i - active; if (o > total / 2) o -= total; if (o < -total / 2) o += total; return o; };
   const onDown = (x: number) => { dragX.current = x; };
   const onUp = (x: number) => { if (dragX.current === null) return; const d = x - dragX.current; if (Math.abs(d) > 45) go(d < 0 ? 1 : -1); dragX.current = null; };
   return (
     <section id="modes" className="relative w-full overflow-hidden bg-[#070f1a] py-24 md:py-32 px-5">
       <div className="absolute inset-0 pointer-events-none z-[1]" style={{ background: 'radial-gradient(circle, rgba(255,107,53,0.10) 0%, transparent 65%)' }} />
-      <div className="relative z-[2] mx-auto w-full max-w-4xl px-4 text-center mb-16 md:mb-20">
+      <div className="relative z-[2] mx-auto w-full max-w-4xl px-4 text-center mb-8 md:mb-10">
         <Words
           aria="Design. Build. Consult. Learn."
           text="Design. Build. Consult. Learn."
@@ -407,40 +408,39 @@ const ModesSection = () => {
       <div className="modes-layout-container">
         <div className="modes-col-left"><h2 className="modes-vertical-heading">MODES</h2></div>
         <div className="modes-col-right">
-          <div tabIndex={0} role="group" aria-label="Modes carousel" onMouseDown={(e) => onDown(e.clientX)} onMouseUp={(e) => onUp(e.clientX)} onTouchStart={(e) => onDown(e.touches[0].clientX)} onTouchEnd={(e) => onUp(e.changedTouches[0].clientX)} onKeyDown={(e) => { if (e.key === 'ArrowLeft') go(-1); if (e.key === 'ArrowRight') go(1); }} className="w-full h-[440px] flex items-center justify-center relative z-10 cursor-grab active:cursor-grabbing select-none outline-none" style={{ perspective: '1250px', transformStyle: 'preserve-3d', touchAction: 'pan-y' }}>
+          <div tabIndex={0} role="group" aria-label="Modes carousel" onMouseDown={(e) => onDown(e.clientX)} onMouseUp={(e) => onUp(e.clientX)} onTouchStart={(e) => onDown(e.touches[0].clientX)} onTouchEnd={(e) => onUp(e.changedTouches[0].clientX)} onKeyDown={(e) => { if (e.key === 'ArrowLeft') go(-1); if (e.key === 'ArrowRight') go(1); }} className="w-full h-[680px] flex items-center justify-center relative z-10 cursor-grab active:cursor-grabbing select-none outline-none" style={{ perspective: '1250px', transformStyle: 'preserve-3d', touchAction: 'pan-y' }}>
             {modes.map((m, i) => {
-              const o = offsetOf(i); const isActive = o === 0; const abs = Math.abs(o);
+              const o = offsetOf(i); const isActive = o === 0; const abs = Math.abs(o); const isHovered = hovered === i;
               return (
-                <div key={m.n} onClick={() => !isActive && setActive(i)} className="modes-card absolute flex flex-col justify-between overflow-hidden rounded-3xl p-6" style={{
-                  width: 300, maxWidth: '90vw', height: 380,
-                  background: isActive ? 'linear-gradient(155deg,#132234 0%,#0e1a29 55%,#0b1522 100%)' : 'linear-gradient(155deg,#101c2c 0%,#0c1622 100%)',
-                  border: '1.5px solid ' + (isActive ? m.color : 'rgba(255,255,255,0.09)'),
-                  boxShadow: isActive ? '0 20px 44px -12px ' + m.color + '44, 0 8px 18px -8px rgba(0,0,0,0.6), inset 0 1px 3px rgba(255,255,255,0.06)' : '0 8px 20px -8px rgba(0,0,0,0.5)',
+                <article key={m.n} onClick={() => !isActive && setActive(i)} onMouseEnter={() => setHovered(i)} onMouseLeave={() => setHovered(null)} className="modes-card group absolute flex flex-col overflow-hidden rounded-3xl p-8" style={{
+                  width: 340, maxWidth: '90vw', height: 520,
+                  background: isHovered ? 'linear-gradient(180deg, rgba(' + m.rgb + ',0.12) 0%, rgba(7,11,14,0.95) 55%, #070f1a 100%)' : 'linear-gradient(180deg, rgba(7,11,14,0.95) 0%, #070f1a 100%)',
+                  border: '1.5px solid ' + (isHovered ? m.color + 'a8' : 'rgba(255,255,255,0.12)'),
+                  boxShadow: isHovered ? '0 18px 40px -20px rgba(' + m.rgb + ',0.55), 0 28px 56px -16px rgba(0,0,0,0.85), inset 0 1px 0 rgba(255,255,255,0.14)' : '0 16px 32px -12px rgba(0,0,0,0.7)',
                   cursor: isActive ? 'default' : 'pointer', opacity: abs > 1 ? 0 : isActive ? 1 : 0.85,
-                  filter: isActive ? 'blur(0px)' : 'blur(0.8px) brightness(1)',
-                  transform: isActive ? 'translateZ(200px) scale(1.06)' : 'translateX(' + o * 320 + 'px) translateZ(-100px) scale(0.82) rotateY(' + o * -24 + 'deg)',
+                  filter: isActive ? 'blur(0px)' : 'blur(0.8px) brightness(0.9)',
+                  transform: isActive ? (isHovered ? 'translateZ(220px) scale(1.04)' : 'translateZ(200px) scale(1.02)') : 'translateX(' + o * 360 + 'px) translateZ(' + (isHovered ? -80 : -100) + 'px) scale(' + (isHovered ? 0.85 : 0.82) + ') rotateY(' + o * -24 + 'deg)',
                   zIndex: isActive ? 20 : 10 - abs, pointerEvents: abs > 1 ? 'none' : 'auto', transformStyle: 'preserve-3d',
                 }}>
-                  <div className="absolute inset-0 pointer-events-none z-0 transition-opacity duration-500" style={{ opacity: isActive ? 0.16 : 0.06, maskImage: 'radial-gradient(rgba(0,0,0,0.05) 30%, rgba(0,0,0,0.8) 95%)', WebkitMaskImage: 'radial-gradient(rgba(0,0,0,0.05) 30%, rgba(0,0,0,0.8) 95%)' }}>
-                    <HoneycombPattern id={'honeycomb-' + m.title.toLowerCase()} color={m.color} />
+                  <div className="flex flex-col items-center text-center">
+                    <h3 className="font-['Syne'] text-[34px] font-extrabold leading-none tracking-tight transition-all duration-500" style={isHovered ? { color: 'transparent', WebkitTextStroke: '1.8px ' + m.color, textShadow: '0 0 24px rgba(' + m.rgb + ',0.25)' } : { color: '#ffffff' }}>{m.title}</h3>
+                    <span className="mt-4 text-[11px] font-semibold tracking-[0.06em] rounded-full px-4 py-1.5" style={isHovered ? { color: m.color, background: 'rgba(' + m.rgb + ',0.12)', border: '1px solid rgba(' + m.rgb + ',0.4)' } : { color: 'rgba(255,255,255,0.70)', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.15)' }}>{m.subtitle}</span>
                   </div>
-                  <div className="relative z-10 flex flex-col items-center gap-1.5 mt-0.5 mb-2">
-                    <h3 className="font-['Syne'] text-[21px] font-extrabold tracking-tight leading-none mt-1 text-center transition-all duration-500" style={isActive ? { color: 'transparent', WebkitTextStroke: '1.5px ' + m.color, textShadow: '2px -2px 0 ' + m.color + '26' } : { color: '#ffffff' }}>{m.title}</h3>
-                    <div className="text-[8.5px] font-bold tracking-tight rounded-full border px-2.5 py-0.5 transition-all duration-500" style={{ color: m.color, background: m.color + '14', borderColor: m.color + '44', opacity: isActive ? 1 : 0 }}>{m.subtitle}</div>
-                  </div>
-                  <div className="relative z-10 flex-1 flex items-center justify-center my-1">
-                    <div className="transition-transform duration-700" style={{ transform: isActive ? 'scale(1.04)' : 'scale(0.94)' }}>
-                      <m.Art active={isActive} />
+                  <div className="relative flex-1 flex items-center justify-center my-4">
+                    <div className="absolute w-[180px] h-[180px] rounded-full pointer-events-none" style={{ background: isHovered ? 'radial-gradient(circle, rgba(' + m.rgb + ',0.16) 0%, transparent 68%)' : 'radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 68%)' }} />
+                    <div className="relative transition-transform duration-500" style={{ transform: isHovered ? 'scale(1.28)' : isActive ? 'scale(1.18)' : 'scale(1)' }}>
+                      <m.Art active={isActive} color={isHovered ? m.color : "#e8e8e8"} />
                     </div>
                   </div>
-                  <div className="relative z-10 flex flex-col items-center text-center mb-0.5 transition-all duration-500" style={{ opacity: isActive ? 1 : 0, transform: isActive ? 'none' : 'translateY(20px) scale(0.92)' }}>
-                    <p className="text-[13px] font-medium leading-[1.5] text-white/75 px-1">{m.desc}</p>
+                  <div className="flex flex-col items-center text-center">
+                    <p className="text-[15px] leading-[1.75] text-white/80 max-w-[280px]">{m.desc}</p>
+                    <a href={m.link} className="mt-5 inline-flex items-center gap-2 text-[14px] font-semibold hover:text-white transition-colors" style={{ color: isHovered ? m.color : "rgba(255,255,255,0.70)" }}>{m.cta} <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span></a>
                   </div>
-                </div>
+                </article>
               );
             })}
           </div>
-          <div className="flex items-center gap-2 mt-8 z-20">
+          <div className="flex items-center gap-2 mt-4 z-20">
             {modes.map((m, i) => (
               <button key={'dot-' + m.n} onClick={() => setActive(i)} aria-label={'Go to ' + m.title} className="h-2 rounded-full transition-all duration-300" style={{ width: i === active ? 26 : 8, background: i === active ? m.color : 'rgba(255,255,255,0.18)' }} />
             ))}
