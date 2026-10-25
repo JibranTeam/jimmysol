@@ -381,6 +381,7 @@ const ModesSection = () => {
     { n: '04', title: 'LEARN', subtitle: 'Web Development & Tech Training', desc: 'Learn modern web development through practical projects, expert guidance and real-world workflows.', color: '#ff6b35', Art: LearnArt, link: '#/services/consultation-training', cta: 'Explore Training' },
   ];
   const [active, setActive] = useState(0);
+  const [hovered, setHovered] = useState<number | null>(null);
   const dragX = useRef<number | null>(null);
   const total = modes.length;
   const go = (dir: number) => setActive((prev) => (prev + dir + total) % total);
@@ -407,18 +408,19 @@ const ModesSection = () => {
       <div className="modes-layout-container">
         <div className="modes-col-left"><h2 className="modes-vertical-heading">MODES</h2></div>
         <div className="modes-col-right">
-          <div tabIndex={0} role="group" aria-label="Modes carousel" onMouseDown={(e) => onDown(e.clientX)} onMouseUp={(e) => onUp(e.clientX)} onTouchStart={(e) => onDown(e.touches[0].clientX)} onTouchEnd={(e) => onUp(e.changedTouches[0].clientX)} onKeyDown={(e) => { if (e.key === 'ArrowLeft') go(-1); if (e.key === 'ArrowRight') go(1); }} className="w-full h-[520px] flex items-center justify-center gap-6 relative z-10 cursor-grab active:cursor-grabbing select-none outline-none" style={{ touchAction: 'pan-y' }}>
+          <div tabIndex={0} role="group" aria-label="Modes carousel" onMouseDown={(e) => onDown(e.clientX)} onMouseUp={(e) => onUp(e.clientX)} onTouchStart={(e) => onDown(e.touches[0].clientX)} onTouchEnd={(e) => onUp(e.changedTouches[0].clientX)} onKeyDown={(e) => { if (e.key === 'ArrowLeft') go(-1); if (e.key === 'ArrowRight') go(1); }} className="w-full h-[560px] flex items-center justify-center relative z-10 cursor-grab active:cursor-grabbing select-none outline-none" style={{ perspective: '1250px', transformStyle: 'preserve-3d', touchAction: 'pan-y' }}>
             {modes.map((m, i) => {
-              const o = offsetOf(i); const isActive = o === 0; const abs = Math.abs(o);
-              if (abs > 1) return null;
+              const o = offsetOf(i); const isActive = o === 0; const abs = Math.abs(o); const isHovered = hovered === i;
               return (
-                <article key={m.n} onClick={() => !isActive && setActive(i)} className={'modes-card flex flex-col overflow-hidden rounded-3xl p-8' + (isActive ? '' : ' hidden md:flex')} style={{
-                  width: isActive ? 340 : 300, maxWidth: '90vw', height: isActive ? 520 : 470, flexShrink: 0,
-                  background: 'linear-gradient(180deg,#10233a 0%,#0b1828 55%,#070f1a 100%)',
-                  border: '1.5px solid ' + (isActive ? 'rgba(255,107,53,0.55)' : 'rgba(255,255,255,0.12)'),
-                  boxShadow: isActive ? '0 28px 56px -16px rgba(0,0,0,0.85), 0 0 0 1px rgba(255,107,53,0.08), 0 16px 44px -12px rgba(255,107,53,0.28), inset 0 1px 0 rgba(255,255,255,0.14)' : '0 16px 32px -12px rgba(0,0,0,0.7)',
-                  cursor: isActive ? 'default' : 'pointer', opacity: isActive ? 1 : 0.75,
-                  filter: isActive ? 'none' : 'brightness(0.9)',
+                <article key={m.n} onClick={() => !isActive && setActive(i)} onMouseEnter={() => setHovered(i)} onMouseLeave={() => setHovered(null)} className="modes-card group absolute flex flex-col overflow-hidden rounded-3xl p-8" style={{
+                  width: 340, maxWidth: '90vw', height: 520,
+                  background: isHovered ? 'linear-gradient(180deg, rgba(255,107,53,0.12) 0%, rgba(7,11,14,0.95) 55%, #070f1a 100%)' : 'linear-gradient(180deg, rgba(7,11,14,0.95) 0%, #070f1a 100%)',
+                  border: '1.5px solid ' + (isHovered ? 'rgba(255,107,53,0.66)' : isActive ? 'rgba(255,107,53,0.55)' : 'rgba(255,255,255,0.12)'),
+                  boxShadow: isHovered ? '0 18px 40px -20px rgba(255,107,53,0.55), 0 28px 56px -16px rgba(0,0,0,0.85), inset 0 1px 0 rgba(255,255,255,0.14)' : isActive ? '0 28px 56px -16px rgba(0,0,0,0.85), 0 16px 44px -12px rgba(255,107,53,0.28), inset 0 1px 0 rgba(255,255,255,0.14)' : '0 16px 32px -12px rgba(0,0,0,0.7)',
+                  cursor: isActive ? 'default' : 'pointer', opacity: abs > 1 ? 0 : isActive ? 1 : 0.85,
+                  filter: isActive ? 'blur(0px)' : 'blur(0.8px) brightness(0.9)',
+                  transform: isActive ? (isHovered ? 'translateZ(220px) scale(1.04)' : 'translateZ(200px) scale(1.02)') : 'translateX(' + o * 360 + 'px) translateZ(' + (isHovered ? -80 : -100) + 'px) scale(' + (isHovered ? 0.85 : 0.82) + ') rotateY(' + o * -24 + 'deg)',
+                  zIndex: isActive ? 20 : 10 - abs, pointerEvents: abs > 1 ? 'none' : 'auto', transformStyle: 'preserve-3d',
                 }}>
                   <div className="flex flex-col items-center text-center">
                     <h3 className="font-['Syne'] text-[34px] font-extrabold leading-none tracking-tight transition-all duration-500" style={isActive ? { color: 'transparent', WebkitTextStroke: '1.8px #ff6b35', textShadow: '0 0 24px rgba(255,107,53,0.25)' } : { color: '#ffffff' }}>{m.title}</h3>
@@ -426,13 +428,13 @@ const ModesSection = () => {
                   </div>
                   <div className="relative flex-1 flex items-center justify-center my-4">
                     <div className="absolute w-[180px] h-[180px] rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(255,107,53,0.16) 0%, transparent 68%)' }} />
-                    <div className="relative transition-transform duration-700" style={{ transform: isActive ? 'scale(1.18)' : 'scale(1)' }}>
+                    <div className="relative transition-transform duration-500" style={{ transform: isHovered ? 'scale(1.28)' : isActive ? 'scale(1.18)' : 'scale(1)' }}>
                       <m.Art active={isActive} />
                     </div>
                   </div>
                   <div className="flex flex-col items-center text-center">
                     <p className="text-[15px] leading-[1.75] text-white/80 max-w-[280px]">{m.desc}</p>
-                    <a href={m.link} className="mt-5 inline-flex items-center gap-2 text-[14px] font-semibold text-[#ff6b35] hover:text-white transition-colors">{m.cta} →</a>
+                    <a href={m.link} className="mt-5 inline-flex items-center gap-2 text-[14px] font-semibold text-[#ff6b35] hover:text-white transition-colors">{m.cta} <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span></a>
                   </div>
                 </article>
               );
