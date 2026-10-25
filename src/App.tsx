@@ -475,6 +475,7 @@ const PartnersSection = () => {
     { name: 'Primary Logo', src: 'https://cdn.prod.website-files.com/6856e1e5780dec13ef3b7493/68f08e79927c526114395142_Primary%20Logo%20-%20Horizontal%20white_00.webp', srcSet: 'https://cdn.prod.website-files.com/6856e1e5780dec13ef3b7493/68f08e79927c526114395142_Primary%20Logo%20-%20Horizontal%20white_00-p-500.png 500w, https://cdn.prod.website-files.com/6856e1e5780dec13ef3b7493/68f08e79927c526114395142_Primary%20Logo%20-%20Horizontal%20white_00.webp 1318w', sizes: '140px', isWhite: true },
     { name: 'MyPlateMaterials', src: 'https://www.myplatematerials.com/cdn/shop/files/happetite-main-logo.png?v=1779783876', srcSet: 'https://www.myplatematerials.com/cdn/shop/files/happetite-main-logo_small.png?v=1779783876 1x, https://www.myplatematerials.com/cdn/shop/files/happetite-main-logo.png?v=1779783876 2x' },
     { name: 'LED ITALY', src: 'https://leditaly.com/wp-content/uploads/2022/03/LedItaly_restyling_DEF-6-1.png.webp', srcSet: 'https://leditaly.com/wp-content/uploads/yootheme/cache/67/LedItaly_restyling_DEF-6-1-67b2cf1c.webp 200w', sizes: '(min-width: 200px) 200px', isWhite: true },
+    { name: 'The Elephant and The Rider', text: 'The Elephant and The Rider' },
   ];
   const LogoItem = () => (
     <>
