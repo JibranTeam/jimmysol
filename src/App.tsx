@@ -622,6 +622,7 @@ const CollaborationBandsSection = () => {
 const ServicesSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+  const [servicePage, setServicePage] = useState(0);
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.from('.service-title', { scrollTrigger: { trigger: sectionRef.current, start: 'top 80%' }, y: 50, opacity: 0, duration: 0.8, ease: 'power3.out' });
@@ -630,6 +631,10 @@ const ServicesSection = () => {
     return () => ctx.revert();
   }, []);
   const services = serviceData.map((s) => ({ icon: s.icon, title: s.title, desc: s.desc, color: s.color, link: '#/services/' + s.slug }));
+  const SERVICES_PER_PAGE = 9;
+  const totalServicePages = Math.ceil(services.length / SERVICES_PER_PAGE);
+  const servicePages = Array.from({ length: totalServicePages }, (_, pg) => services.slice(pg * SERVICES_PER_PAGE, pg * SERVICES_PER_PAGE + SERVICES_PER_PAGE));
+  const goToServicePage = (page: number) => { if (page < 0 || page >= totalServicePages || page === servicePage) return; setHoveredCard(null); setServicePage(page); };
   return (
     <section id="services" ref={sectionRef} className="relative py-32 bg-[#070f1a] overflow-hidden">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -642,15 +647,30 @@ const ServicesSection = () => {
           <h2 className="font-['Syne'] text-4xl md:text-5xl font-bold tracking-tight leading-[1.05] text-white mb-4">Solutions for Every <span className="gradient-text">Digital Need</span></h2>
           <p className="text-white/60 text-lg max-w-2xl mx-auto">From concept to launch, we provide comprehensive web development services that drive results.</p>
         </div>
+        <div className="flex items-center justify-end gap-3 mb-6">
+          <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-white/50">Page {servicePage + 1} of {totalServicePages}</span>
+          <div className="flex items-center gap-2">
+            {Array.from({ length: totalServicePages }).map((_, d) => (
+              <button key={d} type="button" onClick={() => goToServicePage(d)} aria-label={'Go to services page ' + (d + 1)} className="h-[3px] transition-all duration-300" style={{ width: d === servicePage ? 30 : 18, background: d === servicePage ? '#ff6b35' : 'rgba(255,255,255,0.25)' }} />
+            ))}
+          </div>
+          <button type="button" onClick={() => goToServicePage(servicePage - 1)} disabled={servicePage === 0} aria-label="Previous services page" className="grid h-11 w-11 place-items-center rounded-[6px] border border-white/20 text-white transition-all hover:border-white hover:bg-white hover:text-[#05070a] disabled:opacity-40 disabled:hover:border-white/20 disabled:hover:bg-transparent disabled:hover:text-white disabled:cursor-not-allowed"><ChevronLeft className="h-5 w-5" /></button>
+          <button type="button" onClick={() => goToServicePage(servicePage + 1)} disabled={servicePage === totalServicePages - 1} aria-label="Next services page" className="grid h-11 w-11 place-items-center rounded-[6px] border border-white/20 text-white transition-all hover:border-white hover:bg-white hover:text-[#05070a] disabled:opacity-40 disabled:hover:border-white/20 disabled:hover:bg-transparent disabled:hover:text-white disabled:cursor-not-allowed"><ChevronRight className="h-5 w-5" /></button>
+        </div>
+        <div className="overflow-hidden">
+        <div className="flex will-change-transform" style={{ transform: 'translateX(-' + servicePage * 100 + '%)', transition: 'transform 0.65s cubic-bezier(0.22, 1, 0.36, 1)' }}>
+          {servicePages.map((pageServices, pg) => (
+          <div key={pg} className="w-full shrink-0">
         <div className="services-grid grid sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
-          {services.map((service, i) => {
-            const hot = hoveredCard === i;
+          {pageServices.map((service, i) => {
+            const globalIndex = pg * SERVICES_PER_PAGE + i;
+            const hot = hoveredCard === globalIndex;
             return (
               <a
-                key={i}
+                key={globalIndex}
                 href={service.link ?? '#services'}
                 className="service-card relative group block"
-                onMouseEnter={() => setHoveredCard(i)}
+                onMouseEnter={() => setHoveredCard(globalIndex)}
                 onMouseLeave={() => setHoveredCard(null)}
                 onClick={() => { if (service.link) window.location.hash = service.link.replace(/^#/, ''); }}
               >
@@ -702,6 +722,13 @@ const ServicesSection = () => {
               </a>
             );
           })}
+          {Array.from({ length: SERVICES_PER_PAGE - pageServices.length }).map((_, b) => (
+            <div key={'blank-' + pg + '-' + b} aria-hidden="true" className="relative rounded-[6px] border border-dashed border-white/10 bg-[rgba(7,11,14,0.72)] px-5 py-6 sm:px-6 sm:py-7 min-h-[200px]" />
+          ))}
+        </div>
+          </div>
+          ))}
+        </div>
         </div>
       </div>
     </section>
