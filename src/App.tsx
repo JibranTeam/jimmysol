@@ -390,7 +390,7 @@ const ModesSection = () => {
   return (
     <section id="modes" className="relative w-full overflow-hidden bg-[#070f1a] py-24 md:py-32 px-5">
       <div className="absolute inset-0 pointer-events-none z-[1]" style={{ background: 'radial-gradient(circle, rgba(255,107,53,0.10) 0%, transparent 65%)' }} />
-      <div className="relative z-[2] mx-auto w-full max-w-4xl px-4 text-center mb-16 md:mb-20">
+      <div className="relative z-[2] mx-auto w-full max-w-4xl px-4 text-center mb-12 md:mb-14">
         <Words
           aria="Design. Build. Consult. Learn."
           text="Design. Build. Consult. Learn."
@@ -407,19 +407,18 @@ const ModesSection = () => {
       <div className="modes-layout-container">
         <div className="modes-col-left"><h2 className="modes-vertical-heading">MODES</h2></div>
         <div className="modes-col-right">
-          <div tabIndex={0} role="group" aria-label="Modes carousel" onMouseDown={(e) => onDown(e.clientX)} onMouseUp={(e) => onUp(e.clientX)} onTouchStart={(e) => onDown(e.touches[0].clientX)} onTouchEnd={(e) => onUp(e.changedTouches[0].clientX)} onKeyDown={(e) => { if (e.key === 'ArrowLeft') go(-1); if (e.key === 'ArrowRight') go(1); }} className="w-full h-[560px] flex items-center justify-center relative z-10 cursor-grab active:cursor-grabbing select-none outline-none" style={{ perspective: '1250px', transformStyle: 'preserve-3d', touchAction: 'pan-y' }}>
+          <div tabIndex={0} role="group" aria-label="Modes carousel" onMouseDown={(e) => onDown(e.clientX)} onMouseUp={(e) => onUp(e.clientX)} onTouchStart={(e) => onDown(e.touches[0].clientX)} onTouchEnd={(e) => onUp(e.changedTouches[0].clientX)} onKeyDown={(e) => { if (e.key === 'ArrowLeft') go(-1); if (e.key === 'ArrowRight') go(1); }} className="w-full h-[520px] flex items-center justify-center gap-6 relative z-10 cursor-grab active:cursor-grabbing select-none outline-none" style={{ touchAction: 'pan-y' }}>
             {modes.map((m, i) => {
               const o = offsetOf(i); const isActive = o === 0; const abs = Math.abs(o);
+              if (abs > 1) return null;
               return (
-                <article key={m.n} onClick={() => !isActive && setActive(i)} className="modes-card absolute flex flex-col overflow-hidden rounded-3xl p-8" style={{
-                  width: 340, maxWidth: '90vw', height: 520,
+                <article key={m.n} onClick={() => !isActive && setActive(i)} className={'modes-card flex flex-col overflow-hidden rounded-3xl p-8' + (isActive ? '' : ' hidden md:flex')} style={{
+                  width: isActive ? 340 : 300, maxWidth: '90vw', height: isActive ? 520 : 470, flexShrink: 0,
                   background: 'linear-gradient(180deg,#10233a 0%,#0b1828 55%,#070f1a 100%)',
                   border: '1.5px solid ' + (isActive ? 'rgba(255,107,53,0.55)' : 'rgba(255,255,255,0.12)'),
                   boxShadow: isActive ? '0 28px 56px -16px rgba(0,0,0,0.85), 0 0 0 1px rgba(255,107,53,0.08), 0 16px 44px -12px rgba(255,107,53,0.28), inset 0 1px 0 rgba(255,255,255,0.14)' : '0 16px 32px -12px rgba(0,0,0,0.7)',
-                  cursor: isActive ? 'default' : 'pointer', opacity: abs > 1 ? 0 : isActive ? 1 : 0.85,
-                  filter: isActive ? 'blur(0px)' : 'blur(0.8px) brightness(0.9)',
-                  transform: isActive ? 'translateZ(200px) scale(1.02)' : 'translateX(' + o * 360 + 'px) translateZ(-100px) scale(0.82) rotateY(' + o * -24 + 'deg)',
-                  zIndex: isActive ? 20 : 10 - abs, pointerEvents: abs > 1 ? 'none' : 'auto', transformStyle: 'preserve-3d',
+                  cursor: isActive ? 'default' : 'pointer', opacity: isActive ? 1 : 0.75,
+                  filter: isActive ? 'none' : 'brightness(0.9)',
                 }}>
                   <div className="flex flex-col items-center text-center">
                     <h3 className="font-['Syne'] text-[34px] font-extrabold leading-none tracking-tight transition-all duration-500" style={isActive ? { color: 'transparent', WebkitTextStroke: '1.8px #ff6b35', textShadow: '0 0 24px rgba(255,107,53,0.25)' } : { color: '#ffffff' }}>{m.title}</h3>
@@ -439,7 +438,7 @@ const ModesSection = () => {
               );
             })}
           </div>
-          <div className="flex items-center gap-2 mt-4 z-20">
+          <div className="flex items-center gap-2 mt-6 z-20">
             {modes.map((m, i) => (
               <button key={'dot-' + m.n} onClick={() => setActive(i)} aria-label={'Go to ' + m.title} className="h-2 rounded-full transition-all duration-300" style={{ width: i === active ? 26 : 8, background: i === active ? m.color : 'rgba(255,255,255,0.18)' }} />
             ))}

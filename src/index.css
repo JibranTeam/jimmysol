@@ -305,7 +305,7 @@ select option:disabled {
     display: grid;
     grid-template-columns: auto minmax(0, 1fr);
     gap: clamp(1rem, 4vw, 4rem);
-    align-items: center;
+    align-items: start;
     position: relative;
     z-index: 2;
   }
@@ -313,6 +313,8 @@ select option:disabled {
     display: flex;
     align-items: center;
     justify-content: center;
+    align-self: start;
+    height: 520px;
   }
   .modes-vertical-heading {
     writing-mode: vertical-rl;
