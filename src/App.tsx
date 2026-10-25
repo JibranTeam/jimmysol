@@ -415,7 +415,7 @@ const ModesSection = () => {
                 <article key={m.n} onClick={() => !isActive && setActive(i)} onMouseEnter={() => setHovered(i)} onMouseLeave={() => setHovered(null)} className="modes-card group absolute flex flex-col overflow-hidden rounded-3xl p-8" style={{
                   width: 340, maxWidth: '90vw', height: 520,
                   background: isHovered ? 'linear-gradient(180deg, rgba(' + m.rgb + ',0.12) 0%, rgba(7,11,14,0.95) 55%, #070f1a 100%)' : 'linear-gradient(180deg, rgba(7,11,14,0.95) 0%, #070f1a 100%)',
-                  border: '1.5px solid ' + (isHovered ? m.color + 'a8' : 'rgba(255,255,255,0.12)'),
+                  border: '1.5px solid ' + (isHovered ? m.color + 'a8' : 'rgba(255,255,255,0.35)'),
                   boxShadow: isHovered ? '0 18px 40px -20px rgba(' + m.rgb + ',0.55), 0 28px 56px -16px rgba(0,0,0,0.85), inset 0 1px 0 rgba(255,255,255,0.14)' : '0 16px 32px -12px rgba(0,0,0,0.7)',
                   cursor: isActive ? 'default' : 'pointer', opacity: abs > 1 ? 0 : isActive ? 1 : 0.85,
                   filter: isActive ? 'blur(0px)' : 'blur(0.8px) brightness(0.9)',
