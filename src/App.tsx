@@ -381,7 +381,6 @@ const ModesSection = () => {
     { n: '04', title: 'LEARN', subtitle: 'Web Development & Tech Training', desc: 'Learn modern web development through practical projects, expert guidance and real-world workflows.', color: '#ffd166', rgb: '255,209,102', Art: LearnArt, link: '#/services/consultation-training', cta: 'Explore Training' },
   ];
   const [active, setActive] = useState(0);
-  const [hovered, setHovered] = useState<number | null>(null);
   const dragX = useRef<number | null>(null);
   const total = modes.length;
   const go = (dir: number) => setActive((prev) => (prev + dir + total) % total);
@@ -389,8 +388,8 @@ const ModesSection = () => {
   const onDown = (x: number) => { dragX.current = x; };
   const onUp = (x: number) => { if (dragX.current === null) return; const d = x - dragX.current; if (Math.abs(d) > 45) go(d < 0 ? 1 : -1); dragX.current = null; };
   return (
-    <section id="modes" className="relative w-full overflow-hidden bg-[#070f1a] py-24 md:py-32 px-5">
-      <div className="absolute inset-0 pointer-events-none z-[1]" style={{ background: 'radial-gradient(circle, rgba(255,107,53,0.10) 0%, transparent 65%)' }} />
+    <section id="modes" className="relative w-full overflow-hidden bg-[#0a0a0a] py-24 md:py-32 px-5">
+      <div className="absolute inset-0 pointer-events-none z-[1]" style={{ backgroundImage: 'linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px)', backgroundSize: '120px 100%' }} />
       <div className="relative z-[2] mx-auto w-full max-w-4xl px-4 text-center mb-8 md:mb-10">
         <Words
           aria="Design. Build. Consult. Learn."
@@ -410,31 +409,33 @@ const ModesSection = () => {
         <div className="modes-col-right">
           <div tabIndex={0} role="group" aria-label="Modes carousel" onMouseDown={(e) => onDown(e.clientX)} onMouseUp={(e) => onUp(e.clientX)} onTouchStart={(e) => onDown(e.touches[0].clientX)} onTouchEnd={(e) => onUp(e.changedTouches[0].clientX)} onKeyDown={(e) => { if (e.key === 'ArrowLeft') go(-1); if (e.key === 'ArrowRight') go(1); }} className="w-full h-[680px] flex items-center justify-center relative z-10 cursor-grab active:cursor-grabbing select-none outline-none" style={{ perspective: '1250px', transformStyle: 'preserve-3d', touchAction: 'pan-y' }}>
             {modes.map((m, i) => {
-              const o = offsetOf(i); const isActive = o === 0; const abs = Math.abs(o); const isHovered = hovered === i;
+              const o = offsetOf(i); const isActive = o === 0; const abs = Math.abs(o);
               return (
-                <article key={m.n} onClick={() => !isActive && setActive(i)} onMouseEnter={() => setHovered(i)} onMouseLeave={() => setHovered(null)} className="modes-card group absolute flex flex-col overflow-hidden rounded-3xl p-8" style={{
+                <article key={m.n} onClick={() => !isActive && setActive(i)} className="modes-card absolute flex flex-col overflow-hidden rounded-3xl p-8" style={{
                   width: 340, maxWidth: '90vw', height: 520,
-                  background: isHovered ? 'linear-gradient(180deg, rgba(' + m.rgb + ',0.12) 0%, rgba(7,11,14,0.95) 55%, #070f1a 100%)' : 'linear-gradient(180deg, rgba(7,11,14,0.95) 0%, #070f1a 100%)',
-                  border: '1.5px solid ' + (isHovered ? m.color + 'a8' : 'rgba(255,255,255,0.12)'),
-                  boxShadow: isHovered ? '0 18px 40px -20px rgba(' + m.rgb + ',0.55), 0 28px 56px -16px rgba(0,0,0,0.85), inset 0 1px 0 rgba(255,255,255,0.14)' : '0 16px 32px -12px rgba(0,0,0,0.7)',
+                  background: 'linear-gradient(180deg,#161616 0%,#0a0a0a 100%)',
+                  border: '1px solid ' + (isActive ? 'rgba(255,255,255,0.35)' : 'rgba(255,255,255,0.15)'),
+                  boxShadow: isActive ? '0 28px 56px -16px rgba(0,0,0,0.9), inset 0 1px 0 rgba(255,255,255,0.10)' : '0 16px 32px -12px rgba(0,0,0,0.7)',
                   cursor: isActive ? 'default' : 'pointer', opacity: abs > 1 ? 0 : isActive ? 1 : 0.85,
                   filter: isActive ? 'blur(0px)' : 'blur(0.8px) brightness(0.9)',
-                  transform: isActive ? (isHovered ? 'translateZ(220px) scale(1.04)' : 'translateZ(200px) scale(1.02)') : 'translateX(' + o * 360 + 'px) translateZ(' + (isHovered ? -80 : -100) + 'px) scale(' + (isHovered ? 0.85 : 0.82) + ') rotateY(' + o * -24 + 'deg)',
+                  transform: isActive ? 'translateZ(200px) scale(1.02)' : 'translateX(' + o * 360 + 'px) translateZ(-100px) scale(0.82) rotateY(' + o * -24 + 'deg)',
                   zIndex: isActive ? 20 : 10 - abs, pointerEvents: abs > 1 ? 'none' : 'auto', transformStyle: 'preserve-3d',
                 }}>
-                  <div className="flex flex-col items-center text-center">
-                    <h3 className="font-['Syne'] text-[34px] font-extrabold leading-none tracking-tight transition-all duration-500" style={isHovered ? { color: 'transparent', WebkitTextStroke: '1.8px ' + m.color, textShadow: '0 0 24px rgba(' + m.rgb + ',0.25)' } : { color: '#ffffff' }}>{m.title}</h3>
-                    <span className="mt-4 text-[11px] font-semibold tracking-[0.06em] rounded-full px-4 py-1.5" style={isHovered ? { color: m.color, background: 'rgba(' + m.rgb + ',0.12)', border: '1px solid rgba(' + m.rgb + ',0.4)' } : { color: 'rgba(255,255,255,0.70)', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.15)' }}>{m.subtitle}</span>
+                  <div className="absolute inset-0 pointer-events-none z-0" style={{ opacity: isActive ? 0.10 : 0.05 }}>
+                    <HoneycombPattern id={'honeycomb-arena-' + m.title.toLowerCase()} color="#ffffff" />
                   </div>
-                  <div className="relative flex-1 flex items-center justify-center my-4">
-                    <div className="absolute w-[180px] h-[180px] rounded-full pointer-events-none" style={{ background: isHovered ? 'radial-gradient(circle, rgba(' + m.rgb + ',0.16) 0%, transparent 68%)' : 'radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 68%)' }} />
-                    <div className="relative transition-transform duration-500" style={{ transform: isHovered ? 'scale(1.28)' : isActive ? 'scale(1.18)' : 'scale(1)' }}>
-                      <m.Art active={isActive} color={isHovered ? m.color : "#e8e8e8"} />
+                  <span className="absolute top-5 right-6 z-10 font-mono text-[13px] tracking-[0.2em] text-white/50">{m.n}</span>
+                  <div className="relative z-10 flex flex-col items-center text-center">
+                    <h3 className="font-['Syne'] text-[34px] font-extrabold leading-none tracking-tight transition-all duration-500" style={isActive ? { color: 'transparent', WebkitTextStroke: '1.8px #ffffff' } : { color: '#ffffff' }}>{m.title}</h3>
+                    <span className="mt-4 text-[11px] font-semibold tracking-[0.06em] rounded-full px-4 py-1.5" style={{ color: 'rgba(255,255,255,0.75)', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.25)' }}>{m.subtitle}</span>
+                  </div>
+                  <div className="relative z-10 flex-1 flex items-center justify-center my-4">
+                    <div className="relative transition-transform duration-700" style={{ transform: isActive ? 'scale(1.18)' : 'scale(1)' }}>
+                      <m.Art active={isActive} color="#ffffff" />
                     </div>
                   </div>
-                  <div className="flex flex-col items-center text-center">
-                    <p className="text-[15px] leading-[1.75] text-white/80 max-w-[280px]">{m.desc}</p>
-                    <a href={m.link} className="mt-5 inline-flex items-center gap-2 text-[14px] font-semibold hover:text-white transition-colors" style={{ color: isHovered ? m.color : "rgba(255,255,255,0.70)" }}>{m.cta} <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span></a>
+                  <div className="relative z-10 flex flex-col items-center text-center">
+                    <p className="text-[15px] leading-[1.75] text-white/70 max-w-[280px]">{m.desc}</p>
                   </div>
                 </article>
               );
@@ -442,7 +443,7 @@ const ModesSection = () => {
           </div>
           <div className="flex items-center gap-2 mt-4 z-20">
             {modes.map((m, i) => (
-              <button key={'dot-' + m.n} onClick={() => setActive(i)} aria-label={'Go to ' + m.title} className="h-2 rounded-full transition-all duration-300" style={{ width: i === active ? 26 : 8, background: i === active ? m.color : 'rgba(255,255,255,0.18)' }} />
+              <button key={'dash-' + m.n} onClick={() => setActive(i)} aria-label={'Go to ' + m.title} className="h-[3px] rounded-full transition-all duration-300" style={{ width: i === active ? 32 : 16, background: i === active ? '#ffffff' : 'rgba(255,255,255,0.25)' }} />
             ))}
           </div>
           <div className="flex gap-6 mt-6 z-20 justify-center items-center">

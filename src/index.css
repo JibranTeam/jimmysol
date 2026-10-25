@@ -323,10 +323,10 @@ select option:disabled {
     font-size: clamp(3rem, 9vw, 6.5rem);
     letter-spacing: 0.06em;
     color: transparent;
-    -webkit-text-stroke: 2px #ff6b35;
+    -webkit-text-stroke: 2px rgba(255, 255, 255, 0.9);
     text-shadow:
-      4px -4px 0 rgba(255, 107, 53, 0.14),
-      0 0 30px rgba(255, 107, 53, 0.16);
+      4px -4px 0 rgba(255, 255, 255, 0.08),
+      0 0 30px rgba(255, 255, 255, 0.10);
     text-transform: uppercase;
     line-height: 1;
     user-select: none;
@@ -336,10 +336,10 @@ select option:disabled {
       transform 0.45s ease;
   }
   .modes-layout-container:hover .modes-vertical-heading {
-    -webkit-text-stroke-color: #ff8c5a;
+    -webkit-text-stroke-color: #ffffff;
     text-shadow:
-      6px -6px 0 rgba(255, 107, 53, 0.2),
-      0 0 44px rgba(255, 107, 53, 0.3);
+      6px -6px 0 rgba(255, 255, 255, 0.12),
+      0 0 44px rgba(255, 255, 255, 0.18);
     transform: rotate(180deg) translateX(3px);
   }
   @media (max-width: 1024px) {
@@ -405,13 +405,13 @@ select option:disabled {
   .modes-nav-btn {
     width: 46px;
     height: 46px;
-    border-radius: 9999px;
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
     color: #ffffff;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: rgba(255, 255, 255, 0.04);
+    background: transparent;
     transition: all 0.25s ease;
     font-size: 1.1rem;
     cursor: pointer;
