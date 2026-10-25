@@ -43,7 +43,7 @@ export default function JournalPostPage({ post }: { post: JournalPost }) {
             <span>/</span>
             <a href="#journal" className="hover:text-white transition-colors">Journal</a>
             <span>/</span>
-            <span className="font-semibold text-[#ff6b35]">{post.category}</span>
+            <span className="font-semibold text-[#ff6b35]">{post.title}</span>
           </motion.nav>
 
           <motion.div

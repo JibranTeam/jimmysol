@@ -1270,6 +1270,17 @@ const HomePage = () => (
   </div>
 );
 
+function NotFoundPage() {
+  return (
+    <div className="min-h-screen bg-[#070f1a] text-white flex flex-col items-center justify-center px-6 text-center">
+      <p className="font-mono text-sm tracking-widest text-white/40 mb-4">404 — PAGE NOT FOUND</p>
+      <h1 className="text-4xl md:text-6xl font-bold mb-4">This page doesn&apos;t exist.</h1>
+      <p className="text-white/60 max-w-md mb-8">The link you followed may be outdated, or the address may have a typo. The home page and all services are still here.</p>
+      <button onClick={() => navigateTo('/')} className="px-6 py-3 border border-white/35 hover:bg-white hover:text-black transition-colors font-mono text-sm tracking-wider">BACK TO HOME</button>
+    </div>
+  );
+}
+
 function App() {
   const [route, setRoute] = useState<string>(() => normalizePath(window.location.pathname));
   const [showCurtain, setShowCurtain] = useState(false);
@@ -1375,20 +1386,45 @@ function App() {
   const journalMatch = route.match(/^\/journal\/([^/?]+)/);
   const journalPost = journalMatch ? getJournalPostById(journalMatch[1]) : undefined;
   const isTeamPage = /^\/team$/.test(route);
-  // Per-page title + canonical (descriptions per page are a later step).
+  const isNotFound = route !== '/' && !service && !journalPost && !isTeamPage;
+  // Per-page title + canonical + description + structured data.
   useEffect(() => {
-    document.title = service ? service.title + ' | THE JIMMY LAB' : journalPost ? journalPost.title + ' | THE JIMMY LAB' : isTeamPage ? 'Our Team | THE JIMMY LAB' : 'THE JIMMY LAB — Digital Experiences';
+    document.title = service ? service.title + ' | THE JIMMY LAB' : journalPost ? journalPost.title + ' | THE JIMMY LAB' : isTeamPage ? 'Our Team | THE JIMMY LAB' : isNotFound ? 'Page Not Found | THE JIMMY LAB' : 'THE JIMMY LAB — Digital Experiences';
     const canonical = document.querySelector('link[rel="canonical"]');
     if (canonical) canonical.setAttribute('href', 'https://thejimmylab.vercel.app' + (route === '/' ? '/' : route));
-  }, [route, service, journalPost, isTeamPage]);
-  const routeKey = service ? 'service-' + service.slug : journalPost ? 'journal-' + journalPost.id : isTeamPage ? 'team' : 'home';
+    const description = service ? service.tagline : journalPost ? journalPost.excerpt : isTeamPage ? 'Meet the team behind THE JIMMY LAB — six operators covering design, engineering, SEO and automation, based in Islamabad, Pakistan.' : isNotFound ? 'This page does not exist on THE JIMMY LAB.' : 'THE JIMMY LAB — a digital agency crafting immersive websites, web applications and interactive experiences with a signature 2.5D cardboard-style design approach.';
+    const meta = document.querySelector('meta[name="description"]');
+    if (meta) meta.setAttribute('content', description);
+    const oldLd = document.getElementById('page-jsonld');
+    if (oldLd) oldLd.remove();
+    let ld: unknown = null;
+    if (service) {
+      ld = { '@context': 'https://schema.org', '@graph': [
+        { '@type': 'Service', name: service.title, description: service.tagline, url: 'https://thejimmylab.vercel.app/services/' + service.slug, provider: { '@type': 'Organization', name: 'THE JIMMY LAB', url: 'https://thejimmylab.vercel.app/' } },
+        { '@type': 'FAQPage', mainEntity: service.faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+      ] };
+    } else if (journalPost) {
+      const months: Record<string, string> = { January: '01', February: '02', March: '03', April: '04', May: '05', June: '06', July: '07', August: '08', September: '09', October: '10', November: '11', December: '12' };
+      const parts = journalPost.date.replace(',', '').split(' ');
+      const iso = parts.length === 3 && months[parts[0]] ? parts[2] + '-' + months[parts[0]] + '-' + parts[1].padStart(2, '0') : undefined;
+      ld = { '@context': 'https://schema.org', '@type': 'Article', headline: journalPost.title, description: journalPost.excerpt, url: 'https://thejimmylab.vercel.app/journal/' + journalPost.id, author: { '@type': 'Organization', name: 'THE JIMMY LAB', url: 'https://thejimmylab.vercel.app/' }, ...(iso ? { datePublished: iso } : {}) };
+    }
+    if (ld) {
+      const script = document.createElement('script');
+      script.id = 'page-jsonld';
+      script.type = 'application/ld+json';
+      script.text = JSON.stringify(ld);
+      document.head.appendChild(script);
+    }
+  }, [route, service, journalPost, isTeamPage, isNotFound]);
+  const routeKey = service ? 'service-' + service.slug : journalPost ? 'journal-' + journalPost.id : isTeamPage ? 'team' : isNotFound ? 'notfound' : 'home';
   return (
     <>
       <AnimatePresence>{showCurtain && <RouteCurtain key="curtain" />}</AnimatePresence>
       <ComingSoonToast />
       <AnimatePresence mode="wait">
         <PageTransition key={routeKey}>
-          {service ? <ServicePage service={service} /> : journalPost ? <JournalPostPage post={journalPost} /> : isTeamPage ? <TeamPage /> : <HomePage />}
+          {service ? <ServicePage service={service} /> : journalPost ? <JournalPostPage post={journalPost} /> : isTeamPage ? <TeamPage /> : isNotFound ? <NotFoundPage /> : <HomePage />}
         </PageTransition>
       </AnimatePresence>
     </>

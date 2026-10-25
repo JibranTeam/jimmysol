@@ -1,0 +1,39 @@
+# THE JIMMY LAB
+
+THE JIMMY LAB is a digital agency crafting immersive websites, web applications and interactive experiences. Based in Islamabad, Pakistan. Founded in 2013.
+
+## Services
+
+- [Web Development](https://thejimmylab.vercel.app/services/web-development): Fast, secure and scalable web applications built around your business.
+- [UI/UX Design](https://thejimmylab.vercel.app/services/ui-ux-design): Interfaces that feel effortless — designed from research, not guesswork.
+- [Mobile Development](https://thejimmylab.vercel.app/services/mobile-development): Mobile experiences that feel native, ship fast and scale with your users.
+- [E-Commerce](https://thejimmylab.vercel.app/services/e-commerce): Storefronts built to convert — fast, flexible and beautiful at every step.
+- [AI Solutions](https://thejimmylab.vercel.app/services/ai-solutions): Turn your data and workflows into intelligent, automated products.
+- [Web Animation](https://thejimmylab.vercel.app/services/web-animation): Motion that guides, delights and sets your brand apart.
+- [Logo Design & Branding](https://thejimmylab.vercel.app/services/logo-design-branding): A mark people remember, and a brand system that holds up everywhere it lands.
+- [2D/3D Graphic Design](https://thejimmylab.vercel.app/services/graphic-design-2d-3d): Custom 2D illustration and 3D renders — no stock clichés, ever.
+- [1:1 Consultation & Training](https://thejimmylab.vercel.app/services/consultation-training): Senior expertise on tap — unblock your team without hiring for it.
+- [SEO & Website Optimization](https://thejimmylab.vercel.app/services/seo-website-optimization): Get found on Google, load fast everywhere, and turn search traffic into enquiries.
+- [Maintenance & Support](https://thejimmylab.vercel.app/services/maintenance-support): Never worry about updates, downtime or broken pages again.
+- [Integration & Automation](https://thejimmylab.vercel.app/services/integration-automation): Less copy-paste, fewer dropped leads, more time for real work.
+- [Website Redesign & Migration](https://thejimmylab.vercel.app/services/website-redesign-migration): New design, same traffic — a relaunch done properly.
+- [Code Review & Technical Audit](https://thejimmylab.vercel.app/services/code-review-technical-audit): Know exactly where your code stands — before it becomes a problem.
+
+## Journal
+
+- [Modern Scroll-Linked Animation Techniques](https://thejimmylab.vercel.app/journal/scroll-animation-techniques) (Motion): A deep dive into building performant, responsive scroll animations with the vanilla Motion library in Astro.
+- [Why Astro is the Ultimate Framework for Portfolios](https://thejimmylab.vercel.app/journal/astro-for-portfolios) (Engineering): How Astro's island architecture and zero-JS output by default make it the perfect tool for fast creative portfolios.
+- [Core Principles of Functional Motion Design](https://thejimmylab.vercel.app/journal/motion-design-principles) (Motion): Why animation in web design is a functional tool, not just an aesthetic embellishment, and how to apply it.
+- [AI-Assisted Development in 2026: Speed Without Losing Craft](https://thejimmylab.vercel.app/journal/ai-assisted-development-2026) (AI): AI tools now write a large share of first drafts. The craft has moved from typing code to reviewing it, and that changes how a good team works.
+- [Core Web Vitals in 2026: What Actually Moves the Score](https://thejimmylab.vercel.app/journal/core-web-vitals-2026) (Performance): Most sites fail the same few checks for the same few reasons. Here is the short list of fixes that move the score, in order.
+- [Interactive 3D on the Web Without Killing Performance](https://thejimmylab.vercel.app/journal/interactive-3d-without-slowing-down) (Interactive): 3D on a website grabs attention, but it is also the fastest way to drain a phone battery. Here is how to keep the wow and lose the cost.
+
+## Team
+
+- [Our Team](https://thejimmylab.vercel.app/team): Six operators covering design, engineering, SEO and automation.
+
+## Contact
+
+- Email (shown on site): hello@thejimmylab.com
+- Fiverr: https://www.fiverr.com/jimmy3105
+- Website: https://thejimmylab.vercel.app/
