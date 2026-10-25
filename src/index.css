@@ -416,7 +416,7 @@ select option:disabled {
   .modes-nav-btn {
     width: 46px;
     height: 46px;
-    border-radius: 9999px;
+    border-radius: 6px;
     border: 1px solid rgba(255, 255, 255, 0.15);
     color: #ffffff;
     display: inline-flex;
@@ -435,8 +435,9 @@ select option:disabled {
     display: none;
   }
   .modes-nav-btn:hover {
-    background: #ff6b35;
-    border-color: #ff6b35;
+    background: #ffffff;
+    border-color: #ffffff;
+    color: #0a0a0a;
     transform: translateY(-2px);
   }
 }
