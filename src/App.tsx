@@ -662,7 +662,7 @@ const ServicesSection = () => {
         <div className="flex will-change-transform" style={{ transform: 'translateX(-' + servicePage * 100 + '%)', transition: 'transform 0.65s cubic-bezier(0.22, 1, 0.36, 1)' }}>
           {servicePages.map((pageServices, pg) => (
           <div key={pg} className="w-full shrink-0">
-        <div className="services-grid grid sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
+        <div className="services-grid grid sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6 pt-6">
           {pageServices.map((service, i) => {
             const globalIndex = pg * SERVICES_PER_PAGE + i;
             const hot = hoveredCard === globalIndex;
@@ -807,7 +807,7 @@ const OurProcessSection = () => {
             {phases.map((phase, idx) => {
               const isActive = active === idx;
               return (
-                <motion.button key={phase.num} type="button" role="tab" layout id={'approach-tab-' + phase.num} aria-selected={isActive} aria-controls={'approach-panel-' + phase.num} tabIndex={isActive ? 0 : -1} onClick={() => setActive(idx)} whileHover={{ scale: isActive ? 1 : 1.015 }} whileTap={{ scale: 0.98 }} transition={{ layout: { duration: 0.4, ease: [0.22, 1, 0.36, 1] } }} className={cn('flex w-full cursor-pointer items-center gap-4 rounded-2xl border px-5 py-5 text-left sm:px-6 sm:py-6 will-change-transform', isActive ? 'border-transparent bg-white shadow-[0_10px_30px_rgba(255,255,255,0.15)]' : 'border-white/10 bg-white/[0.03] hover:bg-white/[0.06] hover:border-white/20 shadow-[0_8px_20px_rgba(0,0,0,0.25)]')}>
+                <motion.button key={phase.num} type="button" role="tab" layout id={'approach-tab-' + phase.num} aria-selected={isActive} aria-controls={'approach-panel-' + phase.num} tabIndex={isActive ? 0 : -1} onClick={() => setActive(idx)} whileHover={{ scale: isActive ? 1 : 1.015 }} whileTap={{ scale: 0.98 }} transition={{ layout: { duration: 0.4, ease: [0.22, 1, 0.36, 1] } }} className={cn('flex w-full cursor-pointer items-center gap-4 rounded-2xl border px-5 py-5 text-left sm:px-6 sm:py-6 will-change-transform', isActive ? 'border-transparent bg-white shadow-[0_10px_30px_rgba(255,255,255,0.15)]' : 'border-white/10 bg-[#3A373E]/40 backdrop-blur-xl hover:bg-[#3A373E]/60 hover:border-white/20 shadow-[0_8px_20px_rgba(0,0,0,0.25)]')}>
                   <span className={cn('flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-sm font-extrabold transition-colors', isActive ? 'bg-[#05070a] text-white' : 'bg-white/10 text-white border border-white/10')} aria-hidden="true">{phase.num}</span>
                   <span className="min-w-0">
                     <span className={cn('block text-[10px] font-bold uppercase tracking-[0.16em]', isActive ? 'text-[#05070a]/60' : 'text-white/40')}>{phase.label}</span>
@@ -1132,7 +1132,7 @@ const ConnectSection = () => {
   return (
     <section id="connect" className="relative bg-[#0a0a0a] py-24 md:py-28 overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16">
-        <div className="flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-8 rounded-2xl border border-[#22c55e]/30 bg-black/40 backdrop-blur-xl shadow-[0_12px_40px_rgba(0,0,0,0.45)] px-6 py-5 sm:px-8 mb-12">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-8 rounded-2xl border border-[#22c55e]/30 bg-[#3A373E]/40 backdrop-blur-xl shadow-[0_12px_40px_rgba(0,0,0,0.45)] px-6 py-5 sm:px-8 mb-12">
           <div className="min-w-0">
             <p className="font-['Syne'] font-bold text-white text-[20px] leading-tight">THE JIMMY LA<span className="relative inline-block">B<span className="absolute -bottom-2 -right-5 flex w-6 h-6 items-center justify-center"><span className="absolute w-6 h-6 rounded-full bg-[#22c55e]/20 animate-ping"></span><span className="relative w-2.5 h-2.5 rounded-full bg-[#22c55e] shadow-[0_0_10px_rgba(34,197,94,0.6)]"></span></span></span></p>
               <p className="font-mono text-[12px] text-white/60 mt-0.5 whitespace-nowrap"><span className="text-[#22c55e] font-semibold">Online</span> • <AvailabilityClock /></p>
