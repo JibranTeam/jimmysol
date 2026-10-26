@@ -37,7 +37,6 @@ const Navigation = () => {
     { name: 'Work', href: '#portfolio' },
     { name: 'Process', href: '#process' },
     { name: 'Journal', href: '#journal' },
-    { name: 'Contact', href: '#connect' },
   ];
   return (
     <nav className={cn('fixed top-0 left-0 right-0 z-50 transition-all duration-500', scrolled ? 'bg-[#0a1628]/95 backdrop-blur-md py-3 shadow-lg' : 'bg-transparent py-6')}>
