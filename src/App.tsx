@@ -1134,16 +1134,9 @@ const ConnectSection = () => {
     <section id="connect" className="relative bg-[#0a0a0a] py-24 md:py-28 overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16">
         <div className="flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-8 rounded-2xl border border-[#22c55e]/30 bg-black/40 backdrop-blur-xl shadow-[0_12px_40px_rgba(0,0,0,0.45)] px-6 py-5 sm:px-8 mb-12">
-          <div className="flex items-center gap-4 min-w-0">
-            <div className="relative shrink-0">
-              <div className="w-16 h-16 rounded-full bg-[#16a34a] flex items-center justify-center font-['Syne'] font-bold text-white text-[19px]">JL</div>
-              <span className="absolute bottom-0 right-0 w-3.5 h-3.5 rounded-full bg-[#22c55e]/40 animate-ping" />
-              <span className="absolute bottom-0 right-0 w-3.5 h-3.5 rounded-full bg-[#22c55e] border-2 border-[#0a0a0a]" />
-            </div>
-            <div className="min-w-0">
-              <p className="font-['Syne'] font-bold text-white text-[20px] leading-tight">THE JIMMY LAB</p>
+          <div className="min-w-0">
+            <p className="font-['Syne'] font-bold text-white text-[20px] leading-tight flex items-center gap-3"><span className="relative flex w-6 h-6 shrink-0 items-center justify-center"><span className="absolute w-6 h-6 rounded-full bg-[#22c55e]/20 animate-ping"></span><span className="relative w-2.5 h-2.5 rounded-full bg-[#22c55e] shadow-[0_0_10px_rgba(34,197,94,0.6)]"></span></span>THE JIMMY LAB</p>
               <p className="font-mono text-[12px] text-white/60 mt-0.5 whitespace-nowrap"><span className="text-[#22c55e] font-semibold">Online</span> • <AvailabilityClock /></p>
-            </div>
           </div>
           <span className="inline-flex items-center gap-2 rounded-full border border-[#22c55e]/40 bg-[#22c55e]/10 px-4 py-2 font-mono text-[12px] text-[#86efac] sm:ml-auto whitespace-nowrap">⏱ Average response time: 1 hour</span>
           <button type="button" onClick={() => { briefRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' }); briefRef.current?.focus(); }} className="btn-primary shrink-0 sm:w-auto w-full">✈ Contact me</button>
