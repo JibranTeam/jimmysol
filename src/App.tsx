@@ -1133,18 +1133,19 @@ const ConnectSection = () => {
   return (
     <section id="connect" className="relative bg-[#0a0a0a] py-24 md:py-28 overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16">
-        <div className="flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-8 rounded-2xl border border-white/10 bg-[#0e0e0e] px-6 py-5 sm:px-8 mb-12">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-8 rounded-2xl border border-[#ff6b35]/30 bg-[#131f30] shadow-[0_12px_40px_rgba(0,0,0,0.45)] px-6 py-5 sm:px-8 mb-12">
           <div className="flex items-center gap-4 min-w-0">
             <div className="relative shrink-0">
-              <div className="w-12 h-12 rounded-full bg-[#ff6b35] flex items-center justify-center font-['Syne'] font-bold text-white text-[15px]">JL</div>
-              <span className="absolute bottom-0 right-0 w-3.5 h-3.5 rounded-full bg-[#22c55e] border-2 border-[#0e0e0e]" />
+              <div className="w-16 h-16 rounded-full bg-[#ff6b35] flex items-center justify-center font-['Syne'] font-bold text-white text-[19px]">JL</div>
+              <span className="absolute bottom-0 right-0 w-3.5 h-3.5 rounded-full bg-[#22c55e]/40 animate-ping" />
+              <span className="absolute bottom-0 right-0 w-3.5 h-3.5 rounded-full bg-[#22c55e] border-2 border-[#131f30]" />
             </div>
             <div className="min-w-0">
-              <p className="font-['Syne'] font-bold text-white text-[17px] leading-tight">THE JIMMY LAB</p>
+              <p className="font-['Syne'] font-bold text-white text-[20px] leading-tight">THE JIMMY LAB</p>
               <p className="font-mono text-[12px] text-white/60 mt-0.5 whitespace-nowrap"><span className="text-[#22c55e] font-semibold">Online</span> • <AvailabilityClock /></p>
             </div>
           </div>
-          <p className="font-mono text-[12px] text-white/60 sm:ml-auto">Average response time: 1 hour</p>
+          <span className="inline-flex items-center gap-2 rounded-full border border-[#ff6b35]/40 bg-[#ff6b35]/10 px-4 py-2 font-mono text-[12px] text-[#ffb59d] sm:ml-auto whitespace-nowrap">⏱ Average response time: 1 hour</span>
           <button type="button" onClick={() => { briefRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' }); briefRef.current?.focus(); }} className="btn-primary shrink-0 sm:w-auto w-full">✈ Contact me</button>
         </div>
         <div className="grid lg:grid-cols-[minmax(0,0.78fr)_minmax(0,1.22fr)] gap-16 lg:gap-20 items-start">
