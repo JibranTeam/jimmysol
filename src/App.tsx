@@ -985,6 +985,16 @@ const JournalSection = () => {
 };
 
 /* ================= Connect ================= */
+const AvailabilityClock = () => {
+  const formatPkt = () => new Intl.DateTimeFormat('en-US', { timeZone: 'Asia/Karachi', hour: '2-digit', minute: '2-digit', hour12: true }).format(new Date()) + ' PKT';
+  const [time, setTime] = useState(formatPkt);
+  useEffect(() => {
+    const id = window.setInterval(() => setTime(formatPkt()), 30000);
+    return () => window.clearInterval(id);
+  }, []);
+  return <span>{time}</span>;
+};
+
 const ConnectSection = () => {
   const [copied, setCopied] = useState(false);
   const [brief, setBrief] = useState('');
@@ -1123,6 +1133,20 @@ const ConnectSection = () => {
   return (
     <section id="connect" className="relative bg-[#0a0a0a] py-24 md:py-28 overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-8 rounded-2xl border border-white/10 bg-[#0e0e0e] px-6 py-5 sm:px-8 mb-12">
+          <div className="flex items-center gap-4 min-w-0">
+            <div className="relative shrink-0">
+              <div className="w-12 h-12 rounded-full bg-[#ff6b35] flex items-center justify-center font-['Syne'] font-bold text-white text-[15px]">JL</div>
+              <span className="absolute bottom-0 right-0 w-3.5 h-3.5 rounded-full bg-[#22c55e] border-2 border-[#0e0e0e]" />
+            </div>
+            <div className="min-w-0">
+              <p className="font-['Syne'] font-bold text-white text-[17px] leading-tight">THE JIMMY LAB</p>
+              <p className="font-mono text-[12px] text-white/60 mt-0.5 whitespace-nowrap"><span className="text-[#22c55e] font-semibold">Online</span> • <AvailabilityClock /></p>
+            </div>
+          </div>
+          <p className="font-mono text-[12px] text-white/60 sm:ml-auto">Average response time: 1 hour</p>
+          <button type="button" onClick={() => { briefRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' }); briefRef.current?.focus(); }} className="btn-primary shrink-0 sm:w-auto w-full">✈ Contact me</button>
+        </div>
         <div className="grid lg:grid-cols-[minmax(0,0.78fr)_minmax(0,1.22fr)] gap-16 lg:gap-20 items-start">
           <div className="flex flex-col">
             <p className="font-mono text-[11px] font-bold uppercase tracking-[0.28em] text-[#ff6b35] mb-5">Connect</p>
