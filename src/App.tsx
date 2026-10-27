@@ -1135,7 +1135,7 @@ const ConnectSection = () => {
         <div className="inline-flex max-w-full flex-wrap items-center gap-x-7 gap-y-2 rounded-2xl border border-white/20 bg-[#3A373E]/40 backdrop-blur-xl px-5 py-3 mb-10">
             <p className="font-['Syne'] font-bold text-white text-[20px] leading-tight">THE JIMMY LA<span className="relative inline-block">B<span className="absolute -bottom-2 -right-5 flex w-6 h-6 items-center justify-center"><span className="absolute w-6 h-6 rounded-full bg-[#22c55e]/20 animate-ping"></span><span className="relative w-2.5 h-2.5 rounded-full bg-[#22c55e] shadow-[0_0_10px_rgba(34,197,94,0.6)]"></span></span></span></p>
             <p className="font-mono text-[12px] text-white/60 whitespace-nowrap"><span className="text-[#22c55e] font-semibold">Online</span> • <AvailabilityClock /></p>
-          <span className="inline-flex items-center gap-2 rounded-full border border-[#22c55e]/40 bg-[#22c55e]/10 px-4 py-2 font-mono text-[12px] text-[#86efac] whitespace-nowrap">⏱ Average response time: 1 hour</span>
+          <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-[#3A373E] px-4 py-2 font-mono text-[12px] text-white whitespace-nowrap">⏱ Average response time: 1 hour</span>
         </div>
         <div className="grid lg:grid-cols-[minmax(0,0.78fr)_minmax(0,1.22fr)] gap-16 lg:gap-20 items-start">
           <div className="flex flex-col">
