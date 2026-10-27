@@ -34,7 +34,7 @@ export default function ComingSoonToast() {
 
   return (
     <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[100] pointer-events-none">
-      <div className="bg-[#0a1628] border border-white/25 text-white text-sm font-semibold px-5 py-3 rounded-full shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
+      <div className="bg-[#3A373E] border border-white/25 text-white text-sm font-semibold px-5 py-3 rounded-full shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
         {message}
       </div>
     </div>

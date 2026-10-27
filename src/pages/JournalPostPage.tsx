@@ -66,7 +66,7 @@ export default function JournalPostPage({ post }: { post: JournalPost }) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.1 }}
-            className="relative overflow-hidden rounded-2xl aspect-[16/9] mb-12 bg-[#0a1628] border border-white/[0.06]"
+            className="relative overflow-hidden rounded-2xl aspect-[16/9] mb-12 bg-[#3A373E] border border-white/[0.06]"
           >
             <img src={post.image} alt={post.title} className="object-cover w-full h-full" />
           </motion.div>
@@ -97,14 +97,14 @@ export default function JournalPostPage({ post }: { post: JournalPost }) {
         </div>
       </section>
 
-      <section className="relative py-16 md:py-20 border-t border-white/5 bg-[#0a1628]">
+      <section className="relative py-16 md:py-20 border-t border-white/5 bg-[#3A373E]">
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="font-['Syne'] text-2xl md:text-3xl font-bold text-white mb-8">More from the Journal</h2>
           <div className="grid md:grid-cols-3 gap-6">
             {others.map((other) => (
               <article key={other.id} className="group flex flex-col justify-between bg-[#070f1a] rounded-2xl p-5 border border-white/10 hover:border-[#ff6b35]/30 transition-all duration-500">
                 <div>
-                  <div className="relative overflow-hidden rounded-xl aspect-[16/10] mb-5 bg-[#0a1628] border border-white/[0.06]">
+                  <div className="relative overflow-hidden rounded-xl aspect-[16/10] mb-5 bg-[#3A373E] border border-white/[0.06]">
                     <img src={other.image} alt={other.title} className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105" loading="lazy" />
                   </div>
                   <div className="flex items-center gap-2 mb-4 text-[11px] font-mono">

@@ -572,19 +572,19 @@ select option:disabled {
 .to-\[\#b88a5e\] {
   --tw-gradient-to: #0d1116 !important;
 }
-.text-\[\#0a1628\] {
+.text-\[\#3A373E\] {
   color: #e9edf2 !important;
 }
-.bg-\[\#0a1628\]\/10 {
+.bg-\[\#3A373E\]\/10 {
   background-color: rgba(255, 255, 255, 0.07) !important;
 }
-.text-\[\#0a1628\]\/70 {
+.text-\[\#3A373E\]\/70 {
   color: rgba(233, 237, 242, 0.62) !important;
 }
 
 /* section canvases → near-black so the backdrop reads through */
 section.bg-\[\#070f1a\],
-section.bg-\[\#0a1628\],
+section.bg-\[\#3A373E\],
 section.bg-\[\#0a0a0a\],
 footer.bg-\[\#070f1a\] {
   background-color: transparent !important;

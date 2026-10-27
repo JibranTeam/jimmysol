@@ -104,7 +104,7 @@ export default function TeamPage() {
                 transition={{ duration: 0.5, delay: 0.06 * i }}
                 className="bg-[#070f1a] p-5 h-full group relative overflow-hidden border-2 border-white/15 rounded-2xl hover:border-[#ff6b35] hover:bg-[#0f1c2e] transition-all duration-300 flex flex-col shadow-[0_10px_30px_rgba(0,0,0,0.4)]"
               >
-                <div className="relative aspect-square w-full mb-5 overflow-hidden rounded-xl border border-white/20 bg-[#0a1628] flex items-center justify-center">
+                <div className="relative aspect-square w-full mb-5 overflow-hidden rounded-xl border border-white/20 bg-[#3A373E] flex items-center justify-center">
                   <div className={cn('absolute inset-0 bg-gradient-to-br opacity-20', member.color)} />
                   <AvatarIcon variant={avatarVariants[member.n]} className="relative z-[1] w-[78%] h-[78%] drop-shadow-[0_10px_20px_rgba(0,0,0,0.45)] group-hover:scale-[1.04] transition-transform duration-500" />
                   <span className="absolute top-3 left-3 z-10 font-mono text-[10px] text-white font-bold tracking-[0.2em] uppercase bg-[#ff6b35] px-2.5 py-1 rounded-full shadow-md">// {member.n}</span>
@@ -140,7 +140,7 @@ export default function TeamPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-60px' }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="rounded-2xl border border-white/10 bg-[#0a1628] p-7 hover:border-[#ff6b35]/40 hover:-translate-y-1 transition-all duration-300"
+                className="rounded-2xl border border-white/10 bg-[#3A373E] p-7 hover:border-[#ff6b35]/40 hover:-translate-y-1 transition-all duration-300"
               >
                 <div className="w-12 h-12 rounded-xl bg-[#ff6b35]/15 flex items-center justify-center mb-5">
                   <p.icon className="w-6 h-6 text-[#ff6b35]" />
