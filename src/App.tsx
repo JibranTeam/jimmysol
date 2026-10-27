@@ -1132,12 +1132,10 @@ const ConnectSection = () => {
   return (
     <section id="connect" className="relative bg-[#0a0a0a] py-24 md:py-28 overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16">
-        <div className="flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-8 rounded-2xl border border-white/20 bg-[#3A373E]/40 backdrop-blur-xl shadow-[0_12px_40px_rgba(0,0,0,0.45)] px-6 py-5 sm:px-8 mb-12">
-          <div className="min-w-0">
+        <div className="inline-flex max-w-full flex-wrap items-center gap-x-7 gap-y-2 rounded-2xl border border-white/20 bg-[#3A373E]/40 backdrop-blur-xl px-5 py-3 mb-10">
             <p className="font-['Syne'] font-bold text-white text-[20px] leading-tight">THE JIMMY LA<span className="relative inline-block">B<span className="absolute -bottom-2 -right-5 flex w-6 h-6 items-center justify-center"><span className="absolute w-6 h-6 rounded-full bg-[#22c55e]/20 animate-ping"></span><span className="relative w-2.5 h-2.5 rounded-full bg-[#22c55e] shadow-[0_0_10px_rgba(34,197,94,0.6)]"></span></span></span></p>
-              <p className="font-mono text-[12px] text-white/60 mt-0.5 whitespace-nowrap"><span className="text-[#22c55e] font-semibold">Online</span> • <AvailabilityClock /></p>
-          </div>
-          <span className="inline-flex items-center gap-2 rounded-full border border-[#22c55e]/40 bg-[#22c55e]/10 px-4 py-2 font-mono text-[12px] text-[#86efac] sm:ml-auto whitespace-nowrap">⏱ Average response time: 1 hour</span>
+            <p className="font-mono text-[12px] text-white/60 whitespace-nowrap"><span className="text-[#22c55e] font-semibold">Online</span> • <AvailabilityClock /></p>
+          <span className="inline-flex items-center gap-2 rounded-full border border-[#22c55e]/40 bg-[#22c55e]/10 px-4 py-2 font-mono text-[12px] text-[#86efac] whitespace-nowrap">⏱ Average response time: 1 hour</span>
         </div>
         <div className="grid lg:grid-cols-[minmax(0,0.78fr)_minmax(0,1.22fr)] gap-16 lg:gap-20 items-start">
           <div className="flex flex-col">
