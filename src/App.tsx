@@ -39,7 +39,7 @@ const Navigation = () => {
     { name: 'Journal', href: '#journal' },
   ];
   return (
-    <nav className={cn('fixed top-0 left-0 right-0 z-50 transition-all duration-500', scrolled ? 'bg-[#3A373E]/95 backdrop-blur-md py-3 shadow-lg' : 'bg-transparent py-6')}>
+    <nav className={cn('fixed top-0 left-0 right-0 z-50 transition-all duration-500', scrolled ? 'bg-[#3A373E]/40 backdrop-blur-xl py-3 shadow-lg' : 'bg-transparent py-6')}>
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         <a href="#top" className="flex items-center gap-3 group">
           <svg viewBox="0 0 40 36" className="w-8 h-8 shrink-0" fill="none" aria-hidden="true">
