@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -7,14 +7,15 @@ import {
   Shield, ChevronDown, ChevronLeft, ChevronRight, Quote, Copy
 } from 'lucide-react';
 import { cn } from './utils/cn';
+import { unsplashSrcSet } from './utils/images';
 import { goToConnect } from './utils/goToConnect';
 import { navigateTo, navigateHomeToSection, normalizePath, scrollToSectionWithRetry } from './utils/navigation';
-import ServicePage from './pages/ServicePage';
-import JournalPostPage from './pages/JournalPostPage';
+const ServicePage = lazy(() => import('./pages/ServicePage'));
+const JournalPostPage = lazy(() => import('./pages/JournalPostPage'));
 import ComingSoonToast from './components/ComingSoonToast';
 import { JOURNAL_POSTS, getJournalPostById } from './data/journal';
-import TeamPage from './pages/TeamPage';
-import ComingSoonPage from './pages/ComingSoonPage';
+const TeamPage = lazy(() => import('./pages/TeamPage'));
+const ComingSoonPage = lazy(() => import('./pages/ComingSoonPage'));
 import { PageTransition, RouteCurtain } from './components/PageTransition';
 import { CornerTicks } from './components/CornerTicks';
 import { services as serviceData, getServiceBySlug } from './data/services';
@@ -762,7 +763,7 @@ const PortfolioSection = () => {
           ].map((p) => (
             <div key={p.title} onClick={() => navigateTo('/coming-soon')} className="portfolio-card group relative bg-[#0f1c2e] rounded-2xl overflow-hidden cursor-pointer shadow-[0_12px_40px_rgba(0,0,0,0.45)] border border-white/5 flex flex-col">
               <div className="relative h-[260px] overflow-hidden shrink-0">
-                <img alt={p.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src={p.img} loading="lazy" />
+                <img alt={p.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src={p.img} srcSet={unsplashSrcSet(p.img)} sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" loading="lazy" decoding="async" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0f1c2e] via-[#0f1c2e]/10 to-transparent"></div>
               </div>
               <div className="p-6 flex flex-col flex-1 bg-[#0f1c2e]">
@@ -1442,7 +1443,7 @@ function App() {
       <ComingSoonToast />
       <AnimatePresence mode="wait">
         <PageTransition key={routeKey}>
-          {service ? <ServicePage service={service} /> : journalPost ? <JournalPostPage post={journalPost} /> : isTeamPage ? <TeamPage /> : isComingSoonPage ? <ComingSoonPage /> : isNotFound ? <NotFoundPage /> : <HomePage />}
+          {service ? <Suspense fallback={<div className="min-h-screen bg-[#05070a]" />}><ServicePage service={service} /></Suspense> : journalPost ? <Suspense fallback={<div className="min-h-screen bg-[#05070a]" />}><JournalPostPage post={journalPost} /></Suspense> : isTeamPage ? <Suspense fallback={<div className="min-h-screen bg-[#05070a]" />}><TeamPage /></Suspense> : isComingSoonPage ? <Suspense fallback={<div className="min-h-screen bg-[#05070a]" />}><ComingSoonPage /></Suspense> : isNotFound ? <NotFoundPage /> : <HomePage />}
         </PageTransition>
       </AnimatePresence>
     </>

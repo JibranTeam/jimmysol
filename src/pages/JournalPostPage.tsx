@@ -1,3 +1,4 @@
+import { unsplashSrcSet } from '../utils/images';
 import { motion } from 'framer-motion';
 import { ArrowLeft, ArrowRight, Code2 } from 'lucide-react';
 import { JOURNAL_POSTS, type JournalPost } from '../data/journal';
@@ -68,7 +69,7 @@ export default function JournalPostPage({ post }: { post: JournalPost }) {
             transition={{ duration: 0.55, delay: 0.1 }}
             className="relative overflow-hidden rounded-2xl aspect-[16/9] mb-12 bg-[#3A373E] border border-white/[0.06]"
           >
-            <img src={post.image} alt={post.title} className="object-cover w-full h-full" />
+            <img src={post.image} srcSet={unsplashSrcSet(post.image)} sizes="(max-width: 768px) 100vw, 896px" fetchPriority="high" alt={post.title} className="object-cover w-full h-full" />
           </motion.div>
 
           <div className="space-y-10">
@@ -105,7 +106,7 @@ export default function JournalPostPage({ post }: { post: JournalPost }) {
               <article key={other.id} className="group flex flex-col justify-between bg-[#070f1a] rounded-2xl p-5 border border-white/10 hover:border-[#ff6b35]/30 transition-all duration-500">
                 <div>
                   <div className="relative overflow-hidden rounded-xl aspect-[16/10] mb-5 bg-[#3A373E] border border-white/[0.06]">
-                    <img src={other.image} alt={other.title} className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+                    <img src={other.image} srcSet={unsplashSrcSet(other.image)} sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" alt={other.title} className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105" loading="lazy" decoding="async" />
                   </div>
                   <div className="flex items-center gap-2 mb-4 text-[11px] font-mono">
                     <span className="text-[9px] uppercase tracking-wider text-[#ff6b35] border border-[#ff6b35]/25 bg-[#ff6b35]/10 px-2 py-0.5 rounded-md">{other.category}</span>
