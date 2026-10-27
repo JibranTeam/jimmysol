@@ -128,7 +128,7 @@ export default function ServicePage({ service }: { service: Service }) {
         </div>
       </section>
 
-      <section className="relative py-20 bg-[#0a1628]/60 border-y border-white/5">
+      <section className="relative py-20 bg-[#3A373E]/60 border-y border-white/5">
         <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] gap-14">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -162,7 +162,7 @@ export default function ServicePage({ service }: { service: Service }) {
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.55, delay: 0.1 }}
           >
-            <div className="rounded-2xl p-7 border border-white/10 bg-[#0a1628] shadow-[10px_10px_0_rgba(0,0,0,0.3)]">
+            <div className="rounded-2xl p-7 border border-white/10 bg-[#3A373E] shadow-[10px_10px_0_rgba(0,0,0,0.3)]">
               <h3 className="font-['Syne'] text-xl font-bold text-white mb-5">What you get</h3>
               <ul className="space-y-3.5">
                 {service.deliverables.map((d) => (
@@ -199,7 +199,7 @@ export default function ServicePage({ service }: { service: Service }) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.5, delay: i * 0.06 }}
-                className="group rounded-2xl p-7 border border-white/10 bg-[#0a1628] hover:border-white/20 transition-all duration-300 hover:-translate-y-1"
+                className="group rounded-2xl p-7 border border-white/10 bg-[#3A373E] hover:border-white/20 transition-all duration-300 hover:-translate-y-1"
               >
                 <div className="w-11 h-11 rounded-xl flex items-center justify-center mb-5 transition-transform group-hover:scale-110" style={{ backgroundColor: `${service.color}1f` }}>
                   <service.icon className="w-5 h-5" style={{ color: service.color }} />
@@ -212,7 +212,7 @@ export default function ServicePage({ service }: { service: Service }) {
         </div>
       </section>
 
-      <section id="faq" className="relative py-20 bg-[#0a1628]/60 border-t border-white/5">
+      <section id="faq" className="relative py-20 bg-[#3A373E]/60 border-t border-white/5">
         <div className="max-w-3xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -268,7 +268,7 @@ export default function ServicePage({ service }: { service: Service }) {
               <a
                 key={s.slug}
                 href={`/services/${s.slug}`}
-                className="group rounded-2xl p-6 border border-white/10 bg-[#0a1628] hover:-translate-y-1 transition-all duration-300"
+                className="group rounded-2xl p-6 border border-white/10 bg-[#3A373E] hover:-translate-y-1 transition-all duration-300"
               >
                 <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style={{ backgroundColor: `${s.color}1f` }}>
                   <s.icon className="w-6 h-6" style={{ color: s.color }} />
