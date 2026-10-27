@@ -915,7 +915,7 @@ const FAQSection = () => {
         </div>
         <div className="space-y-4">
           {faqs.map((faq, i) => (
-            <div key={i} className="rounded-xl border border-white/10 bg-[#111d30] shadow-[8px_8px_0_rgba(0,0,0,0.25)] overflow-hidden">
+            <div key={i} className="rounded-xl border border-white/10 bg-[#3A373E]/40 backdrop-blur-xl shadow-[8px_8px_0_rgba(0,0,0,0.25)] overflow-hidden">
               <button type="button" onClick={() => setOpenIndex(openIndex === i ? null : i)} className="w-full flex items-center justify-between gap-4 p-6 text-left transition-colors hover:bg-white/[0.02]">
                 <span className="font-['Syne'] text-lg font-semibold text-white pr-4">{faq.question}</span>
                 <ChevronDown className={cn('w-6 h-6 text-[#ff6b35] transition-transform duration-300 shrink-0', openIndex === i && 'rotate-180')} />
