@@ -807,17 +807,17 @@ const OurProcessSection = () => {
             {phases.map((phase, idx) => {
               const isActive = active === idx;
               return (
-                <motion.button key={phase.num} type="button" role="tab" layout id={'approach-tab-' + phase.num} aria-selected={isActive} aria-controls={'approach-panel-' + phase.num} tabIndex={isActive ? 0 : -1} onClick={() => setActive(idx)} whileHover={{ scale: isActive ? 1 : 1.015 }} whileTap={{ scale: 0.98 }} transition={{ layout: { duration: 0.4, ease: [0.22, 1, 0.36, 1] } }} className={cn('flex w-full cursor-pointer items-center gap-4 rounded-2xl border px-5 py-5 text-left sm:px-6 sm:py-6 will-change-transform', isActive ? 'border-transparent bg-white shadow-[0_10px_30px_rgba(255,255,255,0.15)]' : 'border-white/10 bg-[#3A373E]/40 backdrop-blur-xl hover:bg-[#3A373E]/60 hover:border-white/20 shadow-[0_8px_20px_rgba(0,0,0,0.25)]')}>
-                  <span className={cn('flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-sm font-extrabold transition-colors', isActive ? 'bg-[#05070a] text-white' : 'bg-white/10 text-white border border-white/10')} aria-hidden="true">{phase.num}</span>
+                <motion.button key={phase.num} type="button" role="tab" layout id={'approach-tab-' + phase.num} aria-selected={isActive} aria-controls={'approach-panel-' + phase.num} tabIndex={isActive ? 0 : -1} onClick={() => setActive(idx)} whileHover={{ scale: isActive ? 1 : 1.015 }} whileTap={{ scale: 0.98 }} transition={{ layout: { duration: 0.4, ease: [0.22, 1, 0.36, 1] } }} className={cn('flex w-full cursor-pointer items-center gap-4 rounded-2xl border px-5 py-5 text-left sm:px-6 sm:py-6 will-change-transform', isActive ? 'bg-white/[0.06] border-[#ff6b35]/30 shadow-[0_8px_32px_rgba(0,0,0,0.3)]' : 'glass hover:bg-white/[0.05] hover:border-white/10')}>
+                  <span className={cn('flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-sm font-extrabold transition-colors', 'bg-white/10 text-white border border-white/10')} aria-hidden="true">{phase.num}</span>
                   <span className="min-w-0">
-                    <span className={cn('block text-[10px] font-bold uppercase tracking-[0.16em]', isActive ? 'text-[#05070a]/60' : 'text-white/40')}>{phase.label}</span>
-                    <span className={cn('mt-0.5 block text-xl font-extrabold tracking-[-0.02em] sm:text-[1.35rem]', isActive ? 'text-[#05070a]' : 'text-white')}>{phase.name}</span>
+                    <span className={cn('block text-[10px] font-bold uppercase tracking-[0.16em]', isActive ? 'text-white/60' : 'text-white/40')}>{phase.label}</span>
+                    <span className={cn('mt-0.5 block text-xl font-extrabold tracking-[-0.02em] sm:text-[1.35rem]', 'text-white')}>{phase.name}</span>
                   </span>
                 </motion.button>
               );
             })}
           </div>
-          <div className="relative flex min-h-[320px] flex-col overflow-hidden rounded-2xl bg-[#3A373E]/40 backdrop-blur-xl shadow-[12px_12px_0_rgba(0,0,0,0.3)] px-6 py-8 sm:min-h-[360px] sm:px-8 sm:py-10 lg:min-h-[400px] lg:px-10 lg:py-11 border border-white/5">
+          <div className="relative flex min-h-[320px] flex-col overflow-hidden rounded-3xl glass shadow-[0_8px_32px_rgba(0,0,0,0.3)] px-6 py-8 sm:min-h-[360px] sm:px-8 sm:py-10 lg:min-h-[400px] lg:px-10 lg:py-11">
             <AnimatePresence mode="wait" initial={false}>
               <motion.div key={active} role="tabpanel" id={'approach-panel-' + current.num} initial={{ opacity: 0, y: 10, filter: 'blur(4px)' }} animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }} exit={{ opacity: 0, y: -8, filter: 'blur(4px)' }} transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }} className="flex flex-1 flex-col will-change-transform">
                 <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-white/50">{current.label} · {current.num}</p>
