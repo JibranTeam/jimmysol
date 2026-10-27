@@ -817,7 +817,7 @@ const OurProcessSection = () => {
               );
             })}
           </div>
-          <div className="relative flex min-h-[320px] flex-col overflow-hidden rounded-2xl bg-gradient-to-br from-[#12233b] to-[#0f1c2e] shadow-[12px_12px_0_rgba(0,0,0,0.3)] px-6 py-8 sm:min-h-[360px] sm:px-8 sm:py-10 lg:min-h-[400px] lg:px-10 lg:py-11 border border-white/5">
+          <div className="relative flex min-h-[320px] flex-col overflow-hidden rounded-2xl bg-[#3A373E]/40 backdrop-blur-xl shadow-[12px_12px_0_rgba(0,0,0,0.3)] px-6 py-8 sm:min-h-[360px] sm:px-8 sm:py-10 lg:min-h-[400px] lg:px-10 lg:py-11 border border-white/5">
             <AnimatePresence mode="wait" initial={false}>
               <motion.div key={active} role="tabpanel" id={'approach-panel-' + current.num} initial={{ opacity: 0, y: 10, filter: 'blur(4px)' }} animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }} exit={{ opacity: 0, y: -8, filter: 'blur(4px)' }} transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }} className="flex flex-1 flex-col will-change-transform">
                 <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-white/50">{current.label} · {current.num}</p>
