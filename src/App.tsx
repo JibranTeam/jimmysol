@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import { cn } from './utils/cn';
 import { goToConnect } from './utils/goToConnect';
+import { Analytics } from '@vercel/analytics/react';
 import { navigateTo, navigateHomeToSection, normalizePath, scrollToSectionWithRetry } from './utils/navigation';
 import ServicePage from './pages/ServicePage';
 import JournalPostPage from './pages/JournalPostPage';
@@ -1435,11 +1436,32 @@ function App() {
       document.head.appendChild(script);
     }
   }, [route, service, journalPost, isTeamPage, isComingSoonPage, isNotFound]);
+  // GA4 (optional): set VITE_GA_MEASUREMENT_ID in Vercel env vars to activate.
+  // No tracking code ships at all until that ID is set.
+  useEffect(() => {
+    const id = (import.meta as any).env?.VITE_GA_MEASUREMENT_ID as string | undefined;
+    if (!id || document.querySelector('script[src*="googletagmanager.com/gtag/js"]')) return;
+    const s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + id;
+    document.head.appendChild(s);
+    const w = window as any;
+    w.dataLayer = w.dataLayer || [];
+    w.gtag = function () { w.dataLayer.push(arguments); };
+    w.gtag('js', new Date());
+    w.gtag('config', id, { send_page_view: false });
+  }, []);
+  useEffect(() => {
+    const g = (window as any).gtag;
+    if (g) g('event', 'page_view', { page_path: route });
+  }, [route]);
+
   const routeKey = service ? 'service-' + service.slug : journalPost ? 'journal-' + journalPost.id : isTeamPage ? 'team' : isComingSoonPage ? 'comingsoon' : isNotFound ? 'notfound' : 'home';
   return (
     <>
       <AnimatePresence>{showCurtain && <RouteCurtain key="curtain" />}</AnimatePresence>
       <ComingSoonToast />
+      <Analytics />
       <AnimatePresence mode="wait">
         <PageTransition key={routeKey}>
           {service ? <ServicePage service={service} /> : journalPost ? <JournalPostPage post={journalPost} /> : isTeamPage ? <TeamPage /> : isComingSoonPage ? <ComingSoonPage /> : isNotFound ? <NotFoundPage /> : <HomePage />}
