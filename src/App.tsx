@@ -220,7 +220,7 @@ const HeroSection = () => {
           <span className="display-heavy block text-[clamp(2.9rem,10.4vw,9.6rem)]">Experiences.</span>
         </h1>
         <p className="hero-subtitle font-mono text-[12px] sm:text-[13.5px] leading-[1.85] tracking-[0.11em] uppercase text-white/55 max-w-[46ch] mb-12">
-          Digital experience core. We design, build and optimise the
+          Digital experience core. We design, build and optimize the
           <br className="hidden sm:block" /> interfaces and systems that move brands forward.
         </p>
         <div className="hero-cta flex flex-col lg:flex-row lg:items-end gap-8 lg:gap-10">
@@ -536,7 +536,7 @@ const AboutSection = () => {
             <div className="inline-block px-4 sm:px-6 py-1.5 rounded-full border border-white/30 text-xs sm:text-sm font-semibold text-white mb-4 sm:mb-6 tracking-widest uppercase backdrop-blur-sm bg-white/5">About Us</div>
             <h2 className="font-['Syne'] text-4xl md:text-5xl font-bold tracking-tight leading-[1.05] text-white mb-6">We're a Team of <span className="gradient-text">Digital Craftsmen</span></h2>
             <p className="text-white/70 text-base leading-relaxed mb-4">Founded in 2013, THE JIMMY LAB is a digital agency specializing in web development, web design, interactive experiences, animation, and custom digital solutions.</p>
-            <p className="text-white/70 text-base leading-relaxed mb-4">We help businesses, startups, entrepreneurs, and brands worldwide turn ideas into modern digital experiences that combine creative design, advanced technology, performance, and usability.</p>
+            <p className="text-white/70 text-base leading-relaxed mb-4">We help businesses, startups, entrepreneurs, and brands in the USA, UK, Europe and the Gulf turn ideas into modern digital experiences that combine creative design, advanced technology, performance, and usability.</p>
             <p className="text-white/70 text-base leading-relaxed mb-4">Our expertise spans custom website development, full-stack web applications, interactive websites, 2D and 3D animation, product configurators, SaaS platforms, and AI-powered web solutions. Every project is designed around the client's goals, audience, and business requirements.</p>
             <p className="text-white/70 text-base leading-relaxed mb-8">With a focus on creative innovation and technical excellence, we create digital products that look exceptional, work seamlessly, and provide a strong foundation for business growth.</p>
             <a href="/team" className="group flex items-center gap-4 self-start -ml-3 pl-3 pr-5 py-3 rounded-2xl border border-transparent transition-all duration-300 hover:border-[#ff6b35]/40 hover:bg-[#ff6b35]/[0.06]">
@@ -647,7 +647,7 @@ const ServicesSection = () => {
         <div className="service-title text-center mb-16">
           <div className="inline-block px-4 sm:px-6 py-1.5 rounded-full border border-white/30 text-xs sm:text-sm font-semibold text-white mb-4 sm:mb-6 tracking-widest uppercase backdrop-blur-sm bg-white/5">Our Services</div>
           <h2 className="font-['Syne'] text-4xl md:text-5xl font-bold tracking-tight leading-[1.05] text-white mb-4">Solutions for Every <span className="gradient-text">Digital Need</span></h2>
-          <p className="text-white/60 text-lg max-w-2xl mx-auto">From concept to launch, we provide comprehensive web development services that drive results.</p>
+          <p className="text-white/60 text-lg max-w-2xl mx-auto">From concept to launch, we provide web development, design, mobile app, e-commerce and SEO services for businesses in the USA, UK, Europe and the Gulf — that drive results.</p>
         </div>
         <div className="flex items-center justify-end gap-3 mb-6">
           <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-white/50">Page {servicePage + 1} of {totalServicePages}</span>
@@ -1142,7 +1142,7 @@ const ConnectSection = () => {
           <div className="flex flex-col">
             <p className="font-mono text-[11px] font-bold uppercase tracking-[0.28em] text-[#ff6b35] mb-5">Connect</p>
             <h2 className="font-['Syne'] font-bold text-white leading-[0.98] tracking-tight text-[clamp(3rem,5.5vw,4.75rem)]">Let's start<br />something<br /><span className="gradient-text block">remarkable.</span></h2>
-            <p className="text-white/45 text-[15px] leading-[1.7] mt-7 max-w-[400px]">Have an idea or a project that needs a motion-first digital experience? Send us an email or use the form.</p>
+            <p className="text-white/45 text-[15px] leading-[1.7] mt-7 max-w-[400px]">Have an idea or a project? Hire our web development team — we work with clients in the USA, UK, Europe and the Gulf. Send us an email or use the form.</p>
             <div className="mt-7 self-start inline-flex items-center gap-2.5 rounded-full border border-[#ff6b35]/30 bg-[#ff6b35]/[0.07] px-4 py-2">
               <span className="w-1.5 h-1.5 rounded-full bg-[#ff6b35] animate-pulse shrink-0" />
               <span className="font-mono text-[12px] text-[#ff6b35] tracking-tight whitespace-nowrap">Accepting projects</span>
@@ -1165,7 +1165,7 @@ const ConnectSection = () => {
               <div className="absolute right-6 top-6 flex items-center justify-center"><span className="absolute w-6 h-6 rounded-full bg-[#ff6b35]/20 animate-ping"></span><span className="relative w-2.5 h-2.5 rounded-full bg-[#ff6b35] shadow-[0_0_10px_rgba(255,107,53,0.6)]"></span></div>
               <span className="text-[9px] font-mono uppercase tracking-[0.25em] text-white/40 block mb-2">Office Location</span>
               <h3 className="text-lg font-['Syne'] font-bold text-white mb-2">Islamabad, Pakistan</h3>
-              <p className="text-xs text-white/70 leading-relaxed font-light">Working globally with modern asynchronous processes.</p>
+              <p className="text-xs text-white/70 leading-relaxed font-light">Working globally — USA, UK, Europe and the Gulf — with modern asynchronous processes.</p>
             </div>
           </div>
           <div className="rounded-2xl bg-[#3A373E]/40 backdrop-blur-xl border border-white/[0.08] p-8 sm:p-10">
@@ -1406,10 +1406,10 @@ function App() {
   const isNotFound = route !== '/' && !service && !journalPost && !isTeamPage;
   // Per-page title + canonical + description + structured data.
   useEffect(() => {
-    document.title = service ? service.title + ' | THE JIMMY LAB' : journalPost ? journalPost.title + ' | THE JIMMY LAB' : isTeamPage ? 'Our Team | THE JIMMY LAB' : isComingSoonPage ? 'Coming Soon | THE JIMMY LAB' : isNotFound ? 'Page Not Found | THE JIMMY LAB' : 'THE JIMMY LAB — Digital Experiences';
+    document.title = service ? service.title + ' Services | THE JIMMY LAB' : journalPost ? journalPost.title + ' | THE JIMMY LAB' : isTeamPage ? 'Our Web Development & Design Team | THE JIMMY LAB' : isComingSoonPage ? 'Coming Soon | THE JIMMY LAB' : isNotFound ? 'Page Not Found | THE JIMMY LAB' : 'THE JIMMY LAB — Web Development & Design Agency';
     const canonical = document.querySelector('link[rel="canonical"]');
     if (canonical) canonical.setAttribute('href', 'https://thejimmylab.vercel.app' + (route === '/' ? '/' : route));
-    const description = service ? service.tagline : journalPost ? journalPost.excerpt : isTeamPage ? 'Meet the team behind THE JIMMY LAB — six operators covering design, engineering, SEO and automation, based in Islamabad, Pakistan.' : isComingSoonPage ? 'This section of THE JIMMY LAB is coming soon.' : isNotFound ? 'This page does not exist on THE JIMMY LAB.' : 'THE JIMMY LAB — a digital agency crafting immersive websites, web applications and interactive experiences with a signature 2.5D cardboard-style design approach.';
+    const description = service ? service.tagline + ' | THE JIMMY LAB — web development and design agency in Pakistan, serving clients in the USA, UK, Europe and the Gulf.' : journalPost ? journalPost.excerpt : isTeamPage ? 'Meet the team behind THE JIMMY LAB — six operators covering design, engineering, SEO and automation, based in Islamabad, Pakistan, working with clients in the USA, UK, Europe and the Gulf.' : isComingSoonPage ? 'This section of THE JIMMY LAB is coming soon.' : isNotFound ? 'This page does not exist on THE JIMMY LAB.' : 'Web development and design agency in Pakistan, building websites, web apps and mobile apps for clients in the USA, UK, Europe and the Gulf. Founded in 2013.';
     const robotsMeta = document.querySelector('meta[name="robots"]');
     if (isComingSoonPage) { if (!robotsMeta) { const m = document.createElement('meta'); m.setAttribute('name', 'robots'); m.setAttribute('content', 'noindex'); document.head.appendChild(m); } else robotsMeta.setAttribute('content', 'noindex'); } else if (robotsMeta) robotsMeta.remove();
     const meta = document.querySelector('meta[name="description"]');
@@ -1421,6 +1421,15 @@ function App() {
       ld = { '@context': 'https://schema.org', '@graph': [
         { '@type': 'Service', name: service.title, description: service.tagline, url: 'https://thejimmylab.vercel.app/services/' + service.slug, provider: { '@type': 'Organization', name: 'THE JIMMY LAB', url: 'https://thejimmylab.vercel.app/' } },
         { '@type': 'FAQPage', mainEntity: service.faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+      ] };
+    } else if (!isTeamPage && !isComingSoonPage && !isNotFound) {
+      // Home FAQPage schema — keep in sync with the HomePage faqs array.
+      ld = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: [
+        { '@type': 'Question', name: 'What technologies do you use?', acceptedAnswer: { '@type': 'Answer', text: 'We specialize in modern web technologies including React, Next.js, TypeScript, Tailwind CSS, Node.js, and various CMS platforms. Our stack is always evolving to incorporate the best tools for each project.' } },
+        { '@type': 'Question', name: 'How long does a typical project take?', acceptedAnswer: { '@type': 'Answer', text: 'Project timelines vary based on complexity. A simple website typically takes 2-4 weeks, while complex web applications can take 2-6 months. We provide detailed timelines during our initial consultation.' } },
+        { '@type': 'Question', name: 'Do you offer ongoing maintenance?', acceptedAnswer: { '@type': 'Answer', text: 'Yes! We offer various maintenance packages including security updates, content updates, performance monitoring, and technical support. We believe in building long-term relationships with our clients.' } },
+        { '@type': 'Question', name: 'What is your pricing structure?', acceptedAnswer: { '@type': 'Answer', text: 'We offer both project-based pricing and retainer models. Every project is unique, so we provide custom quotes based on your specific requirements, timeline, and scope of work.' } },
+        { '@type': 'Question', name: 'Can you help with existing websites?', acceptedAnswer: { '@type': 'Answer', text: 'Absolutely! We offer website redesigns, performance optimization, feature additions, and migration services for existing websites. We can work with most modern web technologies.' } },
       ] };
     } else if (journalPost) {
       const months: Record<string, string> = { January: '01', February: '02', March: '03', April: '04', May: '05', June: '06', July: '07', August: '08', September: '09', October: '10', November: '11', December: '12' };

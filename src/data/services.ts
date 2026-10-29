@@ -45,7 +45,7 @@ export const services: Service[] = [
     ],
     features: [
       { title: "Full-Stack Engineering", desc: "React, Next.js, Node.js and TypeScript across the entire stack." },
-      { title: "Performance First", desc: "Core Web Vitals at 95+, edge caching and image optimisation by default." },
+      { title: "Performance First", desc: "Core Web Vitals at 95+, edge caching and image optimization by default." },
       { title: "Scalable Architecture", desc: "Clean, testable codebases that grow with your product and team." },
       { title: "Security Hardened", desc: "Auth, roles, data protection and OWASP best practices baked in." },
     ],
@@ -149,7 +149,7 @@ export const services: Service[] = [
     tagline: "Storefronts built to convert — fast, flexible and beautiful at every step.",
     overview: [
       "We design and build e-commerce experiences that reduce friction and maximise conversion. From custom Shopify themes to fully headless builds, we craft storefronts that load fast and sell harder.",
-      "Every checkout is optimised, every product page is persuasive, and every build is wired for analytics, upsells and growth.",
+      "Every checkout is optimized, every product page is persuasive, and every build is wired for analytics, upsells and growth.",
     ],
     features: [
       { title: "Headless Commerce", desc: "Next.js storefronts with Shopify, Sanity or custom backends." },
@@ -221,7 +221,7 @@ export const services: Service[] = [
     tagline: "Motion that guides, delights and sets your brand apart.",
     overview: [
       "We craft interactive, scroll-driven and 3D motion that turns static pages into memorable experiences. From micro-interactions to full product configurators, we use motion as a functional tool — not decoration.",
-      "Every animation is optimised for 60fps, respects reduced-motion preferences and enhances usability rather than distracting from it.",
+      "Every animation is optimized for 60fps, respects reduced-motion preferences and enhances usability rather than distracting from it.",
     ],
     features: [
       { title: "Scroll Experiences", desc: "GSAP and Framer Motion scenes tied to scroll and time." },
@@ -243,7 +243,7 @@ export const services: Service[] = [
       { value: "2D & 3D", label: "Full range" },
     ],
     faq: [
-      { q: "Will animation slow my site down?", a: "No — we optimise every animation for performance and respect reduced-motion preferences for accessibility." },
+      { q: "Will animation slow my site down?", a: "No — we optimize every animation for performance and respect reduced-motion preferences for accessibility." },
       { q: "Can you animate an existing site?", a: "Yes. We can add scroll experiences, interactions and motion to your current product without a rebuild." },
       { q: "Do you do 3D product configurators?", a: "Absolutely — interactive 3D configurators are one of our signature offerings." },
     ],
@@ -293,13 +293,13 @@ export const services: Service[] = [
     tagline: "Custom 2D illustration and 3D renders — no stock clichés, ever.",
     overview: [
       "From editorial illustration and icon sets to fully rendered 3D product scenes, we create original graphic assets that make your brand unmistakable across web, print and video.",
-      "Our 3D pipeline covers modelling, texturing, lighting and rendering, delivered optimised for real-time web (glTF/Three.js) or cinematic stills and loops.",
+      "Our 3D pipeline covers modeling, texturing, lighting and rendering, delivered optimized for real-time web (glTF/Three.js) or cinematic stills and loops.",
     ],
     features: [
       { title: "2D Illustration", desc: "Custom illustration, iconography and infographic systems." },
       { title: "3D Modelling & Renders", desc: "Product visuals, characters and environments in Blender." },
       { title: "Motion Graphics", desc: "Animated logos, explainer scenes and social loops." },
-      { title: "Real-Time Assets", desc: "Optimised glTF models ready for Three.js and WebGL scenes." },
+      { title: "Real-Time Assets", desc: "Optimized glTF models ready for Three.js and WebGL scenes." },
     ],
     deliverables: [
       "Illustration & icon sets",
@@ -365,17 +365,17 @@ export const services: Service[] = [
     tagline: "Get found on Google, load fast everywhere, and turn search traffic into enquiries.",
     overview: [
       "We audit your site end to end — technical SEO, on-page structure, Core Web Vitals and content gaps — then fix what actually moves rankings, not just what looks good in a report.",
-      "Every optimisation is measured: before-and-after speed scores, ranking movement and traffic, with a clear monthly report on what changed and what comes next.",
+      "Every optimization is measured: before-and-after speed scores, ranking movement and traffic, with a clear monthly report on what changed and what comes next.",
     ],
     features: [
       { title: "Technical SEO Audit", desc: "Crawl, indexation, sitemaps, schema and redirect issues found and fixed." },
-      { title: "On-Page Optimisation", desc: "Titles, meta, headings, internal links and content structure tuned per page." },
-      { title: "Speed & Core Web Vitals", desc: "Image, code and caching optimisations that lift real user load times." },
+      { title: "On-Page Optimization", desc: "Titles, meta, headings, internal links and content structure tuned per page." },
+      { title: "Speed & Core Web Vitals", desc: "Image, code and caching optimizations that lift real user load times." },
       { title: "Local & Keyword Strategy", desc: "Keyword mapping and local search setup so the right people find you." },
     ],
     deliverables: [
       "Full SEO & performance audit",
-      "On-page optimisation report",
+      "On-page optimization report",
       "Core Web Vitals improvements",
       "Keyword & content roadmap",
       "Monthly ranking & traffic report",
@@ -388,8 +388,8 @@ export const services: Service[] = [
     ],
     faq: [
       { q: "How long before SEO results show?", a: "Technical and speed fixes usually show within weeks; ranking and traffic growth typically builds over 2–3 months." },
-      { q: "Do you write content too?", a: "We map keywords and optimise existing pages, and can brief or produce SEO content as part of a package." },
-      { q: "Is this a one-time job or ongoing?", a: "Both — a one-time audit and fix, or a monthly retainer for continuous optimisation and reporting." },
+      { q: "Do you write content too?", a: "We map keywords and optimize existing pages, and can brief or produce SEO content as part of a package." },
+      { q: "Is this a one-time job or ongoing?", a: "Both — a one-time audit and fix, or a monthly retainer for continuous optimization and reporting." },
     ],
   },
   {
